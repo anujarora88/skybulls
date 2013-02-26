@@ -28,12 +28,17 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     authentication = Authentication.find_by_provider_and_uid(auth['provider'], auth['uid'])
 
     if authentication
+      unless authentication.user.email == auth['extra']['raw_info']['email']
+        user = authentication.user
+        user.email = auth['extra']['raw_info']['email']
+        user.save!
+      end
       # Authentication found, sign the user in.
       flash[:notice] = "Signed in successfully."
       sign_in_and_redirect(:user, authentication.user)
     else
       # Authentication not found, thus a new user.
-      user = User.new
+      user = User.where(:email => auth['extra']['raw_info']['email']).first || User.new
       user.apply_omniauth(auth)
       if user.save(:validate => false)
         flash[:notice] = "Account created and signed in successfully."
