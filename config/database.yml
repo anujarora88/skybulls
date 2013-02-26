@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: skybulls_rails_development
+  database: skybulls
   pool: 5
   username: root
   password:
