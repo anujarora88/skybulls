@@ -24,6 +24,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         unless authentication.user.email == email
           user = authentication.user
           user.email = email
+          user.skip_confirmation!
           user.save!
         end
         # Authentication found, sign the user in.
@@ -33,6 +34,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         # Authentication not found, thus a new user.
         user = User.where(:email => email).first || User.new(:password => Devise.friendly_token[0,20])
         user.apply_omniauth(auth, email)
+        user.skip_confirmation!
         if user.save(:validate => false)
           flash[:notice] = "Account created and signed in successfully."
           sign_in_and_redirect(:user, user)
