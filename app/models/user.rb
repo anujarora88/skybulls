@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :delete_all
+  has_many :user_leagues
+  has_many :leagues , :through => :user_leagues
+
 
   devise :omniauthable, :omniauth_providers => [:facebook, :google]
 

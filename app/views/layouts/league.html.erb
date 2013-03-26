@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skybulls</title>
+  <%= stylesheet_link_tag "admin.css" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+
+    <body id="store" >
+        <div id="banner" >
+            <%= image_tag("logo.png") %>
+            <%= "SkyBulls Admin Panel" %>
+        </div>
+
+        <div id="columns" >
+            <div id="side" >
+              <%= link_to 'Create League', new_league_path %><br/>
+              <%= link_to 'View League', :controller => 'leagues', :action => 'index' %><br/>
+              <%= link_to 'Add Users to Leagues', :controller => 'leagues', :action => 'add_users' %><br/>
+              <%= link_to 'Edit Leagues', new_league_path %><br/>
+            </div>
+        <div id="main" >
+            <%= yield %>
+        </div>
+        </div>
+    </body>
+</html>

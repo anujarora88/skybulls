@@ -6,4 +6,13 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
   end
 
-end
+  def another_by_method
+    if current_user.nil?
+      "application_admin_layout"
+    end
+
+    else
+      "application_layout"
+  end
+
+    end

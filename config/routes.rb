@@ -1,4 +1,21 @@
 SkybullsRails::Application.routes.draw do
+  resources :user_leagues
+
+
+=begin
+  get '/leagues/add_users', :controller => 'league', :action => 'add_users'
+  resources :leagues
+=end
+
+  resources :leagues do
+    collection do
+      get :add_users
+      post :save_users
+    end
+  end
+
+  devise_for :admin_users
+
   devise_for :users, :skip => [:sessions], :controllers => {:omniauth_callbacks => "authentications"}
   as :user do
     get 'login' => 'devise/sessions#new', :as => :new_user_session
@@ -9,6 +26,7 @@ SkybullsRails::Application.routes.draw do
   end
 
   get 'dashboard' => 'dashboard#index', :as => :dashboard
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
