@@ -8,4 +8,12 @@ class User::Transaction < ActiveRecord::Base
 
   validates_presence_of :type, :account_id, :identifier, :payment_method_id
 
+  after_create :update_balance
+
+  private
+
+    def update_balance
+      raise "Attempt to call an abstract method"
+    end
+
 end
