@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
@@ -12,6 +12,12 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'omniauth-openid'
+
+gem 'braintree'
+
+gem 'money-rails'
+gem 'foreigner'
+
 
 
 

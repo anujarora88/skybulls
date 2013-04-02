@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326120723) do
+ActiveRecord::Schema.define(:version => 20130402162135) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -50,12 +50,46 @@ ActiveRecord::Schema.define(:version => 20130326120723) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "user_accounts", :force => true do |t|
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "user_id",                      :null => false
+    t.integer  "balance_cents", :default => 0, :null => false
+  end
+
+  add_index "user_accounts", ["user_id"], :name => "user_accounts_user_id_fk"
+
   create_table "user_leagues", :force => true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_payment_methods", :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "type",            :null => false
+    t.string   "payment_gateway", :null => false
+    t.string   "identifier",      :null => false
+    t.string   "info",            :null => false
+    t.integer  "account_id",      :null => false
+  end
+
+  add_index "user_payment_methods", ["account_id"], :name => "user_payment_methods_account_id_fk"
+
+  create_table "user_transactions", :force => true do |t|
+    t.integer  "account_id",                       :null => false
+    t.integer  "payment_method_id",                :null => false
+    t.integer  "amount_cents",      :default => 0, :null => false
+    t.string   "type",                             :null => false
+    t.string   "identifier",                       :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "user_transactions", ["account_id"], :name => "user_transactions_account_id_fk"
+  add_index "user_transactions", ["payment_method_id"], :name => "user_transactions_payment_method_id_fk"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -78,5 +112,12 @@ ActiveRecord::Schema.define(:version => 20130326120723) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "user_accounts", "users", :name => "user_accounts_user_id_fk"
+
+  add_foreign_key "user_payment_methods", "user_accounts", :name => "user_payment_methods_account_id_fk", :column => "account_id"
+
+  add_foreign_key "user_transactions", "user_accounts", :name => "user_transactions_account_id_fk", :column => "account_id"
+  add_foreign_key "user_transactions", "user_payment_methods", :name => "user_transactions_payment_method_id_fk", :column => "payment_method_id"
 
 end

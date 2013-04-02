@@ -47,4 +47,9 @@ ActionMailer::Base.smtp_settings = {
     :password => "skybulls12#"
 }
 
+Braintree::Configuration.environment = :sandbox
+Braintree::Configuration.merchant_id = "dnjcg8gfyjdb8f6v"
+Braintree::Configuration.public_key = "737xnj4ywxdnsq3n"
+Braintree::Configuration.private_key = "7786cf405e5d8b908364a809eb52241f"
+
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

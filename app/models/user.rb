@@ -13,7 +13,11 @@ class User < ActiveRecord::Base
   has_many :leagues , :through => :user_leagues
 
 
+  has_one :account, :class_name => 'User::Account'
+
   devise :omniauthable, :omniauth_providers => [:facebook, :google]
+
+  before_create :initialize_account
 
   def apply_omniauth(auth, email_address = nil)
     # In previous omniauth, 'user_info' was used in place of 'raw_info'
@@ -31,4 +35,10 @@ class User < ActiveRecord::Base
       User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
     end
   end
+
+  private
+
+    def initialize_account
+        build_account(:balance => Money.new(0))
+    end
 end
