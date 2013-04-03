@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   private
 
     def initialize_account
-        build_account(:balance => Money.new(0))
+        #acc = build_account()
+
     end
 end
