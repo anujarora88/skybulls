@@ -8,4 +8,11 @@ class User::Account < ActiveRecord::Base
 
   validates_presence_of :user_id
 
+
+  def create_payment_method_make_payment(params_hash, money, transaction = "deposit")
+
+  end
+
+
+
 end

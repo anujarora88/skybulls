@@ -1,7 +1,6 @@
 class CreateUserTransactions < ActiveRecord::Migration
   def change
     create_table :user_transactions do |t|
-      t.integer :account_id, null: false
       t.integer :payment_method_id, null:false
 
       t.foreign_key :user_accounts, :column => :account_id
