@@ -40,7 +40,11 @@ class User::BraintreePaymentMethod < User::PaymentMethod
 
   def format_amount(money)
     if money.is_a? Money
-        money.currency == Currency.new("USD") ? money.format(:symbol => false) : raise "invalid money object"
+        if money.currency == Currency.new("USD")
+          money.format(:symbol => false)
+        else
+          raise "invalid money object"
+        end
     else
         raise "invalid money object"
     end

@@ -4,7 +4,9 @@ class User::Account < ActiveRecord::Base
 
   has_many :transactions, :class_name => 'User::Transaction'
 
-  monetize :balance, :allow_nil => false
+  monetize :balance_cents, :allow_nil => false, :numericality => {
+      :greater_than_or_equal_to => 0
+  }, :with_currency => :usd
 
   validates_presence_of :user_id
 
