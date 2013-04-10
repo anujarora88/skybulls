@@ -19,9 +19,9 @@
     <td><%= league.category %></td>
     <td><%= league.market %></td>
     <td><%= league.algo_name %></td>
-    <td><%= link_to 'Show', league %></td>
-    <td><%= link_to 'Edit', edit_league_path(league) %></td>
-    <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', admin_leagues_url %></td>
+    <td><%= link_to 'Edit', edit_admin_league_path(league) %></td>
+    <td><%= link_to 'Destroy', admin_leagues_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td><%= link_to 'Add Users', action: :add_users , :league_id =>league.id  %></td>
   </tr>
 <% end %>

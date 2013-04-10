@@ -5,7 +5,6 @@ class Admin::LeaguesController < Admin::AbstractController
 
   def index
     @leagues = League.all
-
     respond_to do |format|
       format.html {render :"index",notice => params[:notice]?params[:notice]:nil}# index.html.erb
       format.json { render json: @leagues }
@@ -18,7 +17,7 @@ class Admin::LeaguesController < Admin::AbstractController
     @league = League.find(params[:id])
 
     respond_to do |format|
-      format.html {render 'show'}# show.html.erb
+      format.html {render admin_leagues_path}# show.html.erb
       format.json { render json: @league }
     end
   end
@@ -78,7 +77,7 @@ class Admin::LeaguesController < Admin::AbstractController
     @league.destroy
 
     respond_to do |format|
-      format.html { redirect_to leagues_url }
+      format.html { redirect_to admin_leagues_url }
       format.json { head :no_content }
     end
   end
@@ -87,7 +86,7 @@ class Admin::LeaguesController < Admin::AbstractController
     @users = User.all
     @league = League.find(params[:league_id])
     respond_to do |format|
-      format.html { render  :'add_users' , :layout=>'league', :notice => params[:notice]?params[:notice]:nil}
+      format.html { render  :'admin/leagues/add_users', :notice => params[:notice]?params[:notice]:nil}
       format.json { head :no_content }
     end
   end
@@ -113,9 +112,9 @@ class Admin::LeaguesController < Admin::AbstractController
     end
     respond_to do |format|
       if !param_hash.nil?
-        format.html { redirect_to @league, :method => :get,notice => "Users have been successfully added to #{@league.title}"}
+        format.html { redirect_to admin_leagues_url, :method => :get,notice => "Users have been successfully added to #{@league.title}"}
       else
-        format.html { redirect_to :action =>'add_users', notice => "No User is selected"}
+        format.html { redirect_to  add_users_admin_league_url, notice => "No User is selected"}
       end
     end
     end

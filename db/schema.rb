@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407110648) do
+ActiveRecord::Schema.define(:version => 20130410160906) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,14 +40,46 @@ ActiveRecord::Schema.define(:version => 20130407110648) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "logo_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "exchanges", :force => true do |t|
+    t.string   "name"
+    t.string   "logo_url"
+    t.string   "symbol"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "leagues", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.string   "category"
     t.string   "market"
     t.string   "algo_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "latest_registration_time"
+    t.boolean  "invitation_only",          :default => false
+    t.float    "buy_in"
+    t.float    "commission"
+    t.integer  "min_users"
+    t.integer  "max_users"
+  end
+
+  create_table "stocks", :force => true do |t|
+    t.string   "symbol"
+    t.float    "latest_price"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "user_accounts", :force => true do |t|
