@@ -18,6 +18,9 @@ gem 'braintree'
 gem 'money-rails'
 gem 'foreigner'
 
+gem "haml"
+gem "haml-rails", :group => :development
+
 
 
 
