@@ -2,17 +2,28 @@ SkybullsRails::Application.routes.draw do
   resources :user_leagues
 
 
-=begin
-  get '/leagues/add_users', :controller => 'league', :action => 'add_users'
-  resources :leagues
-=end
 
+=begin
   resources :leagues do
     collection do
       get :add_users
       post :save_users
     end
   end
+=end
+
+  namespace :admin do
+    resources :leagues do
+      collection do
+        get :add_users
+        post :save_users
+      end
+    end
+  end
+
+    get 'admin' => 'admin/dashboard#index'
+
+
 
   devise_for :admin_users
 

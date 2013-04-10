@@ -1,4 +1,4 @@
-class LeaguesController < ApplicationController
+class Admin::LeaguesController < Admin::AbstractController
   # GET /leagues
   # GET /leagues.json
 
@@ -7,7 +7,7 @@ class LeaguesController < ApplicationController
     @leagues = League.all
 
     respond_to do |format|
-      format.html {render :"index", :layout => 'league',notice => params[:notice]?params[:notice]:nil}# index.html.erb
+      format.html {render :"index",notice => params[:notice]?params[:notice]:nil}# index.html.erb
       format.json { render json: @leagues }
     end
   end
@@ -29,7 +29,7 @@ class LeaguesController < ApplicationController
     @league = League.new
 
     respond_to do |format|
-      format.html {render :'new' , :layout => 'league'}# new.html.erb
+      format.html {render :'new'}# new.html.erb
       format.json { render json: @league }
     end
   end
@@ -102,10 +102,10 @@ class LeaguesController < ApplicationController
             if @param_hash[:"#{i}"]
               user = User.find(param_hash[:"#{i}"])
               if user!=nil
-                user_league = UserLeague.find(user.id,@league.id)
+                user_league = UserLeagueAssociation.find(user.id,@league.id)
               end
-              if user_league=nil
-                UserLeague.create(:user_id => user.id, :league_id=>@league.id)
+              if user_league==nil
+                UserLeagueAssociation.create(:user_id => user.id, :league_id=>@league.id)
               end
 
             end

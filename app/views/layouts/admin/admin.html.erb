@@ -15,9 +15,9 @@
 
         <div id="columns" >
             <div id="side" >
-              <%= link_to 'Create League', new_league_path %><br/>
+              <%= link_to 'Create League', :controller => 'admin/leagues', :action => 'new'%><br/>
               <%= link_to 'View League', :controller => 'leagues', :action => 'index' %><br/>
-              <%= link_to 'Edit Leagues', new_league_path %><br/>
+              <%= link_to 'Edit Leagues', :controller => 'admin/leagues', :action => 'new' %><br/>
             </div>
         <div id="main" >
             <%= yield %>

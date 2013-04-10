@@ -3,16 +3,11 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
-  end
-
-  def another_by_method
-    if current_user.nil?
-      "application_admin_layout"
-    end
-
+    if resource.instance_of?AdminUser
+           admin_url
     else
-      "application_layout"
+      request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
+    end
   end
 
-    end
+end

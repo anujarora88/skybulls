@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<%= form_tag :action => 'save_users', :controller => 'leagues'  %>
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Check Box</th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= check_box_tag  "user_ids[#{user.id}]", user.id%></td>
+      </tr>
+  <% end %>
+</table>
+<%= hidden_field_tag 'league_id', @league.id %>
+<%= hidden_field_tag 'count', @users.count %>
+<%= button_tag 'Add to League'%>
+<br />

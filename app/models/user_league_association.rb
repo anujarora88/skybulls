@@ -1,4 +1,4 @@
-class UserLeague < ActiveRecord::Base
+class UserLeagueAssociation < ActiveRecord::Base
   attr_accessible :league_id, :user_id
 
   belongs_to :user
