@@ -1,0 +1,16 @@
+%html
+  %head
+    %meta(content="text/html; charset=utf-8" http-equiv="Content-Type")/
+    %title= @title || "Skybulls"
+    = favicon_link_tag
+    %link{href: 'http://fonts.googleapis.com/css?family=Oxygen:400,300,700', rel:'stylesheet', type:'text/css'}
+    = stylesheet_link_tag "style", :media => :all
+    = stylesheet_link_tag "dark", :media => :all
+    = yield :meta
+  %body{:class => " "}
+    .wrapper
+      = render '/layouts/header'
+      = yield
+      = render '/layouts/footer'
+
+
