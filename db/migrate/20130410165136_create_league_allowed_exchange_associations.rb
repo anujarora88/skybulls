@@ -4,11 +4,9 @@ class CreateLeagueAllowedExchangeAssociations < ActiveRecord::Migration
       t.integer  :exchange_id
       t.integer :league_id
 
-
-      add_index :exchanges_leagues, [:exchange_id, :league_id]
-
       t.timestamps
     end
+    add_index :exchanges_leagues, [:exchange_id, :league_id]
   end
 
   def down
