@@ -1,6 +1,6 @@
 class CreateLeagueAllowedExchangeAssociations < ActiveRecord::Migration
   def up
-    create_table :league_exchange_associations do |t|
+    create_table :exchanges_leagues do |t|
       t.integer  :exchange_id
       t.foreign_key :exchanges , :column_name => :exchange_id
       t.integer :league_id
