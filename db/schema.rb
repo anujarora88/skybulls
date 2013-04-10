@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402162135) do
+ActiveRecord::Schema.define(:version => 20130407110648) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20130402162135) do
 
   add_index "user_accounts", ["user_id"], :name => "user_accounts_user_id_fk"
 
-  create_table "user_leagues", :force => true do |t|
+  create_table "user_league_associations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
     t.datetime "created_at", :null => false
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(:version => 20130402162135) do
   add_index "user_payment_methods", ["account_id"], :name => "user_payment_methods_account_id_fk"
 
   create_table "user_transactions", :force => true do |t|
-    t.integer  "account_id",                       :null => false
     t.integer  "payment_method_id",                :null => false
     t.integer  "amount_cents",      :default => 0, :null => false
     t.string   "type",                             :null => false
@@ -88,7 +87,6 @@ ActiveRecord::Schema.define(:version => 20130402162135) do
     t.datetime "updated_at",                       :null => false
   end
 
-  add_index "user_transactions", ["account_id"], :name => "user_transactions_account_id_fk"
   add_index "user_transactions", ["payment_method_id"], :name => "user_transactions_payment_method_id_fk"
 
   create_table "users", :force => true do |t|
@@ -117,7 +115,6 @@ ActiveRecord::Schema.define(:version => 20130402162135) do
 
   add_foreign_key "user_payment_methods", "user_accounts", :name => "user_payment_methods_account_id_fk", :column => "account_id"
 
-  add_foreign_key "user_transactions", "user_accounts", :name => "user_transactions_account_id_fk", :column => "account_id"
   add_foreign_key "user_transactions", "user_payment_methods", :name => "user_transactions_payment_method_id_fk", :column => "payment_method_id"
 
 end

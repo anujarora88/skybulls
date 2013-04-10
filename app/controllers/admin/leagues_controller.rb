@@ -18,7 +18,7 @@ class Admin::LeaguesController < Admin::AbstractController
     @league = League.find(params[:id])
 
     respond_to do |format|
-      format.html {render 'show',:layout => 'league'}# show.html.erb
+      format.html {render 'show'}# show.html.erb
       format.json { render json: @league }
     end
   end
@@ -46,7 +46,7 @@ class Admin::LeaguesController < Admin::AbstractController
 
     respond_to do |format|
       if @league.save
-        format.html { redirect_to @league, notice: 'League was successfully created.' }
+        format.html { redirect_to admin_league_path(@league), notice: 'League was successfully created.' }
         format.json { render json: @league, status: :created, location: @league }
       else
         format.html { render action: "new" }
