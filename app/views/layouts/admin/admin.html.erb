@@ -3,8 +3,17 @@
 <head>
   <title>Skybulls</title>
   <%= stylesheet_link_tag "admin.css" %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+  <script>
+      jQuery(document).ready(function(){
+          $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
+              minDate: Date.now()
+          })
+      });
+  </script>
 </head>
 
     <body id="store" >
