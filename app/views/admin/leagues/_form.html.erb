@@ -34,7 +34,49 @@
 
   <div class="field">
      <%= f.label :start_time %><br />
-     <%= f.text_field :start_time, :id=> 'dateFields'%>
+     <%= f.text_field :start_time, :class=> 'dateFields'%>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_time %><br />
+      <%= f.text_field :end_time, :class=> 'dateFields'%>
+    </div>
+
+    <div class="field">
+      <%= f.label :latest_registration_time %><br />
+      <%= f.text_field :latest_registration_time%>
+    </div>
+
+    <div class="field">
+      <%= f.label :buy_in %><br />
+      <%= f.text_field :buy_in%>
+    </div>
+
+    <div class="field">
+      <%= f.label :commission %><br />
+      <%= f.text_field :commission%>
+    </div>
+
+    <div class="field">
+      <%= f.label :invitation_only %><br />
+      <td><%= check_box_tag :invitation_only%></td>
+    </div>
+
+    <% Exchange.all.each do |exchange| %>
+        <tr>
+          <td><%= exchange.name %></td>
+          <td><%= check_box_tag  "exchange_ids[#{exchange.id}]", exchange.id%></td>
+        </tr>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :min_users %><br />
+      <%= f.text_field :min_users%>
+    </div>
+
+    <div class="field">
+      <%= f.label :max_users %><br />
+      <%= f.text_field :max_users%>
     </div>
 
   <div class="actions">
