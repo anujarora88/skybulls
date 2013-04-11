@@ -1,4 +1,4 @@
-module User::CashierHelper
+module Users::CashierHelper
 
   def available_cash
     humanized_money_with_symbol current_user.account.balance

@@ -17,7 +17,7 @@ class Admin::LeaguesController < Admin::AbstractController
     @league = League.find(params[:id])
 
     respond_to do |format|
-      format.html {render admin_leagues_path}# show.html.erb
+      format.html {render 'show'}# show.html.erb
       format.json { render json: @league }
     end
   end

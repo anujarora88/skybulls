@@ -1,0 +1,87 @@
+.cont-area
+  = render "/users/left_area"
+
+  %section.inner-right-area
+    .user-p
+      .p-photo
+        = image_tag "pic.png"
+      .user-info
+        %span.u-name
+          = current_user.display_name
+        %a{href: 'javascript:void(0);'}
+          = "Available Balance - "
+          %span
+            = available_cash
+      .user-info-icon
+        %a.u-price{href: 'javascript:void(0);'}
+        %a.u-contact{href: 'javascript:void(0);'}
+        %a.u-about{href: 'javascript:void(0);'}
+    .inner-cont-right
+      %h4.in-page-title.cashier-icon
+        Cashier
+      %ul.two-col-data
+        %li
+          %label
+            Available
+          %span
+            = available_cash
+        %li
+          %label
+            In Play
+          %span
+            = cash_in_play
+        %li.t-txt
+          %label
+            Total
+          %span
+            = total_cash
+      .page-tab
+        %ul
+          %li
+            %a.active{href: "javascript:void(0)"}
+              %span
+                Deposit
+          %li
+            %a{href: "javascript:void(0)"}
+              %span
+                Withdrawl
+
+      = form_for @deposit, :url => users_deposit_path  do |f|
+        .c-form-area
+          .c-col-area
+            %label Amount to deposit
+            .c-value
+              %input.input-txt-s{:type => "text"}/
+              =# f.fields_for :amount
+              %span (in $, Minimum $10)
+          .clr
+          .c-col-area
+            %label Name on Card
+            .c-value
+              %input.input-txt{:type => "text"}/
+          .c-col-area
+            %label Credit Card Number
+            .c-value
+              %input.input-txt{:type => "text"}/
+          .clr
+          .c-col-area
+            %label Expiration Date
+            .c-value
+              %select{:name => "select2"}
+                %option 10
+              %select{:name => "select2"}
+                %option 12
+          .c-col-area
+            %label Security Code
+            .c-value
+              %input.input-txt-s{:type => "text"}/
+          .c-form-f
+            %input{:type => "checkbox"}/
+            I agree to the
+            %a{:href => "javascript:void(0);"} Terms of Service
+            and
+            %a{:href => "javascript:void(0);"} Privacy Policy
+            %a.cf-btn{:href => "javascript:void(0);"}
+              %span Make a Deposit
+          .card-info
+            = image_tag "card.png"

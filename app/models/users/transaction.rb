@@ -1,6 +1,8 @@
-class User::Transaction < ActiveRecord::Base
+class Users::Transaction < ActiveRecord::Base
 
-  belongs_to :payment_method, :class_name => 'User::PaymentMethod'
+  set_table_name :user_transactions
+
+  belongs_to :payment_method, :class_name => 'Users::PaymentMethod'
 
   monetize :amount_cents, :allow_nil => false, :numericality => {
       :greater_than_or_equal_to => 0

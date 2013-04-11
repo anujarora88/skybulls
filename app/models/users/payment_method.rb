@@ -1,8 +1,10 @@
-class User::PaymentMethod < ActiveRecord::Base
+class Users::PaymentMethod < ActiveRecord::Base
+
+  set_table_name :user_payment_methods
 
   set_inheritance_column :payment_gateway
 
-  belongs_to :account, :class_name => 'User::Account'
+  belongs_to :account, :class_name => 'Users::Account'
 
   validates_presence_of :type, :payment_gateway, :identifier, :account_id, :info
 

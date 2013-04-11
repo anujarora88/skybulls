@@ -1,4 +1,4 @@
-class User::BraintreePaymentMethod < User::PaymentMethod
+class Users::BraintreePaymentMethod < Users::PaymentMethod
 
   private
 
@@ -8,7 +8,7 @@ class User::BraintreePaymentMethod < User::PaymentMethod
           :customer_id => identifier
       )
       if result.success?
-        User::Deposit.create!(:identifier => result.transaction.id, :amount => money, :payment_method => self)
+        Users::Deposit.create!(:identifier => result.transaction.id, :amount => money, :payment_method => self)
         true
       elsif result.transaction
         account.errors.add :base, "#{result.transaction.processor_response_code}: #{result.transaction.processor_response_text}"
@@ -26,7 +26,7 @@ class User::BraintreePaymentMethod < User::PaymentMethod
           :customer_id => identifier
       )
       if result.success?
-        User::Withdrawl.create!(:identifier => result.transaction.id, :amount => money, :payment_method => self)
+        Users::Withdrawl.create!(:identifier => result.transaction.id, :amount => money, :payment_method => self)
         true
       elsif result.transaction
         account.errors.add :base, "#{result.transaction.processor_response_code}: #{result.transaction.processor_response_text}"

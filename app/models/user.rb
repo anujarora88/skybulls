@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :leagues , :through => :user_leagues
 
 
-  has_one :account, :class_name => 'User::Account'
+  has_one :account, :class_name => 'Users::Account'
 
   devise :omniauthable, :omniauth_providers => [:facebook, :google]
 
