@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery_ujs
 // require jquery
-//= require_tree
+
 jQuery(document).ready(function(){
     $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
                                     minDate: Date.now()

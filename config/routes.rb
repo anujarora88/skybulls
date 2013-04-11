@@ -1,7 +1,12 @@
 SkybullsRails::Application.routes.draw do
+
   resources :user_leagues
 
-
+  namespace :user do
+    get 'cashier' => 'cashier#index', :as => :user_cashier
+    post 'deposit' => 'cashier#deposit', :as => :user_deposit
+    post 'withdrawl' => 'cashier#withdrawl', :as => :user_withdrawl
+  end
 
 =begin
   resources :leagues do

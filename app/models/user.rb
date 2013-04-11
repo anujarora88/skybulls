@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
 
   before_create :initialize_account
 
+  def display_name
+    email
+  end
+
   def apply_omniauth(auth, email_address = nil)
     # In previous omniauth, 'user_info' was used in place of 'raw_info'
     self.email = email_address || auth['extra']['raw_info']['email']

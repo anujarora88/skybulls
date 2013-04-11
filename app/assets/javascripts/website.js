@@ -12,8 +12,7 @@ var Website = {
 		if(oScroll2.length > 0){
 			oScroll2.tinyscrollbar({ size: 100 });
 		}					
-		Cufon.replace('h2, h1, a.download');
-		
+
 		var oCon = document.getElementById('mcon');
 		var oLink = document.createElement('a');
 		var oText = document.createTextNode("me"); 
