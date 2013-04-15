@@ -6,6 +6,8 @@ SkybullsRails::Application.routes.draw do
     get 'cashier' => 'cashier#index', :as => :cashier
     post 'deposit' => 'cashier#deposit', :as => :deposit
     post 'withdrawl' => 'cashier#withdrawl', :as => :withdrawl
+    get 'preapproval_success' => 'cashier#preapproval_success', :as => :preapproval_success
+    get 'preapproval_failure' => 'cashier#preapproval_failure', :as => :preapproval_failure
   end
 
 =begin

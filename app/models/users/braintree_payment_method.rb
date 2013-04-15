@@ -2,7 +2,7 @@ class Users::BraintreePaymentMethod < Users::PaymentMethod
 
   private
 
-    def process_deposit!(money)
+    def process_deposit!(money, params_hash)
       result = Braintree::Transaction.sale(
           :amount => format_amount(money),
           :customer_id => identifier
@@ -14,7 +14,7 @@ class Users::BraintreePaymentMethod < Users::PaymentMethod
       end
     end
 
-    def process_withdrawl!(money)
+    def process_withdrawl!(money, params_hash)
       result = Braintree::Transaction.credit(
           :amount => format_amount(money),
           :customer_id => identifier

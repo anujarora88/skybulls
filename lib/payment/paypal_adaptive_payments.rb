@@ -19,16 +19,26 @@ class PaypalAdaptivePayments
   end
 
   def self.preapproval_valid_for_amount?(preapproval_key, amount)
+
+    preapproval_details_response = get_preapproval_details(preapproval_key)
+
+    if preapproval_details_response && preapproval_details_response.responseEnvelope.ack.to_s == "Success"
+      return preapproval_details_response.approved && preapproval_details_response.maxAmountPerPayment >= amount && preapproval_details_response.status == "ACTIVE"
+    end
+    false
+  end
+
+  def self.get_preapproval_details(preapproval_key)
     api = PayPal::SDK::AdaptivePayments::API.new
 
     preapproval_details = api.build_preapproval_details({ :preapprovalKey => preapproval_key })
 
     preapproval_details_response = api.preapproval_details(preapproval_details)
 
-    if pre_approval_response.responseEnvelope.ack.to_s == "Success"
-      return preapproval_details_response.approved && preapproval_details_response.maxAmountPerPayment >= amount && preapproval_details_response.status == "ACTIVE"
+    if preapproval_details_response.responseEnvelope.ack.to_s == "Success"
+       return preapproval_details_response
     end
-    false
+    nil
   end
 
   def self.deposit!(preapproval_key, amount, return_url, cancel_url)

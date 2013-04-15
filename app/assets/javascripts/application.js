@@ -15,5 +15,9 @@
 jQuery(document).ready(function(){
     $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
                                     minDate: Date.now()
-                                    } )
+                                    } );
+
+    $("[data-role=submit]").click(function(){
+        $(this).closest("form").submit();
+    });
 })

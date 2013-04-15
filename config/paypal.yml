@@ -10,7 +10,6 @@ test: &default
   app_id: APP-80W284485P519543T
   # # With Certificate
   # cert_path: "config/cert_key.pem"
-  merchant_account_email_address: anuj@skybulls.com
 
   # # IP Address
   # ip_address: 127.0.0.1

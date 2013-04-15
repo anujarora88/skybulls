@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410171439) do
+ActiveRecord::Schema.define(:version => 20130415190708) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -110,13 +110,14 @@ ActiveRecord::Schema.define(:version => 20130410171439) do
   end
 
   create_table "user_payment_methods", :force => true do |t|
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "type",            :null => false
-    t.string   "payment_gateway", :null => false
-    t.string   "identifier",      :null => false
-    t.string   "info",            :null => false
-    t.integer  "account_id",      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "type",                                :null => false
+    t.string   "payment_gateway",                     :null => false
+    t.string   "identifier"
+    t.string   "info"
+    t.integer  "account_id",                          :null => false
+    t.boolean  "pending_approval", :default => false
   end
 
   add_index "user_payment_methods", ["account_id"], :name => "user_payment_methods_account_id_fk"

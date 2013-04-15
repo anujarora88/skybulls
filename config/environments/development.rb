@@ -33,6 +33,7 @@ SkybullsRails::Application.configure do
   config.assets.compress = false
 
   config.paypal_merchant_account_email = "anuj@skybulls.com"
+  config.paypal_preapproval_key_url = "https://www.sandbox.paypal.com/webscr&cmd=_ap-preapproval&preapprovalkey="
 
 
   # Expands the lines which load the assets
