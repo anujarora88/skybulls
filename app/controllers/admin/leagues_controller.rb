@@ -42,7 +42,13 @@ class Admin::LeaguesController < Admin::AbstractController
   # POST /leagues.json
   def create
     @league = League.new(params[:league])
+    if params[:invitation_only]==1
+      @league.invitation_only= true
+    end
 
+    if !params[:exchange_ids].nil?
+      @league.exchanges=Exchange.find(params[:exchange_ids].values)
+    end
     respond_to do |format|
       if @league.save
         format.html { redirect_to admin_league_path(@league), notice: 'League was successfully created.' }
@@ -61,7 +67,7 @@ class Admin::LeaguesController < Admin::AbstractController
 
     respond_to do |format|
       if @league.update_attributes(params[:league])
-        format.html { redirect_to @league, notice: 'League was successfully updated.' }
+        format.html { redirect_to admin_league_url, notice: 'League was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

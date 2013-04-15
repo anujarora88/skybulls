@@ -8,6 +8,8 @@ SkybullsRails::Application.routes.draw do
     post 'withdrawl' => 'cashier#withdrawl', :as => :withdrawl
     get 'preapproval_success' => 'cashier#preapproval_success', :as => :preapproval_success
     get 'preapproval_failure' => 'cashier#preapproval_failure', :as => :preapproval_failure
+    get 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
+    get 'league_registration_register' =>'league_registration#register', :as=> :league_register
   end
 
 =begin

@@ -1,9 +1,15 @@
 <h2>Dashboard</h2>
 
 <h4>
-        Logged in as <%=	 current_user.email %>
-  <%= link_to "Logout", destroy_user_session_path %><br />
-
-
+    Logged in as <%= current_user.email %>
+    <% link_to "Logout", destroy_user_session_path %><br />
 </h4>
+<%= hidden_field_tag 'registerUrl', user_league_register_url %>
+
+<div class="popup-area">
+
+</div>
+
+<%= render 'league_dashboard' %>
+
 
