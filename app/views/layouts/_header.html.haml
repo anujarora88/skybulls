@@ -6,15 +6,15 @@
       %span.w-txt
         Balance
       %span.name-txt
-        $100.00
+        = available_cash
       %span.deposit-txt
         Deposit
   %div{class: "topbar-right"}
     %a{href: "#"}
       %span.w-txt
         Welcome,
-      %span.name-txt
-        Anuj
+      %span.name-txt{title: current_user.display_name}
+        = current_user_name(10)
       %span.noti-txt
         (2)
 

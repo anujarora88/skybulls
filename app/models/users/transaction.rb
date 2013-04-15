@@ -1,6 +1,6 @@
 class Users::Transaction < ActiveRecord::Base
 
-  set_table_name :user_transactions
+  self.table_name = :user_transactions
 
   belongs_to :payment_method, :class_name => 'Users::PaymentMethod'
 
@@ -11,6 +11,8 @@ class Users::Transaction < ActiveRecord::Base
   validates_presence_of :type, :identifier, :payment_method_id
 
   after_create :update_balance
+
+  attr_accessible :payment_method, :amount, :amount_cents, :payment_method, :payment_method_id , :identifier
 
   def account
     payment_method.account

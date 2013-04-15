@@ -45,43 +45,40 @@
             %a{href: "javascript:void(0)"}
               %span
                 Withdrawl
-
-      = form_for @deposit, :url => users_deposit_path  do |f|
-        .c-form-area
+      .c-form-area
+        = form_for @deposit, :url => users_deposit_path  do |f|
           .c-col-area
             %label Amount to deposit
             .c-value
-              %input.input-txt-s{:type => "text"}/
-              =# f.fields_for :amount
+              = f.text_field :amount, :class => 'input-txt-s'
               %span (in $, Minimum $10)
           .clr
           .c-col-area
             %label Name on Card
             .c-value
-              %input.input-txt{:type => "text"}/
+              = text_field_tag("credit_card[name]", nil, class: "input-txt")
+
           .c-col-area
             %label Credit Card Number
             .c-value
-              %input.input-txt{:type => "text"}/
+              = text_field_tag("credit_card[number]", nil, class: "input-txt")
           .clr
           .c-col-area
             %label Expiration Date
             .c-value
-              %select{:name => "select2"}
-                %option 10
-              %select{:name => "select2"}
-                %option 12
+              = select_month(Date.today, :field_name => "expiry_month")
+              = select_year(Date.today, :field_name => "expiry_year")
           .c-col-area
             %label Security Code
             .c-value
-              %input.input-txt-s{:type => "text"}/
+              = text_field_tag("credit_card[cvv]", nil, class: "input-txt")
           .c-form-f
             %input{:type => "checkbox"}/
             I agree to the
             %a{:href => "javascript:void(0);"} Terms of Service
             and
             %a{:href => "javascript:void(0);"} Privacy Policy
-            %a.cf-btn{:href => "javascript:void(0);"}
+            %a.cf-btn{:href => "javascript:void(0);", :onclick => "document.forms[0].submit();"}
               %span Make a Deposit
-          .card-info
-            = image_tag "card.png"
+        .card-info
+          = image_tag "card.png"

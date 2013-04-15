@@ -57,6 +57,7 @@ module SkybullsRails
     config.assets.enabled = true
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

@@ -1,36 +1,42 @@
 class Users::PaymentMethod < ActiveRecord::Base
 
-  set_table_name :user_payment_methods
+  self.table_name = :user_payment_methods
 
   set_inheritance_column :payment_gateway
 
   belongs_to :account, :class_name => 'Users::Account'
 
+  has_many :transactions, :class_name => 'Users::Transaction'
+
   validates_presence_of :type, :payment_gateway, :identifier, :account_id, :info
 
-  TYPE_CREDIT_CARD = "credit_card"
+  @@type_credit_card = "credit_card"
 
-  SUPPORTED_TYPES = [TYPE_CREDIT_CARD]
+  @@supported_types = [@@type_credit_card].freeze
 
-  validates_inclusion_of :type, :in => SUPPORTED_TYPES
+  cattr_reader :type_credit_card
 
-  def make_deposit(money)
-     process_deposit(money)
+  validates_inclusion_of :type, :in => @@supported_types
+
+  attr_accessible :type, :identifier, :account, :info, :account_id
+
+  def make_deposit!(money)
+     process_deposit!(money)
   end
 
-  def make_withdrawl(money)
+  def make_withdrawl!(money)
     #TODO improve this later
     raise "Not enough Balance!!" if account.balance < money
-    process_withdrawl(money)
+    process_withdrawl!(money)
   end
 
   private
 
-    def process_deposit(money)
+    def process_deposit!(money)
       raise "Attempt to call an abstract method"
     end
 
-    def process_withdrawl(money)
+    def process_withdrawl!(money)
       raise "Attempt to call an abstract method"
     end
 

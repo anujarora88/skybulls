@@ -14,6 +14,7 @@ gem 'oauth2'
 gem 'omniauth-openid'
 
 gem 'braintree'
+gem 'paypal-sdk-adaptivepayments'
 
 gem 'money-rails'
 gem 'foreigner'

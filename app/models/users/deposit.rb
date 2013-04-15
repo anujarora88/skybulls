@@ -1,6 +1,7 @@
 module Users
   class Deposit < Transaction
 
+
     private
 
       def update_balance
