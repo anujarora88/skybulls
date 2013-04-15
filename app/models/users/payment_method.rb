@@ -22,7 +22,7 @@ class Users::PaymentMethod < ActiveRecord::Base
   attr_accessible :type, :identifier, :account, :info, :account_id, :pending_approval
 
   def make_deposit!(money, params_hash)
-     raise PaymentException("Cannot process a deposit using this account!") if account.balance < money
+     raise PaymentException("Cannot process a deposit using this account!") unless deposit_allowed?
      process_deposit!(money, params_hash)
   end
 
