@@ -1,7 +1,12 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function() {
-    $( "#tabs" ).tabs();
+      $( "#page-tabs a" ).click(function(){
+        $( "#page-tabs a" ).removeClass('active');
+        $( ".c-form-area" ).hide();
+        $(this).addClass('active');
+        $($(this).attr('href')).show();
+      });
     });
 
 
@@ -42,17 +47,17 @@
             Total
           %span
             = total_cash
-      .page-tab
-        %ul#tabs
+      .page-tab#page-tabs
+        %ul
           %li
-            %a.active{href: "#deposit"}
+            %a.active{href: "#deposit_div"}
               %span
                 Deposit
           %li
-            %a{href: "#withdrawl"}
+            %a{href: "#withdrawl_div"}
               %span
                 Withdrawl
-      .c-form-area#deposit
+      .c-form-area#deposit_div
         = form_for @deposit, :url => users_deposit_path  do |f|
           .c-col-area
             %label Amount to deposit
@@ -68,7 +73,7 @@
             %a.cf-btn.submit_anchor{:href => "javascript:void(0);", "data-role"=> "submit"}
               %span Make a Deposit
 
-      .c-form-area#withdrawl
+      .c-form-area#withdrawl_div{style: "display:none;"}
         = form_for @withdrawl, :url => users_withdrawl_path  do |f|
           .c-col-area
             %label Amount to withdraw
