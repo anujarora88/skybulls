@@ -1,0 +1,40 @@
+%table
+  %tr
+    %th= 'Title & Description'
+    %th= 'Start Date'
+    %th= 'End Date'
+    %th= 'Latest Registration Time'
+    %th= 'Exchanges'
+    %th= 'Buy in'
+    %th= 'Commission'
+    %th= ''
+
+    - @leagues.each do |league|
+      %tr
+        %td
+          =league.title
+          %br
+          =league.description
+        %td= league.start_time
+        %td= league.end_time
+        %td= league.latest_registration_time
+        %td
+          -unless league.exchanges.empty?
+            - league.exchanges.each do |exchange|
+              = exchange.name
+              %br
+        %td
+          -if !league.buy_in.nil?
+            =number_to_currency(league.buy_in, :precision => 2)
+          -else
+            ='$0'
+        %td
+          -if !league.commission.nil?
+            =league.commission.to_s+'%'
+          -else
+            ='0%'
+
+        %td
+          %a{:href=>"#", :class=>'popup_box',:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxInfoUrl =>user_league_info_url, :ajaxRegisterUrl=> user_league_register_url}} Register
+
+

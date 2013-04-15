@@ -6,6 +6,8 @@ SkybullsRails::Application.routes.draw do
     get 'cashier' => 'cashier#index', :as => :user_cashier
     post 'deposit' => 'cashier#deposit', :as => :user_deposit
     post 'withdrawl' => 'cashier#withdrawl', :as => :user_withdrawl
+    get 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
+    get 'league_registration_register' =>'league_registration#register', :as=> :league_register
   end
 
 =begin
