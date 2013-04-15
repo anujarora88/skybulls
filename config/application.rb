@@ -56,6 +56,9 @@ module SkybullsRails
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    config.paypal_merchant_account_email = "anuj@skybulls.com"
+
+
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
 
