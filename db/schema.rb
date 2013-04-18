@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415190708) do
+ActiveRecord::Schema.define(:version => 20130418212825) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -39,6 +39,22 @@ ActiveRecord::Schema.define(:version => 20130415190708) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "bids", :force => true do |t|
+    t.integer  "user_league_association_id"
+    t.string   "type"
+    t.integer  "stock_id"
+    t.integer  "amount"
+    t.integer  "trade_id"
+    t.integer  "price_cents",                :default => 0,     :null => false
+    t.string   "price_currency",             :default => "USD", :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "bids", ["stock_id"], :name => "bids_stock_id_fk"
+  add_index "bids", ["trade_id"], :name => "bids_trade_id_fk"
+  add_index "bids", ["user_league_association_id"], :name => "bids_user_league_association_id_fk"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -92,6 +108,20 @@ ActiveRecord::Schema.define(:version => 20130415190708) do
     t.integer  "company_id"
     t.integer  "exchange_id"
   end
+
+  create_table "trades", :force => true do |t|
+    t.integer  "stock_id"
+    t.integer  "amount"
+    t.integer  "price_cents",                :default => 0,     :null => false
+    t.string   "price_currency",             :default => "USD", :null => false
+    t.integer  "user_league_association_id"
+    t.string   "type"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "trades", ["stock_id"], :name => "trades_stock_id_fk"
+  add_index "trades", ["user_league_association_id"], :name => "trades_user_league_association_id_fk"
 
   create_table "user_accounts", :force => true do |t|
     t.datetime "created_at",                   :null => false
@@ -154,6 +184,13 @@ ActiveRecord::Schema.define(:version => 20130415190708) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "bids", "stocks", :name => "bids_stock_id_fk"
+  add_foreign_key "bids", "trades", :name => "bids_trade_id_fk"
+  add_foreign_key "bids", "user_league_associations", :name => "bids_user_league_association_id_fk"
+
+  add_foreign_key "trades", "stocks", :name => "trades_stock_id_fk"
+  add_foreign_key "trades", "user_league_associations", :name => "trades_user_league_association_id_fk"
 
   add_foreign_key "user_accounts", "users", :name => "user_accounts_user_id_fk"
 
