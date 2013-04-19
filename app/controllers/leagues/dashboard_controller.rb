@@ -1,2 +1,5 @@
-class Leagues::DashboardController < ApplicationController
+module Leagues
+  class DashboardController < AbstractController
+
+  end
 end
