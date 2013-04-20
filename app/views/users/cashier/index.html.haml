@@ -10,82 +10,82 @@
     });
 
 
-.cont-area
-  = render "/users/left_area"
+- content_for :left_sidebar do
+  = render "/users/left_sidebar"
 
-  %section.inner-right-area
-    .user-p
-      .p-photo
-        = image_tag "pic.png"
-      .user-info
-        %span.u-name
-          = current_user.display_name
-        %a{href: 'javascript:void(0);'}
-          = "Available Balance - "
-          %span
-            = available_cash
-      .user-info-icon
-        %a.u-price{href: 'javascript:void(0);'}
-        %a.u-contact{href: 'javascript:void(0);'}
-        %a.u-about{href: 'javascript:void(0);'}
-    .inner-cont-right
-      %h4.in-page-title.cashier-icon
-        Cashier
-      %ul.two-col-data
+%section.inner-right-area
+  .user-p
+    .p-photo
+      = image_tag "pic.png"
+    .user-info
+      %span.u-name
+        = current_user.display_name
+      %a{href: 'javascript:void(0);'}
+        = "Available Balance - "
+        %span
+          = available_cash
+    .user-info-icon
+      %a.u-price{href: 'javascript:void(0);'}
+      %a.u-contact{href: 'javascript:void(0);'}
+      %a.u-about{href: 'javascript:void(0);'}
+  .inner-cont-right
+    %h4.in-page-title.cashier-icon
+      Cashier
+    %ul.two-col-data
+      %li
+        %label
+          Available
+        %span
+          = available_cash
+      %li
+        %label
+          In Play
+        %span
+          = cash_in_play
+      %li.t-txt
+        %label
+          Total
+        %span
+          = total_cash
+    .page-tab#page-tabs
+      %ul
         %li
-          %label
-            Available
-          %span
-            = available_cash
+          %a.active{href: "#deposit_div"}
+            %span
+              Deposit
         %li
-          %label
-            In Play
-          %span
-            = cash_in_play
-        %li.t-txt
-          %label
-            Total
-          %span
-            = total_cash
-      .page-tab#page-tabs
-        %ul
-          %li
-            %a.active{href: "#deposit_div"}
-              %span
-                Deposit
-          %li
-            %a{href: "#withdrawl_div"}
-              %span
-                Withdrawl
-      .c-form-area#deposit_div
-        = form_for @deposit, :url => users_deposit_path  do |f|
-          .c-col-area
-            %label Amount to deposit
-            .c-value
-              = f.text_field :amount, :class => 'input-txt-s'
-              %span (in $, Minimum $10)
-          .c-form-f
-            %input{:type => "checkbox"}/
-            I agree to the
-            %a{:href => "javascript:void(0);"} Terms of Service
-            and
-            %a{:href => "javascript:void(0);"} Privacy Policy
-            %a.cf-btn.submit_anchor{:href => "javascript:void(0);", "data-role"=> "submit"}
-              %span Make a Deposit
+          %a{href: "#withdrawl_div"}
+            %span
+              Withdrawl
+    .c-form-area#deposit_div
+      = form_for @deposit, :url => users_deposit_path  do |f|
+        .c-col-area
+          %label Amount to deposit
+          .c-value
+            = f.text_field :amount, :class => 'input-txt-s'
+            %span (in $, Minimum $10)
+        .c-form-f
+          %input{:type => "checkbox"}/
+          I agree to the
+          %a{:href => "javascript:void(0);"} Terms of Service
+          and
+          %a{:href => "javascript:void(0);"} Privacy Policy
+          %a.cf-btn.submit_anchor{:href => "javascript:void(0);", "data-role"=> "submit"}
+            %span Make a Deposit
 
-      .c-form-area#withdrawl_div{style: "display:none;"}
-        = form_for @withdrawl, :url => users_withdrawl_path  do |f|
-          .c-col-area
-            %label Amount to withdraw
-            .c-value
-              = f.text_field :amount, :class => 'input-txt-s'
-              %span
-                = "(in $, Maximum #{available_cash})"
-          .c-form-f
-            %input{:type => "checkbox"}/
-            I agree to the
-            %a{:href => "javascript:void(0);"} Terms of Service
-            and
-            %a{:href => "javascript:void(0);"} Privacy Policy
-            %a.cf-btn.submit_anchor{:href => "javascript:void(0);", "data-role"=> "submit"}
-              %span Make a Withdrawl
+    .c-form-area#withdrawl_div{style: "display:none;"}
+      = form_for @withdrawl, :url => users_withdrawl_path  do |f|
+        .c-col-area
+          %label Amount to withdraw
+          .c-value
+            = f.text_field :amount, :class => 'input-txt-s'
+            %span
+              = "(in $, Maximum #{available_cash})"
+        .c-form-f
+          %input{:type => "checkbox"}/
+          I agree to the
+          %a{:href => "javascript:void(0);"} Terms of Service
+          and
+          %a{:href => "javascript:void(0);"} Privacy Policy
+          %a.cf-btn.submit_anchor{:href => "javascript:void(0);", "data-role"=> "submit"}
+            %span Make a Withdrawl
