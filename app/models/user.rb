@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_name, :profile
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :delete_all
   has_many :user_league_associations
@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
 
   has_one :account, :class_name => 'Users::Account'
+  has_one :profile, :class_name => 'Users::Profile'
 
   devise :omniauthable, :omniauth_providers => [:facebook, :google]
 

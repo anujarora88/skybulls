@@ -10,6 +10,7 @@ SkybullsRails::Application.routes.draw do
     get 'preapproval_failure' => 'cashier#preapproval_failure', :as => :preapproval_failure
     get 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
     get 'league_registration_register' =>'league_registration#register', :as=> :league_register
+    post 'update_user_info' =>'profile#update_user_info', :as=> :update_user
   end
 
 =begin

@@ -1,0 +1,78 @@
+/ Left Area
+%input{:type=>"hidden", :value=>users_update_user_url, :id=>'ajax_update_url'}
+%section.left-area.inner-l-area
+  %ul.left-menu
+    %li
+      %a{:href => "javascript:void(0);"}
+        %span.account-summary Account Summary
+    %li
+      %a.active{:href => "javascript:void(0);"}
+        %span.cashier Cashier
+    %li
+      %a{:href => "javascript:void(0);"}
+        %span.account-statement Account Statement
+    %li
+      %a{:href => "javascript:void(0);"}
+        %span.profile Profile
+/ End Left Area
+/ Right Area
+%section.inner-right-area
+  .user-p
+    .p-photo
+      %img{:src => "assets/pic.png"}/
+    .user-info
+      %span.u-name= current_user.user_name
+      %a{:href => "javascript:void(0);"}
+        Available Balance  -
+        %span $127.56
+    .user-info-icon
+      %a.u-price{:href => "javascript:void(0);"}
+      %a.u-contact{:href => "javascript:void(0);"}
+      %a.u-about{:href => "javascript:void(0);"}
+  .inner-cont-right
+    .u-p-deatils
+      .p-photo-big
+        %img{:src => "assets/pic-big.jpg"}/
+      .u-oinfo
+        %h4= current_user.email
+        %ul.two-col-data
+          %li
+            %label Available
+            %span= current_user.account.balance
+          %li
+            %label In Play
+            %span $4.00
+          %li.t-txt
+            %label Total
+            %span $127.56
+      .clr
+      %h4.in-page-title.registered-leagues Registered Leagues
+      %ul.one-col-data
+        -@league.each do |league|
+
+          %li
+            %a{:href => "javascript:void();"}= league.title
+            %br
+              = league.start_time.strftime("%B %d %Y")
+            %a.btn-action{:href => "javascript:void();"} Go To League
+
+      %h4.in-page-title.user-details User Details
+
+      %ul.profile-info-area
+        %li
+          %label Username
+          %span#username= current_user.user_name
+
+        %li
+          %label Password
+          %span#password= current_user.password
+          %a{:href => "javascript:void(0);"} Reset
+        %li.t-txt
+          %label Telephone
+          %span#telephone +1 1234567890
+          %a{:href => "javascript:void(0);"} Edit
+        %li.t-txt
+          %label Email
+          %span#email= current_user.email
+          %a{:href => "javascript:void(0);"} Edit
+/ End Right Area

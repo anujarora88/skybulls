@@ -17,6 +17,31 @@ jQuery(document).ready(function(){
                                     minDate: Date.now()
                                     } );
 
+    $('#username').editable(function(value, settings) {
+        var data_map= {};
+        data_map['id']=this.id;
+        data_map['value']=value;
+        $.ajax({
+            type : 'POST',
+            url :$('#ajax_update_url').val() ,
+            data: data_map,
+            dataType: 'json',
+            success:function(data) {
+                alert(data)
+            }
+        });
+
+        }, {
+        type      : 'textarea',
+        cancel    : 'Cancel',
+        submit    : 'OK',
+        tooltip   : 'Click to edit...'
+    });
+    $('#password').editable();
+    $('#email').editable();
+    $('#telephone').editable();
+
+
 
     $("[data-role=submit]").click(function(){
         $(this).closest("form").submit();
@@ -32,8 +57,8 @@ jQuery(document).ready(function(){
             data: data_map,
             dataType: 'html',
             success:function(data) {
-                alert(data);
-                $('.popup-area').html(data);
+                $('.popup-area').html('');
+                $('.popup-area').append(data);
                 $('.popup-area').dialog({   modal: true,
                     autoOpen:true,
                     minWidth:400
@@ -52,9 +77,12 @@ function registerLeague(leagueId){
             type : 'GET',
             url : register_url,
             data: data_map,
-            success:function(){
+            dataType: 'html',
+            success:function(data){
                 $('.popup-area').dialog('close');
-
+                $('.popup-area').html('');
+                $('.popup-area').append(data);
+                $('.popup-area').dialog('open');
             }
             });
     }

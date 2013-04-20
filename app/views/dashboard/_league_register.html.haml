@@ -1,0 +1,8 @@
+.popup-cont{:style => "min-width:400px;"}
+  .close-icon
+    %a{:href => "javascript:void(0)", :onclick => "$('.popup-area').dialog('close');"}
+      %img{:alt => "close", :src => "assets/close.jpg"}/
+  %h3 You have successfully registered
+  .popup-txt
+    %h5= @league.title
+

@@ -9,13 +9,13 @@ class Users::LeagueRegistrationController < ApplicationController
   end
 
   def register
-    league = League.find(params[:id])
-    if UserLeagueAssociation.find_by_user_id_and_league_id(current_user.id,league.id).nil?
-      UserLeagueAssociation.create(:user_id => current_user.id, :league_id=>league.id)
+    @league = League.find(params[:id])
+    if UserLeagueAssociation.find_by_user_id_and_league_id(current_user.id,@league.id).nil?
+      UserLeagueAssociation.create(:user_id => current_user.id, :league_id=>@league.id)
     end
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path }
+      format.js {render :partial => 'dashboard/league_register'}
     end
   end
 
