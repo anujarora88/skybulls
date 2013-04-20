@@ -421,7 +421,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endC
 .profile-info-area li a				{ font-size:12px; text-decoration:underline; float:right;}
 .profile-info-area li a:hover		{ color:#000; text-decoration:none;}
 
-.popup-area{
+.ui-dialog .ui-dialog-content{
     min-width: 400px;
     background: #fff;
 }
