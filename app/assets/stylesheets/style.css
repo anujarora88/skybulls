@@ -42,18 +42,18 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .daily-league-txt				{ font-size:16px; color:#fff; line-height:54px; padding-left:20px;}
 .daily-league-txt span			{ font-size:18px; color:#fff; text-transform:uppercase; font-weight:bold;}
 
-.elapsed-time					{ position:absolute; right:176px; top:-1px; background:url(../images/time-icon.png) 15px -112px #e96f6f no-repeat; height:51px; border-top:1px solid #ff8d8d; padding-left:55px; padding-right:15px; padding-top:4px; width:100px;}
+.elapsed-time					{ position:absolute; right:176px; top:-1px; background:url(time-icon.png) 15px -112px #e96f6f no-repeat; height:51px; border-top:1px solid #ff8d8d; padding-left:55px; padding-right:15px; padding-top:4px; width:100px;}
 .elapsed-time span				{ display:block; color:#8b2b2b; font-size:11px; text-transform:uppercase;}
 .elapsed-time .time-txt			{ display:block; font-size:24px; color:#fff; line-height:24px;}
 
-.remaining-time					{ position:absolute; right:0; top:-1px; background:url(../images/time-icon.png) 15px 10px #a0ba81 no-repeat; height:51px; border-top:1px solid #bed89f; padding-left:55px; padding-right:15px; padding-top:4px;}
+.remaining-time					{ position:absolute; right:0; top:-1px; background:url(time-icon.png) 15px 10px #a0ba81 no-repeat; height:51px; border-top:1px solid #bed89f; padding-left:55px; padding-right:15px; padding-top:4px;}
 .remaining-time span			{ display:block; color:#3e5e17; font-size:11px; text-transform:uppercase;}
 .remaining-time .time-txt		{ display:block; font-size:24px; color:#fff;}
 
 .cont-area						{ width:100%; float:left; }
 .left-area						{ width:211px; position:absolute; left:0; top:126px;}
 .left-area h3					{ background:#3a3b3f; line-height:48px; color:#fff; font-size:18px; padding:0 10px; font-weight:normal;}
-.left-area h3 span.myinfo-icon	{ background:url(../images/icon-myinfo.png) no-repeat right 12px; display:block;}
+.left-area h3 span.myinfo-icon	{ background:url(icon-myinfo.png) no-repeat right 12px; display:block;}
 .data-list						{ overflow:hidden; border-top:1px solid #494a4d; background:#595a5f;}
 .data-list li					{ border-top:1px solid #646569; margin:0; float:left; border-bottom:1px solid #494a4d; line-height:35px; font-size:13px; color:#d6d6d6; overflow:hidden; padding:0 10px; width:190px; }
 .data-list li label				{ float:left; width:55%; display:block; text-align:left;}
@@ -67,7 +67,7 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .left-menu li a.active{ font-weight:bold;}
 
 .h-midarea						{padding:10px 3px; margin-left:210px; margin-right:220px; overflow:hidden; border:1px solid #e4e4e4; border-right:1px solid #d6e6f0; min-height:500px;  background:#fff;}
-.search-txt					{ font-size:16px; font-weight:lighter; color:#9a9a9a; border:1px solid #ebebeb; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; width:93%; padding:12px 0; padding-left:45px; clear:both; margin:0 7px 14px 7px; background:url(../images/search-icon.png) no-repeat 12px 8px; 	font-family: 'Oxygen', sans-serif;-moz-box-shadow: 0px 3px 3px #f4f4f4;/*FF 3.5+*/
+.search-txt					{ font-size:16px; font-weight:lighter; color:#9a9a9a; border:1px solid #ebebeb; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; width:93%; padding:12px 0; padding-left:45px; clear:both; margin:0 7px 14px 7px; background:url(search-icon.png) no-repeat 12px 8px; 	font-family: 'Oxygen', sans-serif;-moz-box-shadow: 0px 3px 3px #f4f4f4;/*FF 3.5+*/
     -webkit-box-shadow: 0px 3px 3px #f4f4f4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
     box-shadow: 0px 3px 3px #f4f4f4;
 
@@ -99,8 +99,8 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 /******************************* Mid Area End css ***********************************/
 
 .right-area						{ width:219px; position:absolute; right:0; top:126px; background:#f3fbff;}
-.dragger-area{ border-bottom:1px solid #d6e6f0; padding:0 1px 1px 1px; padding:}
-.dragger-area-heding{border-radius:5px 5px 0 0 ; -moz-border-radius:5px 5px 0 0 ; -webkit-border-radius:5px 5px 0 0 ; background:url(../images/right-heding-bg.jpg) repeat-x 0 0; line-height:32px; padding-left:11px; color:#2192d3;}
+.dragger-area{ border-bottom:1px solid #d6e6f0; padding:0 1px 1px 1px;}
+.dragger-area-heding{border-radius:5px 5px 0 0 ; -moz-border-radius:5px 5px 0 0 ; -webkit-border-radius:5px 5px 0 0 ; background:url(right-heading-bg.jpg) repeat-x 0 0; line-height:32px; padding-left:11px; color:#2192d3;}
 .dragger-area-heding a{ float:right; padding:12px 12px 0 0;}
 #scrollbar1 { width: 219px; clear: both; }
 #scrollbar1 .viewport { width:212px; height: 197px; overflow: hidden; position: relative; }
@@ -154,9 +154,9 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 
 .inner-cont-right					{ padding:20px; overflow:hidden;}
 .in-page-title						{ font-size:20px; color:#5d5d5d; text-transform:uppercase; border-bottom:1px solid #ddd; font-weight:lighter; line-height:36px; padding-bottom:4px;}
-.cashier-icon						{ background:url(../images/icon-account.png) no-repeat 0 5px; padding-left:30px;}
-.registered-leagues					{ background:url(../images/icon-account.png) no-repeat 0 -72px; padding-left:35px;}
-.user-details						{ background:url(../images/icon-account.png) no-repeat 0 -595px; padding-left:35px;}
+.cashier-icon						{ background:url(icon-account.png) no-repeat 0 5px; padding-left:30px;}
+.registered-leagues					{ background:url(icon-account.png) no-repeat 0 -72px; padding-left:35px;}
+.user-details						{ background:url(icon-account.png) no-repeat 0 -595px; padding-left:35px;}
 
 .two-col-data, .one-col-data		{ overflow:hidden; margin-bottom:40px;}
 .two-col-data li, .one-col-data li	{ overflow:hidden; border-top:1px solid #fff; color:#3a3c40; border-bottom:1px dashed #e5e5e5; background:#fbfbfb; line-height:54px; padding:0 15px; font-size:20px; position:relative;}
@@ -171,9 +171,9 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .settings-area						{ border:1px dashed #e5e5e5; border-top:none; overflow:hidden;}
 .settings-area span					{ font-size:16px; color:#3a3c40; display:block; padding-bottom:5px; font-weight:lighter;}
 .settings-area select				{  background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:12px; color:#8f8f8f; padding:5px; outline:none; border:2px solid #eaeaea; }
-.time-zone							{ float:left; width:20%; background:url(../images/icon-account.png) no-repeat 35px -206px; padding:40px; padding-left:100px;  }
-.notifications-setting				{ float:left; width:20%; border-right:1px dashed #e5e5e5; border-left:1px dashed #e5e5e5; background:url(../images/icon-account.png) no-repeat 35px -313px; padding:40px; padding-left:100px; }
-.currency-setting				{ float:left; width:20%;  background:url(../images/icon-account.png) no-repeat 35px -416px; padding:40px; padding-left:100px; }
+.time-zone							{ float:left; width:20%; background:url(icon-account.png) no-repeat 35px -206px; padding:40px; padding-left:100px;  }
+.notifications-setting				{ float:left; width:20%; border-right:1px dashed #e5e5e5; border-left:1px dashed #e5e5e5; background:url(icon-account.png) no-repeat 35px -313px; padding:40px; padding-left:100px; }
+.currency-setting				{ float:left; width:20%;  background:url(icon-account.png) no-repeat 35px -416px; padding:40px; padding-left:100px; }
 
 
 #stage {
@@ -367,7 +367,7 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 }
 
 .c-form-f a.cf-btn span{
-    background:url(../images/btn-arrow.png) right no-repeat ;
+    background:url(btn-arrow.png) right no-repeat ;
     border-radius:5px;
     font-size:18px;
     font-weight:bold;
@@ -425,12 +425,12 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .buy-btn:hover, .sell-btn:hover						{ color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
 .sell-btn							{border-bottom:2px solid #e34c2e;}
 
-.down-arrow-red, .down-arrow-green					{ background:url(../images/down-arrow.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
-.down-arrow-green					{ background:url(../images/down-arrow.png) no-repeat 0 bottom; }
+.down-arrow-red, .down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
+.down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 bottom; }
 .t-action					{ padding:20px; color:#3a3c40; font-size:14px; font-weight:lighter; overflow:hidden;}
 .t-action span{ float:left; margin-right:20px;}
 .t-action span input{ float:left; margin-right:5px; margin-top:3px;}
-.popup-area{ background:url(../images/popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999;}
+.popup-area{ background:url(popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999;}
 
 .popup-cont{ border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:absolute; top:20%; width:40%; left:30%;}
 .close-icon{ padding:10px; text-align:right;}
@@ -465,8 +465,8 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .action-btn-info{ background:#707070; font-size:11px; font-weight:bold; line-height:20px; padding:0 10px; display:block; text-transform:uppercase; color:#fff; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; float:left; margin-top:1px;}
 .action-btn-reg{background:#0299ce; font-size:11px; font-weight:bold; line-height:20px; padding:0 10px; display:block; text-transform:uppercase; color:#fff; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; float:left; margin-top:1px; margin-left:10px;}
 .shorting th span{ display:block; float:none; position:relative; text-align:left;}
-.shorting .arrow-up{ background:url(../images/arrow.png) no-repeat 1px 0; width:10px;height:3px; position:absolute; right:5px; top:20px;}
-.shorting .arrow-down{ background:url(../images/arrow.png) no-repeat bottom; width:10px;height:3px; position:absolute; right:5px; top:25px;}
+.shorting .arrow-up{ background:url(arrow.png) no-repeat 1px 0; width:10px;height:3px; position:absolute; right:5px; top:20px;}
+.shorting .arrow-down{ background:url(arrow.png) no-repeat bottom; width:10px;height:3px; position:absolute; right:5px; top:25px;}
 
 
 .portfolio-info-left{ float:left; width:48%; padding:30px 3%; padding-bottom:0;}
@@ -478,7 +478,7 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .p-box span{ color:#323232; font-size:36px; line-height:40px;}
 .portfolio-info-right{ border-left:1px solid #f0f0f0; padding-top:30px; float:right; width:45%; background:#f3f5ee; }
 .r-txt{ font-size:18px; text-transform:uppercase; color:#484a4f; text-align:center; line-height:22px;}
-.up-arrow{ background:url(../images/up-arrow.png) no-repeat 0 12px; padding-left:30px; }
+.up-arrow{ background:url(up-arrow.png) no-repeat 0 12px; padding-left:30px; }
 .portfolio-info-right h2{font-size:48px; text-align:center; line-height:48px; font-weight:bold; color:#7fbb00;}
 .portfolio-info-right span{font-size:12px; text-align:center; line-height:18px; text-align:center; display:block;color:#969696;}
 .portfolio-info-right ul{ margin-top:30px;}
