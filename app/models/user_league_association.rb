@@ -3,4 +3,7 @@ class UserLeagueAssociation < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :league
+
+  has_many :trades
+  has_many :bids
 end
