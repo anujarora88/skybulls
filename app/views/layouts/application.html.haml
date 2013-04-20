@@ -16,7 +16,12 @@
   %body{:class => " "}
     .wrapper
       = render '/layouts/header'
-      = yield
+      = yield :sub_header
+      .cont-area
+        = yield :left_sidebar
+        = yield
+        = yield :right_sidebar
+
       = render '/layouts/footer'
 
 
