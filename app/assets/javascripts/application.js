@@ -17,7 +17,7 @@ jQuery(document).ready(function(){
                                     minDate: Date.now()
                                     } );
 
-    $('#username').editable(function(value, settings) {
+    $('.user_info span').editable(function(value, settings) {
         var data_map= {};
         data_map['id']=this.id;
         data_map['value']=value;
@@ -25,23 +25,15 @@ jQuery(document).ready(function(){
             type : 'POST',
             url :$('#ajax_update_url').val() ,
             data: data_map,
-            dataType: 'json',
-            success:function(data) {
-                alert(data)
-            }
+            dataType: 'json'
         });
 
         }, {
         type      : 'textarea',
         cancel    : 'Cancel',
         submit    : 'OK',
-        tooltip   : 'Click to edit...'
+        tooltip   : 'Click to edit...',
     });
-    $('#password').editable();
-    $('#email').editable();
-    $('#telephone').editable();
-
-
 
     $("[data-role=submit]").click(function(){
         $(this).closest("form").submit();
