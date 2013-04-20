@@ -1,14 +1,11 @@
 - content_for :head
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
 
-- content_for :sub_header
-  .cont-area
-    = render "/leagues/sub_header"
+- content_for :sub_header do
+  = render "/leagues/sub_header"
 
-- content_for :left_sidebar
-  .cont-area
-    = render "/leagues/left_sidebar"
+- content_for :left_sidebar do
+  = render "/leagues/left_sidebar"
 
 - content_for :right_sidebar
-  .cont-area
-    = render "/leagues/right_sidebar"
+  = render "/leagues/right_sidebar"
