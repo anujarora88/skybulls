@@ -1,7 +1,10 @@
 module ApplicationHelper
 
   def available_cash
-    humanized_money_with_symbol current_user.account.balance
+    if current_user
+      humanized_money_with_symbol current_user.account.balance
+    end
+
   end
 
   def current_user_name(max_length)

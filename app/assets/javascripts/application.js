@@ -35,19 +35,10 @@ jQuery(document).ready(function(){
             type : 'GET',
             url : element.attr('data-ajaxInfoUrl'),
             data: data_map,
-            dataType: 'json',
+            dataType: 'html',
             success:function(data) {
                 alert(data);
-                $('.popup-area').html('');
-                var str = '<div class="popup-cont">'+'<div class="close-icon">'+'<a href="javascript:void(0)" onclick="">'+'<img src="assets/close.jpg" alt="close" />'+'</a>'+'</div>';
-                str =str+ '<h3>League Information</h3>'+'<div class="popup-txt">'+'<table><tr>'+
-                    '<tr><th>Title</th>'+'<th>'+data.title+'</th></tr>'+
-                    '<tr><th>Start Date</th>'+'<th>'+data.start_time+'</th></tr>'+
-                    '<tr><th>End Date</th>'+'<th>'+data.end_time+'</th></tr>'+
-                    '<tr><th>Buy In</th>'+'<th>'+data.buy_in+'</th></tr>'+
-                    '<tr><th>Commission</th>'+'<th>'+data.commission+'</th></tr>';
-                str = str+'<a href="javascript:void(0)" onclick="registerLeague('+data.id+')">Register'+'</a>';
-                $('.popup-area').append(str);
+                $('.popup-area').append(data);
                 $('.popup-area').dialog('open');
             }
         });

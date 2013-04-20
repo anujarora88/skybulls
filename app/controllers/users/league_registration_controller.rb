@@ -3,8 +3,9 @@ class Users::LeagueRegistrationController < ApplicationController
   def show_league_info
     @league= League.find(params[:id])
     respond_to do |format|
-      format.json { render json: @league }
+      format.js {render :partial => 'dashboard/league_info'}
     end
+
   end
 
   def register

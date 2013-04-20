@@ -13,8 +13,11 @@
     %a{href: "#"}
       %span.w-txt
         Welcome,
-      %span.name-txt{title: current_user.display_name}
-        = current_user_name(10)
+        -if current_user
+          %span.name-txt{title: current_user.display_name}
+          = current_user_name(10)
+        end
+
       %span.noti-txt
         (2)
 

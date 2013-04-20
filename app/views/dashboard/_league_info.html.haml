@@ -1,0 +1,25 @@
+.popup-cont
+  .close-icon
+    %a{:href => "javascript:void(0)", :onclick => ""}
+      %img{:alt => "close", :src => "assets/close.jpg"}
+  %h3 League Information
+  .popup-txt
+    %table
+      %tr
+      %tr
+        %th= 'Title'
+        %th= @league.title
+      %tr
+        %th= 'Start Date'
+        %th= @league.start_time
+      %tr
+        %th= 'End Date'
+        %th= @league.end_time
+      %tr
+        %th= 'Buy In'
+        %th= @league.buy_in
+      %tr
+        %th= 'Commission'
+        %th= @league.commission
+
+      %a{:href => "javascript:void(0)", :onclick => "registerLeague('+data.id+')"} Register
