@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20130415190708) do
     t.datetime "updated_at",                                  :null => false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "latest_registration_time"
+    t.integer  "latest_registration_time"
     t.boolean  "invitation_only",          :default => false
     t.float    "buy_in"
     t.float    "commission"
