@@ -16,12 +16,7 @@ jQuery(document).ready(function(){
     $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
                                     minDate: Date.now()
                                     } );
-    $('.popup-area').dialog({   modal: true,
-                                autoOpen:false,
-                                height: 400,
-                                width: 500
 
-    });
 
     $("[data-role=submit]").click(function(){
         $(this).closest("form").submit();
@@ -38,8 +33,12 @@ jQuery(document).ready(function(){
             dataType: 'html',
             success:function(data) {
                 alert(data);
-                $('.popup-area').append(data);
-                $('.popup-area').dialog('open');
+                $('.popup-area').html(data);
+                $('.popup-area').dialog({   modal: true,
+                    autoOpen:true,
+                    minWidth:400
+
+                });
             }
         });
     });
