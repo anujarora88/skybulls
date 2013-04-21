@@ -32,7 +32,19 @@ jQuery(document).ready(function(){
         type      : 'textarea',
         cancel    : 'Cancel',
         submit    : 'OK',
-        tooltip   : 'Click to edit...',
+        tooltip   : 'Click to edit...'
+    });
+
+    $(".checkbox-select-links a.select-all").click(function(){
+        $("input[type=checkbox]", $(this).closest("li")).each(function(){
+            $(this).prop("checked", true);
+        });
+    });
+
+    $(".checkbox-select-links a.select-none").click(function(){
+        $("input[type=checkbox]", $(this).closest("li")).each(function(){
+            $(this).prop("checked", false);
+        });
     });
 
     $("[data-role=submit]").click(function(){
@@ -42,7 +54,7 @@ jQuery(document).ready(function(){
     $('.popup_box').click(function(){
         var element = $('#'+this.id);
         var data_map= {}
-        data_map['id']=element.attr('data-id')
+        data_map['id']=element.attr('data-id');
         $.ajax({
             type : 'GET',
             url : element.attr('data-ajaxInfoUrl'),

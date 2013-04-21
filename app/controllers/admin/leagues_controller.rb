@@ -46,7 +46,7 @@ class Admin::LeaguesController < Admin::AbstractController
       @league.invitation_only= true
     end
 
-    if !params[:exchange_ids].nil?
+    unless params[:exchange_ids].nil?
       @league.exchanges=Exchange.find(params[:exchange_ids].values)
     end
     respond_to do |format|

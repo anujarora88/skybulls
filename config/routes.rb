@@ -13,6 +13,15 @@ SkybullsRails::Application.routes.draw do
     post 'update_user_info' =>'profile#update_user_info', :as=> :update_user
   end
 
+  resources :leagues, :only => [:index, :show] do
+    member do
+      post 'subscribe'
+      post 'unsubscribe'
+    end
+    resources :dashboard, :controller => 'dashboard', :only => [:index]
+
+  end
+
 =begin
   resources :leagues do
     collection do

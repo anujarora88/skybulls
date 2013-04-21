@@ -1,7 +1,7 @@
 module Leagues
   class DashboardController < AbstractController
 
-    def index
+     def index
 
     end
   end

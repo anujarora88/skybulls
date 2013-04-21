@@ -1,0 +1,158 @@
+- content_for :head do
+  = javascript_include_tag "jquery.dataTables.min"
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+        var dataTable = $('#data-table').dataTable({
+          "bPaginate": false,
+          "bInfo" : false
+        });
+
+        filterDataTable(dataTable);
+
+      $("ul.filters-area input[type=checkbox]").change(function(){
+           filterDataTable(dataTable);
+
+      });
+
+    });
+
+    function filterDataTable(dataTable){
+      var filtersInfo = {"type" : {"searchArray": [], "index": 1}, "exchanges" : {"searchArray": [], "index": 2}, "state" : {"searchArray": [], "index": 4}}
+      $("ul.filters-area input[type=checkbox]:checked").each(function(){
+          var value = $(this).val();
+          var name = $(this).attr('name');
+          if (value && value != ''){
+              filtersInfo[name]["searchArray"].push(value);
+          }
+      });
+      for(var name in filtersInfo){
+        if(filtersInfo.hasOwnProperty(name)){
+          if(filtersInfo[name]["searchArray"].length > 0){
+            dataTable.fnFilter('(' + filtersInfo[name]["searchArray"].join('|') + ')', filtersInfo[name]["index"], true);
+          }else{
+            dataTable.fnFilter( "", filtersInfo[name]["index"], true);
+          }
+
+        }
+      }
+
+    }
+
+
+
+- content_for :left_sidebar do
+  = render "/leagues/left_sidebar"
+
+%section.inner-right-area
+  .inner-cont-right
+    .per-lang
+      .per-title-bg
+        %h2.f-title Filters
+        %ul.filters-area
+          %li
+            %span.filters-t Type:
+            %span.checkbox-select-links
+              %a{:href => "javascript:void(0)", :class => "select-all"}
+                All
+              = " | "
+              %a{:href => "javascript:void(0)", :class => "select-none"}
+                None
+            %span
+              %input{:type => "checkbox", :name => "type", :value => "Daily", :id => "filter_type_daily"}/
+              %label{for: "filter_type_daily"}Daily
+            %span
+              %input{:type => "checkbox", :name => "type", :value => "Weekly", :id => "filter_type_weekly"}/
+              %label{for: "filter_type_weekly"}Weekly
+            %span
+              %input{:type => "checkbox", :name => "type", :value => "Monthly", :id => "filter_type_monthly"}/
+              %label{for: "filter_type_monthly"}Monthly
+          %li
+            %span.filters-t Exchange:
+            %span.checkbox-select-links
+              %a{:href => "javascript:void(0)", :class => "select-all"}
+                All
+              = " | "
+              %a{:href => "javascript:void(0)", :class => "select-none"}
+                None
+            - @exchanges.each do |e|
+              %span
+                %input{:type => "checkbox", :name => "exchanges", :value => "#{e.symbol}", :id => "filter_exchange_#{e.symbol}"}/
+                %label{for: "filter_exchange_#{e.symbol}"}
+                  = e.symbol
+
+          %li
+            %span.filters-t State:
+            %span.checkbox-select-links
+              %a{:href => "javascript:void(0)", :class => "select-all"}
+                All
+              = " | "
+              %a{:href => "javascript:void(0)", :class => "select-none"}
+                None
+            %span
+              %input{:type => "checkbox", :name => "state", :value => "Announced", :id => "filter_announced"}/
+              %label{for: "filter_announced"}Announced
+            %span
+              %input{:type => "checkbox", :name => "state", :value => "Running", :id => "filter_running"}/
+              %label{for: "filter_running"}Running
+        .filter-right
+          .f-box
+            .fliter-txt
+              %span Cash
+              %span Available
+            %searchArrayong.cash-txt
+              = available_cash
+          .f-box.f-box-last
+            .fliter-txt
+              %span Current
+              %span Date & Time
+            .dt-txt
+              %span 22nd Dec. 2012
+              %span 04:25:15 GMT
+      %table#data-table.leg-box.shorting{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %thead
+          %tr
+            %th
+              %span
+                Start
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+              %span
+                Type
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+              %span
+                Exchange
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+              %span
+                Investment
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+              %span
+                State
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+              %span
+                Enrolled
+                %a.arrow-up{:href => "javascript:void(0);"}
+                %a.arrow-down{:href => "javascript:void(0);"}
+            %th
+        %tbody
+          - @leagues.each_with_index do |league, ii|
+            %tr
+              %td= league.start_time.strftime("%-d %b %Y (%k:%m) ")
+              %td= league.category
+              %td= league.exchanges.collect(&:symbol).join(", ")
+              %td= "$#{league.buy_in}+#{league.commission/100*league.buy_in}"
+              %td= league.started? ? "Running" : "Announced"
+              %td= league.user_league_associations.size
+              %td
+                %a.action-btn-info{:href => "javascript:void(0);"} League Info
+                %a.action-btn-reg{:href => "javascript:void(0);"} Register

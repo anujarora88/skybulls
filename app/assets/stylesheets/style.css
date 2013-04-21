@@ -249,7 +249,7 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .leg-box thead{ overflow:hidden; color:#fff; }
 .leg-box thead tr td{ border-bottom:none;}
 .leg-box tr td{line-height:48px; font-size:13px; font-weight:normal; padding-left:18px; border-right:1px dashed #e5e5e5; border-bottom:1px dashed #e5e5e5; }
-.leg-box tr.gray{ background:#f4f4f4; overflow:hidden;}
+.leg-box tr.even{ background:#f4f4f4; overflow:hidden;}
 .leg-box tr.light-gray{ background:#fbfbfb; overflow:hidden;}
 .leg-box tfoot{ background:#f1fae5; border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; overflow:hidden; color:#4b7d0f; }
 .leg-box tfoot tr td{ line-height:54px; font-size:16px; }
@@ -447,12 +447,15 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .popup-sub-head span{ background:#f8f8f8; border-top:2px solid #fff; border-bottom:1px solid #fff; font-size:24px; font-weight:bold; line-height:55px; display:block; text-align:center;}
 
 .filters-area{ overflow:hidden; float:left; width:60%;}
+.filters-area a{ color: #000; }
 .filters-area li span.filters-t{ width:15%;}
 .filters-area li{ font-size:12px; overflow:hidden; padding:10px 0; border-bottom:1px dashed #e5dfcd;}
 .filters-area li:last-child{ border-bottom:0;}
 .filters-area li span{ color:#3a3b3f; display:block; width:20%; float:left;}
 .filters-area li span input{ float:left; margin-right:3px; margin-top:2px;}
 .f-title{ color:#0299ce; font-size:18px; font-weight:bold;}
+
+.dataTables_filter{display: none;}
 
 .filter-right{ float:right;}
 .f-box{ border:1px solid #eee4c7; overflow:hidden; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; margin-bottom:20px; margin-top:-15px; background:#fff; padding:10px 15px; min-width:230px;}
@@ -468,6 +471,9 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .shorting .arrow-up{ background:url(arrow.png) no-repeat 1px 0; width:10px;height:3px; position:absolute; right:5px; top:20px;}
 .shorting .arrow-down{ background:url(arrow.png) no-repeat bottom; width:10px;height:3px; position:absolute; right:5px; top:25px;}
 
+.shorting th {cursor: pointer;}
+.shorting th.sorting_asc a.arrow-up {display: none;}
+.shorting th.sorting_desc a.arrow-down {display: none;}
 
 .portfolio-info-left{ float:left; width:48%; padding:30px 3%; padding-bottom:0;}
 .p-box{ float:left; padding:25px 0; border-bottom:1px solid #f0f0f0; border-right:1px solid #f0f0f0; width:45%;}
