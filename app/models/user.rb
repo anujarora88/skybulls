@@ -11,7 +11,12 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :delete_all
   has_many :user_league_associations
   has_many :leagues , :through => :user_league_associations
+  has_attached_file :photo, :styles => { :small => "150x150>" },
+                    :url  => "/assets/users/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   has_one :account, :class_name => 'Users::Account'
   has_one :profile, :class_name => 'Users::Profile'
