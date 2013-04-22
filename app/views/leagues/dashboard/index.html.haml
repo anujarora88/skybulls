@@ -1,4 +1,4 @@
-- content_for :head
+- content_for :head do
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
 
 - content_for :sub_header do
@@ -7,5 +7,27 @@
 - content_for :left_sidebar do
   = render "/leagues/common/left_sidebar"
 
-- content_for :right_sidebar
+- content_for :right_sidebar do
   = render "/leagues/common/right_sidebar"
+
+.h-midarea
+  %input.search-txt{:placeholder => "Search company name or ticker", :type => "text"}/
+  .clr
+  .mid-box
+    .mid-box-logo
+      = image_tag "ms-logo.jpg"
+    .peg
+      .peg-left 0.68
+      .peg-left.mrn 2.27%
+    .price
+      $30.45
+      = image_tag "graph.png", class: "graph"
+      = image_tag "pin.png", class: "pin"
+    .box-bottom
+      .buy
+        %a.active{:href => "#"} Buy
+      .sell
+        %a{:href => "#"} sell
+
+  .h-graph
+    = image_tag "graph-dummy.png"

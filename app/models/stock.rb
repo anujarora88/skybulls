@@ -1,5 +1,5 @@
 class Stock < ActiveRecord::Base
-  attr_accessible :latest_price, :symbol
+  attr_accessible :latest_price, :symbol, :exchange_id, :company_id
   belongs_to :company
   belongs_to :exchange
 

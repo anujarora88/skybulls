@@ -1,8 +1,7 @@
-module Leagues
-  class DashboardController < AbstractController
+class Leagues::DashboardController < Leagues::AbstractController
 
-     def index
-
+    def index
+      lk = "as"
     end
-  end
+
 end

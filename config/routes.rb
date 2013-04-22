@@ -18,7 +18,7 @@ SkybullsRails::Application.routes.draw do
       post 'subscribe'
       post 'unsubscribe'
     end
-    resources :dashboard, :controller => 'dashboard', :only => [:index]
+    resources :dashboard, :controller => 'leagues/dashboard', :only => [:index]
 
   end
 

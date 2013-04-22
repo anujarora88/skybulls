@@ -29,10 +29,9 @@ jQuery(document).ready(function(){
         });
 
         }, {
-        type      : 'textarea',
-        cancel    : 'Cancel',
-        submit    : 'OK',
-        tooltip   : 'Click to edit...'
+        indicator : "Please Wait",
+        tooltip   : 'Click to edit...',
+        style : "inherit"
     });
 
     $(".checkbox-select-links a.select-all").click(function(){
@@ -53,7 +52,7 @@ jQuery(document).ready(function(){
 
     $('.popup_box').click(function(){
         var element = $('#'+this.id);
-        var data_map= {}
+        var data_map= {};
         data_map['id']=element.attr('data-id');
         $.ajax({
             type : 'GET',

@@ -22,3 +22,15 @@ Exchange.create(:name => 'Ney York Stock Exchange',
                 :starts_at =>   Time.now,
                 :ends_at =>  Time.now+4,
                 :symbol => 'NYSE')
+
+Company.create(name: "Microsoft")
+Company.create(name: "Apple")
+Company.create(name: "Yahoo")
+Company.create(name: "Facebook")
+Company.create(name: "Oracle")
+
+Stock.create(company_id: 1, exchange_id: 1, latest_price: Money.new(10000), symbol: "MSFT")
+Stock.create(company_id: 2, exchange_id: 1, latest_price: Money.new(10000), symbol: "AAPL")
+Stock.create(company_id: 3, exchange_id: 1, latest_price: Money.new(10000), symbol: "YHOO")
+Stock.create(company_id: 4, exchange_id: 1, latest_price: Money.new(10000), symbol: "FB")
+Stock.create(company_id: 5, exchange_id: 1, latest_price: Money.new(10000), symbol: "ORCL")
