@@ -150,7 +150,7 @@
               %td= league.start_time.strftime("%-d %b %Y (%k:%m) ")
               %td= league.category
               %td= league.exchanges.collect(&:symbol).join(", ")
-              %td= "$#{league.buy_in}+#{league.commission/100*league.buy_in}"
+              %td= "$#{league.buy_in}+#{league_commision_string(league)}"
               %td= league.started? ? "Running" : "Announced"
               %td= league.user_league_associations.size
               %td
