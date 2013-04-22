@@ -7,7 +7,7 @@
 %section.inner-right-area
   .user-p
     .p-photo
-      %img{:src => "assets/pic.png"}/
+      = image_tag current_user.small_image_url
     .user-info
       %span.u-name= current_user.user_name
       %a{:href => "javascript:void(0);"}
@@ -20,7 +20,7 @@
   .inner-cont-right
     .u-p-deatils
       .p-photo-big
-        = image_tag current_user.photo.url(:small)
+        = image_tag current_user.large_image_url
         - form_for current_user,:url=>users_update_user_photo_path,:remote=>true, :html => { :multipart => true } do |f|
           = f.file_field :photo
       .u-oinfo

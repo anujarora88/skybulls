@@ -46,6 +46,33 @@ class User < ActiveRecord::Base
     end
   end
 
+  def large_image_url
+    "https://graph.facebook.com/#{facebook_id}/picture?type=large" if facebook_id
+  end
+
+  def small_image_url
+    "https://graph.facebook.com/#{facebook_id}/picture?type=square" if facebook_id
+  end
+
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
+  end
+
+
+  # Check if user connected social network
+  def social_connected?(social_name)
+    authentication_providers.include?(social_name)
+  end
+
+
+  def authentication_providers
+    @authentication_providers ||= Authentication.where(:user_id => self.id).map(&:provider)
+  end
+
+  def facebook_id
+    @facebook_id ||= Authentication.where(:user_id => self.id, :provider => 'facebook').first.try(:uid)
+  end
+
   private
 
     def initialize_account
