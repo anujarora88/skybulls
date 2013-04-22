@@ -50,42 +50,7 @@ jQuery(document).ready(function(){
         $(this).closest("form").submit();
     });
 
-    $('.popup_box').click(function(){
-        var element = $('#'+this.id);
-        var data_map= {};
-        data_map['id']=element.attr('data-id');
-        $.ajax({
-            type : 'GET',
-            url : element.attr('data-ajaxInfoUrl'),
-            data: data_map,
-            dataType: 'html',
-            success:function(data) {
-                $('.popup-area').html('');
-                $('.popup-area').append(data);
-                $('.popup-area').dialog({   modal: true,
-                    autoOpen:true,
-                    minWidth:400
 
-                });
-            }
-        });
-    });
 });
 
-function registerLeague(leagueId){
-        var data_map = {};
-        data_map['id']=leagueId;
-        var register_url = $('#registerUrl').val()
-        $.ajax({
-            type : 'GET',
-            url : register_url,
-            data: data_map,
-            dataType: 'html',
-            success:function(data){
-                $('.popup-area').dialog('close');
-                $('.popup-area').html('');
-                $('.popup-area').append(data);
-                $('.popup-area').dialog('open');
-            }
-            });
-    }
+

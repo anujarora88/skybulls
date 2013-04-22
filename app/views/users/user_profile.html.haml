@@ -1,20 +1,8 @@
 / Left Area
 %input{:type=>"hidden", :value=>users_update_user_url, :id=>'ajax_update_url'}
-%section.left-area.inner-l-area
-  %ul.left-menu
-    %li
-      %a{:href => "javascript:void(0);"}
-        %span.account-summary Account Summary
-    %li
-      %a.active{:href => "javascript:void(0);"}
-        %span.cashier Cashier
-    %li
-      %a{:href => "javascript:void(0);"}
-        %span.account-statement Account Statement
-    %li
-      %a{:href => "javascript:void(0);"}
-        %span.profile Profile
-/ End Left Area
+- content_for :left_sidebar do
+  = render "/users/profile_left_sidebar"
+
 / Right Area
 %section.inner-right-area
   .user-p
@@ -32,7 +20,9 @@
   .inner-cont-right
     .u-p-deatils
       .p-photo-big
-        %img{:src => "assets/pic-big.jpg"}/
+        = image_tag current_user.photo.url(:small)
+        - form_for current_user,:url=>users_update_user_photo_path,:remote=>true, :html => { :multipart => true } do |f|
+          = f.file_field :photo
       .u-oinfo
         %h4= current_user.user_name
         %ul.two-col-data

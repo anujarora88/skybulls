@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420192631) do
+ActiveRecord::Schema.define(:version => 20130422204858) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20130420192631) do
     t.datetime "updated_at",                                  :null => false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "latest_registration_time"
+    t.integer  "latest_registration_time"
     t.boolean  "invitation_only",          :default => false
     t.float    "buy_in"
     t.float    "commission"
@@ -181,6 +181,10 @@ ActiveRecord::Schema.define(:version => 20130420192631) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "user_name"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

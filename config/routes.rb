@@ -11,6 +11,7 @@ SkybullsRails::Application.routes.draw do
     get 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
     get 'league_registration_register' =>'league_registration#register', :as=> :league_register
     post 'update_user_info' =>'profile#update_user_info', :as=> :update_user
+    post 'update_user_photo' =>'profile#update_user_photo', :as=> :update_user_photo
   end
 
   resources :leagues, :only => [:index, :show] do

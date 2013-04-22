@@ -17,4 +17,8 @@ class Users::ProfileController < ApplicationController
 
     end
 
+    def update_user_photo
+       user = current_user
+    end
+
 end
