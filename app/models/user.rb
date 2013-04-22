@@ -46,11 +46,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def large_image_url
-    "https://graph.facebook.com/#{facebook_id}/picture?type=large" if facebook_id
-  end
-
-  def small_image_url
+  def image_url
     "https://graph.facebook.com/#{facebook_id}/picture?type=square" if facebook_id
   end
 
