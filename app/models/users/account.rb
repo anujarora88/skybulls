@@ -5,6 +5,7 @@ class Users::Account < ActiveRecord::Base
   belongs_to :user
 
   has_one :payment_method, :class_name => 'Users::PaymentMethod'
+  has_many :transactions, :class_name => 'Users::Transaction'
 
   monetize :balance_cents, :allow_nil => false, :numericality => {
       :greater_than_or_equal_to => 0
@@ -17,8 +18,8 @@ class Users::Account < ActiveRecord::Base
      # hard coding to paypal for now
     payment_method = Users::PaypalPaymentMethod.create!(:account => self,:type => Users::PaymentMethod.type_paypal,
                                                   :identifier => nil, :info => "")
-      payment_method.make_deposit!(money) if transaction == "Deposit"
-      payment_method.make_withdrawl!(money) if transaction == "Withdrawl"
+     # payment_method.make_deposit!(money) if transaction == "Deposit"
+     # payment_method.make_withdrawl!(money) if transaction == "Withdrawl"
 
   end
 

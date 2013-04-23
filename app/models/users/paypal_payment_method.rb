@@ -9,13 +9,13 @@ module Users
 
       def process_deposit!(money, params_hash)
         key = PaypalAdaptivePayments.deposit!(identifier, format_amount(money), params_hash[:return_url], params_hash[:cancel_url] )
-        Users::Deposit.create!(:identifier => key, :amount => money, :payment_method => self)
+        Users::Deposit.create!(:identifier => key, :amount => money, :payment_method => self, :account => self.account)
 
       end
 
       def process_withdrawl!(money, params_hash)
         key = PaypalAdaptivePayments.withdraw!(format_amount(money), account.user.email, params_hash[:return_url], params_hash[:cancel_url] )
-        Users::Withdrawl.create!(:identifier => key, :amount => money, :payment_method => self)
+        Users::Withdrawl.create!(:identifier => key, :amount => money, :payment_method => self, :account => self.account)
       end
 
       def format_amount(money)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420192631) do
+ActiveRecord::Schema.define(:version => 20130423004958) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -154,15 +154,19 @@ ActiveRecord::Schema.define(:version => 20130420192631) do
   add_index "user_payment_methods", ["account_id"], :name => "user_payment_methods_account_id_fk"
 
   create_table "user_transactions", :force => true do |t|
-    t.integer  "payment_method_id",                :null => false
-    t.integer  "amount_cents",      :default => 0, :null => false
-    t.string   "type",                             :null => false
-    t.string   "identifier",                       :null => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.integer  "payment_method_id",                         :null => false
+    t.integer  "amount_cents",               :default => 0, :null => false
+    t.string   "type",                                      :null => false
+    t.string   "identifier",                                :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "account_id"
+    t.integer  "user_league_association_id"
   end
 
+  add_index "user_transactions", ["account_id"], :name => "user_transactions_account_id_fk"
   add_index "user_transactions", ["payment_method_id"], :name => "user_transactions_payment_method_id_fk"
+  add_index "user_transactions", ["user_league_association_id"], :name => "user_transactions_user_league_association_id_fk"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -206,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20130420192631) do
 
   add_foreign_key "user_payment_methods", "user_accounts", :name => "user_payment_methods_account_id_fk", :column => "account_id"
 
+  add_foreign_key "user_transactions", "user_accounts", :name => "user_transactions_account_id_fk", :column => "account_id"
+  add_foreign_key "user_transactions", "user_league_associations", :name => "user_transactions_user_league_association_id_fk"
   add_foreign_key "user_transactions", "user_payment_methods", :name => "user_transactions_payment_method_id_fk", :column => "payment_method_id"
 
 end
