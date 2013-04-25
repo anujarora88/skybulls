@@ -1,4 +1,4 @@
-class Users::ProfileController < ApplicationController
+class Users::ProfileController < Users::AbstractController
 
     def update_user_info
       if params[:id] == 'username' || params[:id] == 'email' || params[:id] == 'password'

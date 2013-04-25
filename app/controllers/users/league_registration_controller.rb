@@ -1,4 +1,4 @@
-class Users::LeagueRegistrationController < ApplicationController
+class Users::LeagueRegistrationController < Users::AbstractController
 
   def show_league_info
     @league= League.find(params[:id])

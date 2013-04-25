@@ -1,4 +1,5 @@
-class LeaguesController < ApplicationController
+class LeaguesController < Users::AbstractController
+
   def index
     @exchanges = Exchange.all
     @leagues = League.where("start_time >= :start_time OR

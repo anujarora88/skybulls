@@ -22,6 +22,7 @@ gem 'foreigner'
 gem "haml"
 gem "haml-rails", :group => :development
 gem 'paperclip'
+gem "js-routes"
 
 
 

@@ -1,6 +1,5 @@
-class DashboardController < ApplicationController
+class DashboardController < Users::AbstractController
 
-  prepend_before_filter :authenticate_user!
 
 
   def index

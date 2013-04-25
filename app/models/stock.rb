@@ -10,5 +10,21 @@ class Stock < ActiveRecord::Base
       :greater_than_or_equal_to => 0
   }
 
+  def symbol_with_exchange
+    "#{exchange.symbol}:#{symbol}"
+  end
+
+  def to_json
+    {
+        :id => id,
+        :symbol => symbol_with_exchange,
+        :name => company.name,
+        :logoUrl => company.logo_url,
+        :price => latest_price.format,
+        :percentageChange => 1,
+        :change => 10
+    }.to_json
+  end
+
 
 end

@@ -1,4 +1,4 @@
-class Users::CashierController < ApplicationController
+class Users::CashierController < Users::AbstractController
 
   prepend_before_filter :initialize_instance_variables
 

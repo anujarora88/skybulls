@@ -1,7 +1,6 @@
 module Leagues
-  class AbstractController < ApplicationController
+  class AbstractController < Users::AbstractController
 
-    prepend_before_filter :authenticate_user!
     prepend_before_filter :initialize_league
 
     private
