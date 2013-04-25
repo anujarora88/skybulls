@@ -1,0 +1,2 @@
+module Leagues::TradesHelper
+end

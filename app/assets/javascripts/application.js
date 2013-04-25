@@ -12,6 +12,8 @@
 //= require jquery_ujs
 // require jquery
 
+var skybulls = {};
+
 jQuery(document).ready(function(){
     $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
                                     minDate: Date.now()

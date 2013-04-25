@@ -1,7 +1,12 @@
 class Leagues::DashboardController < Leagues::AbstractController
 
-    def index
-      lk = "as"
-    end
+  def index
+
+  end
+
+  def search
+    keywords = params[:keywords];
+  end
+
 
 end
