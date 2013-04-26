@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
     @facebook_id ||= Authentication.where(:user_id => self.id, :provider => 'facebook').first.try(:uid)
   end
 
+  def pinned_stocks
+     Stock.all
+  end
+
   private
 
     def initialize_account

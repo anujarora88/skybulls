@@ -6,6 +6,8 @@ class Stock < ActiveRecord::Base
   has_many :trades
   has_many :bids
 
+  default_scope
+
   monetize :latest_price_cents, :allow_nil => false, :numericality => {
       :greater_than_or_equal_to => 0
   }

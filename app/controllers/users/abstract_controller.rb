@@ -7,7 +7,7 @@ module Users
     private
 
       def initialize_pinned_stocks
-        @pinned_stocks = Stock.all
+        @pinned_stocks = current_user.pinned_stocks
       end
 
 
