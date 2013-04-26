@@ -24,6 +24,9 @@ gem "haml-rails", :group => :development
 gem 'paperclip'
 gem "js-routes"
 
+gem 'delayed_job_active_record'
+gem 'airbrake'
+
 
 
 
