@@ -8,10 +8,10 @@ SkybullsRails::Application.routes.draw do
     post 'withdrawl' => 'cashier#withdrawl', :as => :withdrawl
     get 'preapproval_success' => 'cashier#preapproval_success', :as => :preapproval_success
     get 'preapproval_failure' => 'cashier#preapproval_failure', :as => :preapproval_failure
-    get 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
-    get 'league_registration_register' =>'league_registration#register', :as=> :league_register
+    post 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
+    post 'league_registration_register' =>'league_registration#register', :as=> :league_register
     post 'update_user_info' =>'profile#update_user_info', :as=> :update_user
-    post 'update_user_photo' =>'profile#update_user_photo', :as=> :update_user_photo
+    post 'stock_list' =>'league_registration#search_stocks', :as=> :search_stocks
   end
 
   resources :leagues, :only => [:index, :show] do
