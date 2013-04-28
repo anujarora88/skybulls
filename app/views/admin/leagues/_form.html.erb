@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%=  select("category", '',['Daily','Weekly'], {:include_blank => false})%>
   </div>
   <div class="field">
     <%= f.label :market %><br />

@@ -1,0 +1,5 @@
+%ul.profile-info-area
+  - @stock.each do |stock|
+    %li
+      %label Stock
+      %span= stock.symbol+stock.latest_price.to_s

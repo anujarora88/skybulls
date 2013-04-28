@@ -19,4 +19,16 @@ class Users::LeagueRegistrationController < Users::AbstractController
     end
   end
 
+  def pin_stock
+    stock = Stock.find(params[:id])
+    stock_pinned = current_user.add_pinned_stock(stock)
+  end
+
+  def search_stocks
+    @stock = Stock.find_all_by_symbol(params[:symbol])
+    respond_to do |format|
+      format.js {render :partial => 'users/stock_list_html' }
+    end
+  end
+
 end

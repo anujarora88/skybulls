@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
+
+  has_many :users_user_stock_associations, :class_name => 'Users::UserStockAssociation'
+  has_many :stocks, :through => :users_user_stock_associations
+
   has_one :account, :class_name => 'Users::Account'
   has_one :profile, :class_name => 'Users::Profile'
 
@@ -71,6 +75,15 @@ class User < ActiveRecord::Base
 
   def pinned_stocks
      Stock.all
+  end
+
+  def add_pinned_stock(stock, recently_searched = false)
+    if !stock.nil? &&  UserLeagueAssociation.find_by_user_id_and_stock_id(current_user.id,stock.id).nil?
+      UserStockAssociation.create(:user_id => current_user.id, :stock_id=>stock.id,:recently_searched=>recently_searched);
+      true
+    else
+      false
+    end
   end
 
   private

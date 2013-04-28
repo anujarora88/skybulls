@@ -42,6 +42,7 @@ class Admin::LeaguesController < Admin::AbstractController
   # POST /leagues.json
   def create
     @league = League.new(params[:league])
+    @league.category= params[:category][0]
     if params[:invitation_only]==1
       @league.invitation_only= true
     end

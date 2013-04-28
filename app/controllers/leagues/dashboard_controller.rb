@@ -8,5 +8,4 @@ class Leagues::DashboardController < Leagues::AbstractController
     keywords = params[:keywords];
   end
 
-
 end

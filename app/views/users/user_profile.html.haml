@@ -1,5 +1,29 @@
+
+
+- content_for :javascript do
+  :javascript
+    function pin_stocks(){
+      if($('#symbol').val()==''){
+        alert('No text Entered');
+        return false;
+      }
+      else{
+        dataMap={};
+        dataMap['symbol']=$('#symbol').val();
+        $.ajax({
+          type: 'POST',
+          url: $('#ajax_stock_list_url').val(),
+          data: dataMap,
+          dataType: 'json',
+          success:function(data) {
+                    $('#stock_list').append(data);
+                    }
+        });
+      }
+    }
 / Left Area
 %input{:type=>"hidden", :value=>users_update_user_url, :id=>'ajax_update_url'}
+%input{:type=>"hidden", :value=>users_search_stocks_url, :id=>'ajax_stock_list_url'}
 - content_for :left_sidebar do
   = render "/users/profile_left_sidebar"
 
@@ -7,7 +31,7 @@
 %section.inner-right-area
   .user-p
     .p-photo
-      = image_tag current_user.image_url, width: 75, height: 75
+      = image_tag current_user.image_url
     .user-info
       %span.u-name= current_user.user_name
       %a{:href => "javascript:void(0);"}
@@ -20,9 +44,7 @@
   .inner-cont-right
     .u-p-deatils
       .p-photo-big
-        = image_tag current_user.image_url, width: 175, height: 175
-        - form_for current_user,:url=>users_update_user_photo_path,:remote=>true, :html => { :multipart => true } do |f|
-          = f.file_field :photo
+        = image_tag current_user.image_url
       .u-oinfo
         %h4= current_user.user_name
         %ul.two-col-data
@@ -57,13 +79,26 @@
           %li
             %label Password
             %span#password= current_user.password
-            %a{:href => "javascript:void(0);"} Reset
+
           %li.t-txt
             %label Telephone
             %span#telephone +1 1234567890
-            %a{:href => "javascript:void(0);"} Edit
+
           %li.t-txt
             %label Email
             %span#email= current_user.email
-            %a{:href => "javascript:void(0);"} Edit
+
+
+      %h4.in-page-title.user-details Pinned Stocks
+
+      %ul.profile-info-area
+        - current_user.stocks.each do |stock|
+          %li
+            %label Stock
+            %span= stock.symbol+stock.latest_price.to_s
+        %form{:onSubmit => "pin_stocks()"}
+          %label Search Stocks
+          %input#symbol{:name => "symbol", :type => "text"}/
+          %input{:type => "submit"}/
+          %div#stock_list
 / End Right Area

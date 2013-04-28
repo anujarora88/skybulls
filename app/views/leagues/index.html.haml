@@ -20,7 +20,7 @@
               var data_map= {};
               data_map['id']=element.attr('data-id');
               $.ajax({
-                  type : 'GET',
+                  type : 'POST',
                   url : element.attr('data-ajaxInfoUrl'),
                   data: data_map,
                   dataType: 'html',
@@ -45,7 +45,7 @@
             data_map['id']=leagueId;
             var register_url = $('#registerUrl').val()
             $.ajax({
-                type : 'GET',
+                type : 'POST',
                 url : register_url,
                 data: data_map,
                 dataType: 'html',
