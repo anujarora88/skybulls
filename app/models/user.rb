@@ -77,12 +77,15 @@ class User < ActiveRecord::Base
      Stock.all
   end
 
-  def add_pinned_stock(stock, recently_searched = false)
-    if !stock.nil? &&  UserLeagueAssociation.find_by_user_id_and_stock_id(current_user.id,stock.id).nil?
-      UserStockAssociation.create(:user_id => current_user.id, :stock_id=>stock.id,:recently_searched=>recently_searched);
-      true
+  def add_pinned_stock!(stock, recently_searched = false)
+    raise "Stock is nil" if stock.nil?
+    user_stock = user_stock_associations.find{|us| us.stock == stock}
+    if user_stock
+      user_stock.last_updated = Time.now
+      user_stock.recently_searched = recently_searched unless recently_searched
+      user_stock.save!
     else
-      false
+      UserStockAssociation.create!(:user => self, :stock => stock, :recently_searched => recently_searched)
     end
   end
 

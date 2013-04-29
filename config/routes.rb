@@ -25,8 +25,10 @@ SkybullsRails::Application.routes.draw do
       collection do
         get 'search'
       end
+      member do
+        get 'select_stock'
+      end
     end
-
   end
 
 =begin

@@ -18,6 +18,10 @@ class Stock < ActiveRecord::Base
     "#{exchange.symbol}:#{symbol}"
   end
 
+  def to_s
+    "#{company.name} (#{symbol})"
+  end
+
   def to_json
     {
         :id => id,
