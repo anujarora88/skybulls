@@ -6,10 +6,9 @@ class Stock < ActiveRecord::Base
   has_many :trades
   has_many :bids
 
-  has_many :users_user_stock_associations, :class_name => 'Users::UserStockAssociation'
-  has_many :users, :through => :users_user_stock_associations
+  has_many :user_stock_associations, :class_name => 'UserStockAssociation'
+  has_many :users, :through => :user_stock_associations
 
-  default_scope
 
   monetize :latest_price_cents, :allow_nil => false, :numericality => {
       :greater_than_or_equal_to => 0

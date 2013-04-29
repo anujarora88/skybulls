@@ -5,7 +5,8 @@ class Leagues::DashboardController < Leagues::AbstractController
   end
 
   def search
-    keywords = params[:keywords];
+    keywords = params[:keywords]
+    @stocks = Stock.joins(:company).where("stocks.symbol LIKE %?% OR companies.name LIKE %?%").all
   end
 
 end

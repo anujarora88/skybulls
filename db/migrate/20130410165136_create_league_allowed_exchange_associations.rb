@@ -6,7 +6,7 @@ class CreateLeagueAllowedExchangeAssociations < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :exchanges_leagues, [:exchange_id, :league_id]
+    add_index :exchanges_leagues, [:exchange_id, :league_id], :unique => true
   end
 
   def down

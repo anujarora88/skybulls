@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
 
-  has_many :users_user_stock_associations, :class_name => 'Users::UserStockAssociation'
-  has_many :stocks, :through => :users_user_stock_associations
+  has_many :user_stock_associations, :class_name => 'UserStockAssociation'
+  has_many :stocks, :through => :user_stock_associations
 
   has_one :account, :class_name => 'Users::Account'
   has_one :profile, :class_name => 'Users::Profile'

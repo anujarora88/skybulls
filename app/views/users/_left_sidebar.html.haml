@@ -5,7 +5,7 @@
         %span.account-summary
           Account Summary
     %li
-      %a{href: 'javascript:void(0);'}
+      %a{href: users_cashier_path, class: current_page?(users_cashier_path) ? 'active' : ''}
         %span.cashier
           Cashier
     %li

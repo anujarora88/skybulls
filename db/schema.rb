@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426010151) do
+ActiveRecord::Schema.define(:version => 20130427073620) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20130426010151) do
     t.datetime "updated_at",                                  :null => false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "latest_registration_time"
+    t.integer  "latest_registration_time"
     t.boolean  "invitation_only",          :default => false
     t.float    "buy_in"
     t.float    "commission"
@@ -168,6 +168,16 @@ ActiveRecord::Schema.define(:version => 20130426010151) do
   end
 
   add_index "user_payment_methods", ["account_id"], :name => "user_payment_methods_account_id_fk"
+
+  create_table "user_stock_associations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.boolean  "recently_searched"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "user_stock_associations", ["user_id", "stock_id"], :name => "index_users_user_stock_associations_on_user_id_and_stock_id", :unique => true
 
   create_table "user_transactions", :force => true do |t|
     t.integer  "payment_method_id",                         :null => false

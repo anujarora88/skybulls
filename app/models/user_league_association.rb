@@ -6,4 +6,5 @@ class UserLeagueAssociation < ActiveRecord::Base
 
   has_many :trades
   has_many :bids
+
 end
