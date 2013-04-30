@@ -60,6 +60,7 @@ module SkybullsRails
 
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('lib', 'jobs')]
     config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
 
     # Version of your assets, change this if you want to expire all your assets

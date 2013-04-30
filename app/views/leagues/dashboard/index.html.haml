@@ -1,7 +1,5 @@
 - content_for :head do
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
-  = javascript_include_tag "select2.min.js"
-  = stylesheet_link_tag "select2"
 
 - content_for :sub_header do
   = render "/leagues/common/sub_header"
@@ -35,27 +33,43 @@
        stockInfoArea = new skybulls.StockInfoArea({"pinnedStocks": #{@pinned_stocks.collect(&:to_json)}});
        stockInfoArea.initializeDisplayArea();
 
-       function format(state) {
-         return "<img class='flag' src='images/flags/" + state.id.toLowerCase() + ".png'/>" + state.text;
-       }
+       $('#search-bar').autocomplete({
+          source: function(req, res){
+             var dataMap= {};
+             dataMap['term']=req.term;
+             $.ajax({
+                 type : 'GET',
+                 url : Routes.search_league_dashboard_index_path(#{@league.id}) ,
+                 data: dataMap,
+                 dataType: 'json',
+                 success:function(result) {
 
-       $("#search-bar").select2({
-           placeholder: "Search company name or ticker",
-           allowClear: true,
-           minimumInputLength: 2
+                               return res(result);
+
+                           }
+             });
+
+          },
+          select: function( event, ui ) {
+              $.ajax({
+                       type : 'GET',
+                       url : Routes.select_stock_league_dashboard_path(#{@league.id}, ui.item.value) ,
+                       dataType: 'json',
+                       success:function(result) {
+
+                           alert(result);
+
+                       }
+                   });
+          },
+          minLength: 2
        });
     });
 
 
 
 .h-midarea
-  %select#search-bar{:multiple => "multiple"}
-    - @league.exchanges.each do |e|
-      %optgroup{label: e.name}
-        - e.stocks.each do |s|
-          %option{value: s.id}
-            = s.to_s
-
+  %input.search-txt#search-bar{:placeholder => "Search company name or ticker", :autocomplete => "off", :type => "text"}/
   .clr
   #stock-info-area
     - @pinned_stocks.each do |stock|

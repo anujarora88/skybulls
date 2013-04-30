@@ -25,6 +25,8 @@ class Stock < ActiveRecord::Base
   def to_json
     {
         :id => id,
+        :label => to_s,
+        :value => id,
         :symbol => symbol_with_exchange,
         :name => company.name,
         :logoUrl => company.logo_url,

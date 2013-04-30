@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def pinned_stocks
-     Stock.all
+     [Stock.first]
   end
 
   def add_pinned_stock!(stock, recently_searched = false)

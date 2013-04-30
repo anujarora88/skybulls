@@ -1,21 +1,5 @@
 module Jobs
-
-
-  class Work
-    def self.enqueue(obj, options = {})
-      if Rails.env.development?
-        obj.perform
-      else
-        opts = {
-            :payload_object => obj
-        }.merge!(options)
-        Delayed::Jobs.enqueue(opts)
-      end
-    end
-  end
-
   module ErrorTracking
-
 
     def error(job, exception)
       notify(exception)
@@ -36,6 +20,4 @@ module Jobs
     end
 
   end
-
-
 end

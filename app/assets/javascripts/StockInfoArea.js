@@ -25,6 +25,16 @@
         this.pinnedStocks[pinnedStock.symbol] = pinnedStock;
     };
 
+    StockInfoArea.prototype.addNewStock = function (stockData) {
+        var pinnedStock = new skybulls.PinnedStock({"stockInfo": stockData});
+        this.addStock(pinnedStock);
+        this.pinnedStocks[pinnedStock.symbol] = pinnedStock;
+        var el = $("<div class='mid-box' id='stock-info-area-element-"+stockData["id"] +"'></div> ");
+        this.displayArea.prepend(el);
+        pinnedStock.initializeDisplayArea(this.displayArea);
+
+    };
+
     StockInfoArea.prototype.updateStockInfo = function (symbol, params) {
         var pinnedStock = this.pinnedStocks[symbol];
         pinnedStock.updateInfo(params);

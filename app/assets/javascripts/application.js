@@ -22,6 +22,8 @@ jQuery(document).ready(function(){
                                     minDate: Date.now()
                                     } );
 
+    $('section.left-area').affix();
+
     $('.user_info span').editable(function(value, settings) {
         var data_map= {};
         data_map['id']=this.id;
