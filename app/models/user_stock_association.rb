@@ -2,7 +2,6 @@ class UserStockAssociation < ActiveRecord::Base
 
   attr_accessible :stock, :user, :recently_searched
 
-  alias_method :recently_searched?, :recently_searched
 
   belongs_to :user
   belongs_to :stock

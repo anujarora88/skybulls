@@ -1,6 +1,5 @@
 module Jobs
   class SaveSearchedStock < Struct.new(:user_id, :stock_id, :recently_searched)
-    include ErrorTracking
 
     def perform
       user = User.find(user_id)

@@ -20,17 +20,17 @@
         <div class="peg-left">{{change}}</div>
         <div class="peg-left mrn">{{percentageChange}}%</div>
       </div>
-      <div class="price">{{price}}<a href="javascript:void(0);" class="graph-button"> <img src="/assets/graph.png" class="graph" /></a>
+      <div class="price">{{price}}<a href="javascript:void(0);"  class="graph-button"> <img src="/assets/graph.png" class="graph" /></a>
       <a href="javascript:void(0);" class="pin-button"><img src="/assets/pin.png" class="pin" /></a></div>
       <div class="box-bottom">
-        <div class="buy"><a href="#" class="buy-button">Buy</a></div>
+        <div class="buy"><a class="buy-button">Buy</a></div>
         <div class="sell"><a href="#" class="sell-button">sell</a></div>
       </div>
     </script>
 
   :javascript
     $(document).ready(function(){
-       stockInfoArea = new skybulls.StockInfoArea({"pinnedStocks": #{@pinned_stocks.collect(&:to_json)}});
+       stockInfoArea = new skybulls.StockInfoArea({"leagueId": #{@league.id},"pinnedStocks": #{@pinned_stocks.collect(&:to_json)}});
        stockInfoArea.initializeDisplayArea();
 
        $('#search-bar').autocomplete({
@@ -43,24 +43,26 @@
                  data: dataMap,
                  dataType: 'json',
                  success:function(result) {
-
-                               return res(result);
-
-                           }
+                     res(result);
+                 }
              });
 
           },
           select: function( event, ui ) {
-              $.ajax({
-                       type : 'GET',
-                       url : Routes.select_stock_league_dashboard_path(#{@league.id}, ui.item.value) ,
-                       dataType: 'json',
-                       success:function(result) {
 
-                           alert(result);
+               $.ajax({
+                  type : 'GET',
+                  url : Routes.select_stock_league_dashboard_path(#{@league.id}, ui.item.id) ,
+                  dataType: 'json',
+                  success:function(result) {
+                      stockInfoArea.addNewStock(result);
+                      $('#search-bar').val('');
+                  }
+               });
 
-                       }
-                   });
+
+            $('#search-bar').val('');
+
           },
           minLength: 2
        });
@@ -78,3 +80,10 @@
 
   .h-graph
     = image_tag "graph-dummy.png"
+
+#tradeModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-body
+
+#sellModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-body
+

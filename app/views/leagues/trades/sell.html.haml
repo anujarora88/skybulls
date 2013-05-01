@@ -1,4 +1,4 @@
-- @title = "Buy Stock"
+- @title = "Sell Stock"
 - content_for :javascript do
   :javascript
     $(document).ready(function(){
@@ -34,34 +34,33 @@
   .popup-action-area
     %a.market-price{:href => "javascript:void(0);"} Market
     %span
-      Buy a stock at its
+      Sell a stock at its
       = succeed "current" do
         %br/
       market price
   .popup-action-area
     %a.custom-price{:href => "javascript:void(0);"} Limit
     %span
-      Buy a stock for the maximum
+      Sell a stock a custom
       = succeed "price" do
         %br/
-      you are willing to pay
 
 
-= form_for @trade, :url => league_buy_stock_path(@league, @stock) do |f|
+= form_for @trade, :url => league_sell_stock_path(@league, @stock) do |f|
   = hidden_field_tag :trade_type, "latest"
   .confirmTrade.hide
     .price-row-c.priceRow
       %span.l-txt-p Price
       = f.text_field :price, :value => humanized_money(@stock.latest_price), :class=> "stockPrice"
       .select-range
-        %span.txt-range $0
-        %span.range-bar
-          = hidden_field_tag :hidden_price, humanized_money(@stock.latest_price),  :class=> "stockPrice slider-price" ,
-                    "data-slider-max" => "#{humanized_money(@stock.latest_price)}", "data-slider-selection" => "before", "data-slider-step" => "0.01",
-                       "data-slider-value" => "#{humanized_money(@stock.latest_price)}"
         %span.txt-range
           = humanized_money_with_symbol(@stock.latest_price)
-
+        %span.range-bar
+          = hidden_field_tag :hidden_price, humanized_money(@stock.latest_price),  :class=> "stockPrice slider-price" ,
+                    "data-slider-min" => "#{humanized_money(@stock.latest_price)}", "data-slider-max" => "#{(@stock.latest_price_cents/10)}", "data-slider-selection" => "before", "data-slider-step" => "0.01",
+                       "data-slider-value" => "#{humanized_money(@stock.latest_price)}"
+        %span.txt-range
+          = humanized_money_with_symbol(@stock.latest_price * 10)
     .price-row-c.sharesRow
       %span.l-txt-p Shares
       = f.text_field :amount, :value => 10,:class=> :stockAmount
@@ -69,15 +68,16 @@
       %span.txt-range 0
       %span.range-bar
         = hidden_field_tag :hidden_amount, humanized_money(@stock.latest_price),  :class=> "stockAmount slider-amount" ,
-                   "data-slider-max" => "1000", "data-slider-selection" => "before", "data-slider-step" => "1",
+                   "data-slider-max" => "#{@stock_amount}", "data-slider-selection" => "before", "data-slider-step" => "1",
                      "data-slider-value" => "10"
-      %span.txt-range 1000
+      %span.txt-range
+        = @stock_amount
 
 
     .price-row-c.c-form-f
       %span.l-txt-p Total
       %input.totalPrice{:type => "text", :readonly => "readonly", :value => humanized_money(@stock.latest_price * 10)}/
       %a.cf-btn.submitButton{:href => "javascript:void(0);"}
-        %span Place buy trade
+        %span Place sell trade
 
 

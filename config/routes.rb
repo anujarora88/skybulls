@@ -19,8 +19,8 @@ SkybullsRails::Application.routes.draw do
       post 'subscribe'
       post 'unsubscribe'
     end
-    match "/buy/:id" => "leagues/trades#buy"
-    match "/sell/:id" => "leagues/trades#sell"
+    match "/buy/:id" => "leagues/trades#buy", :as => :buy_stock
+    match "/sell/:id" => "leagues/trades#sell", :as => :sell_stock
     resources :dashboard, :controller => 'leagues/dashboard', :only => [:index] do
       collection do
         get 'search'

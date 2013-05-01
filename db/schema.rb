@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427073620) do
+ActiveRecord::Schema.define(:version => 20130428213451) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20130427073620) do
     t.float    "commission"
     t.integer  "min_users"
     t.integer  "max_users"
+    t.integer  "virtual_money_cents",      :default => 0,     :null => false
+    t.string   "virtual_money_currency",   :default => "USD", :null => false
   end
 
   create_table "stocks", :force => true do |t|
@@ -152,8 +154,12 @@ ActiveRecord::Schema.define(:version => 20130427073620) do
   create_table "user_league_associations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "balance_cents",    :default => 0,     :null => false
+    t.string   "balance_currency", :default => "USD", :null => false
+    t.boolean  "completed",        :default => false
+    t.integer  "rank"
   end
 
   create_table "user_payment_methods", :force => true do |t|

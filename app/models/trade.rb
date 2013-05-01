@@ -2,7 +2,7 @@ class Trade < ActiveRecord::Base
 
   self.table_name = :trades
 
-  attr_accessible :amount, :stock_id, :price, :type, :user_league_association_id
+  attr_accessible :amount, :stock, :price, :type, :user_league_association
 
   belongs_to :stock
   belongs_to :user_league_association

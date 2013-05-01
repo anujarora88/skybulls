@@ -5,7 +5,7 @@ header, footer, aside, artical, section, hgroup, figure, figcaption, nav{ displa
 h1, h2, h3,h4, h5, h6{ font-weight:normal;}
 ul, li, ol{ list-style-type:none;}
 a:hover{ color:#090; text-decoration:none; cursor:pointer;}
-input[type="text"], input[type="redio"], input[type="select"], input[type="textarea"], input[type="button"], input[type="email"], input[type="password"], input[type="date"], input[type="datetime"], input[type="month"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], select{ color:#999;outline: none}
+input[type="text"], input[type="redio"], input[type="select"], input[type="textarea"], input[type="button"], input[type="email"], input[type="password"], input[type="date"], input[type="datetime"], input[type="month"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], select{ color:#999;outline: none; height: inherit}
 select{font-family: 'Oxygen', sans-serif;}
 a{ text-decoration:none;}
 /* Global properties ======================================================== */
@@ -435,13 +435,13 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .t-action					{ padding:20px; color:#3a3c40; font-size:14px; font-weight:lighter; overflow:hidden;}
 .t-action span{ float:left; margin-right:20px;}
 .t-action span input{ float:left; margin-right:5px; margin-top:3px;}
-.popup-area{ background:url(popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999;}
+.popup-area{}
 
-.popup-cont{ border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:absolute; top:20%; width:40%; left:30%;}
+.modal{ min-width: 400px;border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
 .close-icon{ padding:10px; text-align:right;}
 .popup-heading{ border-bottom:1px solid #ddd; }
-.popup-cont h4{ font-weight:lighter; font-size:18px; text-transform:uppercase; color:#272727; float:left; padding:15px;}
-.popup-cont h3{ color:#90c34c; font-size:18px; text-align:center; padding-bottom:20px;}
+.modal h4{ font-weight:lighter; font-size:18px; text-transform:uppercase; color:#272727; float:left; padding:15px;}
+.modal h3{ color:#90c34c; font-size:18px; text-align:center; padding-bottom:20px;}
 .pd20{ padding:20px;}
 .popup-txt	{ background:#f8f8f8; border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-bottom:50px; }
 .popup-c-txt{ border-top:2px solid #fff; border-bottom:1px solid #fff; padding:10px; overflow:hidden;border-left:1px solid #ddd;}

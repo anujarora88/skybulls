@@ -1,5 +1,5 @@
 class Bid < ActiveRecord::Base
-  attr_accessible :amount, :stock_id, :trade_id, :type, :user_league_association_id, :price
+  attr_accessible :amount, :stock, :trade_id, :type, :user_league_association, :price
 
   monetize :price_cents, :allow_nil => false, :numericality => {
       :greater_than_or_equal_to => 0

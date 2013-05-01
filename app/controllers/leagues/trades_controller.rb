@@ -1,13 +1,59 @@
-class Leagues::TradesController < ApplicationController
+class Leagues::TradesController < Leagues::AbstractController
+
+  layout "popup"
+
+  prepend_before_filter :initialize_variables
 
   def buy
-
+    if request.post?
+      if params[:trade_type] == "latest"
+        @trade = Trades::Buy.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
+        @trade.price = @stock.latest_price
+        @trade.save!
+      elsif params[:trade_type] == "custom"
+        @trade = Bids::Buy.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
+        @trade.save!
+      end
+      render 'success'
+    end
   end
 
   def sell
-    if request.get?
+    @stock_amount = @user_league_association.stock_amount(@stock)
+    if request.post?
+      if params[:trade_type] == "latest"
+        @trade = Trades::Sell.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
+        @trade.price = @stock.latest_price
+        if @stock_amount < @trade.amount
+           @error_message = "Can not sell more than #{@stock_amount} shares!"
+          render 'sell'
+          return
+        else
+          @trade.save!
+          render 'success'
+        end
+      elsif params[:trade_type] == "custom"
+        @trade = Bids::Sell.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
+        if @stock_amount < @trade.amount
+          @error_message = "Can not sell more than #{@stock_amount} shares!"
+          render 'sell'
+        else
+          @trade.save!
+          render 'success'
+        end
+      end
 
+    end
+    if @stock_amount == 0
+      @error_message = "Please buy some shares first!"
+      render "buy"
     end
 
   end
+
+  def initialize_variables
+    @stock = Stock.find(params[:id])
+    @trade = Trade.new()
+  end
+
 end

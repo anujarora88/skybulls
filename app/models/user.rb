@@ -74,14 +74,14 @@ class User < ActiveRecord::Base
   end
 
   def pinned_stocks
-     [Stock.first]
+     user_stock_associations.order("updated_at desc").all.collect(&:stock)
   end
 
   def add_pinned_stock!(stock, recently_searched = false)
     raise "Stock is nil" if stock.nil?
     user_stock = user_stock_associations.find{|us| us.stock == stock}
     if user_stock
-      user_stock.last_updated = Time.now
+      user_stock.updated_at = Time.now
       user_stock.recently_searched = recently_searched unless recently_searched
       user_stock.save!
     else

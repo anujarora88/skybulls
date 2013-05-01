@@ -14,9 +14,6 @@
         this.mustacheTemplateElId = specs.mustacheTemplateElId ? specs.mustacheTemplateElId  : "stock-template" ;
         this.displayEl = null;
 
-        if (this.stockInfoArea) {
-            this.stockInfoArea.addStock(this);
-        }
 
     };
 
@@ -50,10 +47,31 @@
 
     PinnedStock.prototype._buyButtonHandler = function(event){
         var self = event.data.self;
+        $.ajax({
+            type : 'GET',
+            url : Routes.league_buy_stock_path(self.stockInfoArea.leagueId, self.stockInfo.id) ,
+            dataType: 'html',
+            success: function(data){
+                $("#tradeModal").html(data);
+                $('#tradeModal').modal({});
+            }
+        });
+
+
     };
 
     PinnedStock.prototype._sellButtonHandler = function(event){
         var self = event.data.self;
+        $.ajax({
+            type : 'GET',
+            url : Routes.league_sell_stock_path(self.stockInfoArea.leagueId, self.stockInfo.id) ,
+            dataType: 'html',
+            success: function(data){
+                $("#tradeModal").html(data);
+                $('#tradeModal').modal({});
+            }
+        });
+
     };
 
     PinnedStock.prototype._graphButtonHandler = function(event){

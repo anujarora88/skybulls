@@ -9,7 +9,7 @@ class Leagues::DashboardController < Leagues::AbstractController
     keywords = params[:keywords]
     @stocks = Stock.joins(:company).where("stocks.symbol LIKE :term OR companies.name LIKE :term", {term: "%#{params[:term]}%"}).all
     respond_to do |format|
-      format.json {render json: @stocks.map {|s| {:label => s.to_s, :value => s.id}}}
+      format.json {render json: @stocks.map {|s| {:label => s.to_s, :value => s.symbol_with_exchange, :id => s.id}}}
     end
   end
 
@@ -17,7 +17,7 @@ class Leagues::DashboardController < Leagues::AbstractController
     @stock = Stock.find(params[:id])
     Jobs.enqueue(Jobs::SaveSearchedStock.new(current_user.id, @stock.id, true))
     respond_to do |format|
-      format.json {render json: @stock}
+      format.json {render json: @stock.to_json}
     end
   end
 

@@ -1,5 +1,9 @@
 module Trades
-  class Buy < Trade
+  class Sell < Trade
+
+    def shares
+      -1 * amount
+    end
 
   end
 end

@@ -14,7 +14,7 @@ class Users::Transaction < ActiveRecord::Base
 
   after_create :update_balance
 
-  attr_accessible :payment_method, :account, :amount, :amount_cents, :payment_method, :payment_method_id , :identifier
+  attr_accessible :payment_method, :account, :amount, :amount_cents, :payment_method, :payment_method_id , :identifier, :user_league_association
 
 
   private

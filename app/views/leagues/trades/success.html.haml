@@ -1,0 +1,10 @@
+%h3
+  = "#{@trade.is_a?(Trade) ? "Trade" : "Bid"} Successfully Placed"
+.popup-txt
+  .popup-logo
+    = image_tag @trade.stock.company.logo_url, :width => 100
+  .popup-c-txt
+    %span
+      = @trade.stock.company.name + " (#{@trade.stock.symbol})"
+    %strong
+      = "#{@trade.amount} Shares @ Price of #{humanized_money_with_symbol(@trade.price)}"
