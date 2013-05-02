@@ -435,8 +435,10 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .sell-btn							{border-bottom:2px solid #e34c2e;}
 .del-btn							{border-bottom:2px solid #000;}
 
-.down-arrow-red, .down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
-.down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 bottom; }
+.down-arrow-red, .down-arrow-green					{ background:url(down-arrow-small.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
+.down-arrow-green					{ background:url(down-arrow-small.png) no-repeat 0 bottom; }
+.up-arrow-red, .up-arrow-green					{ background:url(up-arrow-small.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
+.up-arrow-green					{ background:url(up-arrow-small.png) no-repeat 0 bottom; }
 .t-action					{ padding:20px; color:#3a3c40; font-size:14px; font-weight:lighter; overflow:hidden;}
 .t-action span{ float:left; margin-right:20px;}
 .t-action span input{ float:left; margin-right:5px; margin-top:3px;}
@@ -495,6 +497,7 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .portfolio-info-right{ border-left:1px solid #f0f0f0; padding-top:30px; float:right; width:45%; background:#f3f5ee; }
 .r-txt{ font-size:18px; text-transform:uppercase; color:#484a4f; text-align:center; line-height:22px;}
 .up-arrow{ background:url(up-arrow.png) no-repeat 0 12px; padding-left:30px; }
+.down-arrow{ background:url(down-arrow1.png) no-repeat 0 12px; padding-left:30px; }
 .portfolio-info-right h2{font-size:48px; text-align:center; line-height:48px; font-weight:bold; color:#7fbb00;}
 .portfolio-info-right span{font-size:12px; text-align:center; line-height:18px; text-align:center; display:block;color:#969696;}
 .portfolio-info-right ul{ margin-top:30px;}

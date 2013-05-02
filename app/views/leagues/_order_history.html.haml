@@ -1,0 +1,82 @@
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+        var dataTable = $('#trades-data-table').dataTable({
+          "bPaginate": false,
+          "bInfo" : false
+        });
+
+
+    });
+
+
+
+%table.leg-box.stock-list.sorting#trades-data-table{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+  %thead
+    %tr
+      %th
+        %span
+          Stock
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Trade Type
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Time
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Price
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Quantity
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Current Price
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          = "%Return"
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          $Return
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span Action
+  %tbody
+    - open_trades.each_with_index do |trade|
+      %tr
+        %td
+          = trade.stock.company.name
+        %td
+          = trade.is_a?(Trades::Buy) ? "Buy" : "Sell"
+        %td
+          = trade.created_at.strftime("#{trade.created_at.day.ordinalize} %b %Y %k:%m")
+        %td
+          = trade.created_at.strftime("#{trade.created_at.day.ordinalize} %b %Y %k:%m")
+        %td
+          = trade.amount
+        %td
+          %span{:class => current_price_span_class(trade[:price], trade[:stock].latest_price)}
+          = humanized_money_with_symbol(trade.stock.latest_price)
+        %td
+          %span{:class => current_price_span_class(trade[:price], trade[:stock].latest_price)}
+          = percentage_return(trade[:price], trade[:stock].latest_price, trade[:amount])
+        %td
+          %span{:class => current_price_span_class(trade[:price], trade[:stock].latest_price)}
+          = dollar_return(trade[:price], trade[:stock].latest_price, trade[:amount])
+        %td
+          %a.sell-btn{:href => "javascript:void(0);","data-league-id" => @league.id, "data-stock-id" => "#{trade[:stock].id}" } Sell

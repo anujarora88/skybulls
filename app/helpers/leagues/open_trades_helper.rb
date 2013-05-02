@@ -8,7 +8,11 @@ module Leagues::OpenTradesHelper
      number_to_percentage((current_price/avg_price - 1)*100, precision: 2)
   end
 
-  def current_price_span_class(avg_price, current_price)
+  def current_price_span_class(avg_price, current_price, type = Trades::Buy.name)
+     case type
+       when Trades::Buy.name
+         avg_price > current_price ? 'down-arrow-red' : 'up-arrow'
+     end
      avg_price > current_price ? 'down-arrow-red' : 'up-arrow'
   end
 
