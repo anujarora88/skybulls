@@ -9,6 +9,10 @@ module ApplicationHelper
 
   end
 
+  def current_page_path
+    request.env['PATH_INFO']
+  end
+
   def current_user_name(max_length, &block)
     name = current_user.display_name
     name.length > max_length ? name[0, max_length-2]+'..' : name
