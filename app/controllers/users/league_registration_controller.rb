@@ -1,10 +1,9 @@
 class Users::LeagueRegistrationController < Users::AbstractController
 
+  layout "popup"
+
   def show_league_info
     @league= League.find(params[:id])
-    respond_to do |format|
-      format.js {render :partial => 'dashboard/league_info'}
-    end
 
   end
 
@@ -14,9 +13,7 @@ class Users::LeagueRegistrationController < Users::AbstractController
       UserLeagueAssociation.create(:user_id => current_user.id, :league_id=>@league.id)
     end
 
-    respond_to do |format|
-      format.js {render :partial => 'dashboard/league_register'}
-    end
+
   end
 
   def pin_stock
