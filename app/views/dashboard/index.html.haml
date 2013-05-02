@@ -1,0 +1,11 @@
+- content_for :left_sidebar do
+  %section.left-area.inner-l-area
+    %ul.left-menu
+      %li
+        %a.active{:href => dashboard_path, :class => "active"}
+          %span.dashboard Dashboard
+%section.inner-right-area
+  = render "/users/pic_area"
+  .inner-cont-right
+    = render "/users/registered_leagues"
+    = render "/users/cashier_box"
