@@ -52,13 +52,13 @@
   .confirmTrade.hide
     .price-row-c.priceRow
       %span.l-txt-p Price
-      = f.text_field :price, :value => humanized_money(@stock.latest_price), :class=> "stockPrice"
+      = f.text_field :price, :value => (@stock.latest_price_cents/100), :class=> "stockPrice"
       .select-range
         %span.txt-range $0
         %span.range-bar
-          = hidden_field_tag :hidden_price, humanized_money(@stock.latest_price),  :class=> "stockPrice slider-price" ,
-                    "data-slider-max" => "#{humanized_money(@stock.latest_price)}", "data-slider-selection" => "before", "data-slider-step" => "0.01",
-                       "data-slider-value" => "#{humanized_money(@stock.latest_price)}"
+          = hidden_field_tag :hidden_price, (@stock.latest_price_cents/100),  :class=> "stockPrice slider-price" ,
+                    "data-slider-max" => "#{(@stock.latest_price_cents/100)}", "data-slider-selection" => "before", "data-slider-step" => "0.01",
+                       "data-slider-value" => "#{(@stock.latest_price_cents/100)}"
         %span.txt-range
           = humanized_money_with_symbol(@stock.latest_price)
 

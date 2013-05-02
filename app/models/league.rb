@@ -21,6 +21,11 @@ class League < ActiveRecord::Base
     end
   end
 
+  def name_with_date
+    time_string = start_time.strftime("#{start_time.day.ordinalize} %b %Y")
+    "#{title} - #{time_string}"
+  end
+
   def default_values
     self.virtual_money ||= Money.new(100000000) unless self.virtual_money_cents
 

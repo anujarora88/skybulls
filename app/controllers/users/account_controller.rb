@@ -1,7 +1,7 @@
 class Users::AccountController < Users::AbstractController
 
   def summary
-    @registered_leagues = current_user.leagues.order("end_time DESC")
+    @registered_leagues = current_user.leagues.where(completed: false).order("end_time")
   end
 
   def statement

@@ -2,9 +2,7 @@ class LeaguesController < Users::AbstractController
 
   def index
     @exchanges = Exchange.all
-    @leagues = League.where("start_time >= :start_time OR
-      latest_registration_time >= :latest_registration_time", {start_time: Time.now, latest_registration_time: Time.now}).all
-
+    @leagues = League.where("end_time >= :end_time", {end_time: Time.now}).order("end_time").all - current_user.leagues
   end
 
   def show

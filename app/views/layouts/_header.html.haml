@@ -24,19 +24,19 @@
   %nav
     %ul
       %li
-        %a{href: "javascript:void(0);"}
-          About
+        %a{href: dashboard_path, :class => "#{current_page?(dashboard_path) ? 'current' : ''}"}
+          Home
       %li
         %a{href: "javascript:void(0);"}
           Tutorials
       %li
-        %a{href: "#{leagues_path}"}
+        %a{href: "#{leagues_path}", :class => "#{current_page_path.starts_with?("/leagues") ? 'current' : ''}"}
           Leagues
       %li
-        %a{href: "javascript:void(0);"}
+        %a{href: portfolio_path('base'), :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
           My Portfolio
       %li
-        %a{href: users_account_summary_path}
+        %a{href: users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}
           My Account
 
 

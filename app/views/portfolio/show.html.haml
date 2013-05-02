@@ -1,0 +1,24 @@
+
+- content_for :left_sidebar do
+  = render "/portfolio/left_sidebar"
+
+- content_for :head do
+  = javascript_include_tag "jquery.dataTables.min"
+
+
+.inner-right-area
+  - if @user_league_association
+    = render "/leagues/portfolio"
+    .p-head Open Trades
+    = render :partial => '/leagues/open_trades/open_trades', :locals => {open_trades: @open_trades}
+
+    .p-head Pending Trades
+    = render :partial => '/leagues/pending_trades/pending_trades', :locals => {pending_trades: @pending_trades}
+
+    .p-head Order History
+    = render :partial => '/leagues/order_history', :locals => {trades: @all_trades}
+  - else
+    .p-head No leagues found!
+
+#tradeModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-body
