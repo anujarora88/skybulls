@@ -135,9 +135,10 @@ header nav ul li a.current, header nav ul li a:hover {
     color:#0299ce;
 }
 .profile-info-area li a{color:#0299ce; }
-.buy-btn, .sell-btn	   { background:#707070;}
+.buy-btn, .sell-btn, .del-btn	   { background:#707070;}
 .buy-btn:hover			{ background:#7fbb00;}
 .sell-btn:hover			{ background:#e34c2e;}
+.del-btn:hover			{ background:#e34c2e;}
 
 .one-col-data li a.btn-action:hover{ background:#0299ce;}
 .action-btn-info:hover{background:#0299ce; color:#fff;}

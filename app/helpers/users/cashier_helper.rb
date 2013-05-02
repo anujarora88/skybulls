@@ -1,11 +1,11 @@
 module Users::CashierHelper
 
   def cash_in_play
-    humanized_money_with_symbol Money.new(0)
+    humanized_money_with_symbol current_user.account.money_in_play
   end
 
   def total_cash
-    available_cash
+    humanized_money_with_symbol(current_user.account.balance + current_user.account.money_in_play)
   end
 
 

@@ -65,6 +65,7 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .data-list li span				{ float:left; width:45%; display:block; text-align:right;}
 
 
+
 .left-menu{ background:#a6aab3; overflow:hidden;}
 .left-menu li a{ color:#fff; display:block; padding:0 0 0 10px;  line-height:46px;  border-top:1px solid #969aa3;}
 .left-menu li a span{ padding:0 0 0 38px; display:block;  }
@@ -139,11 +140,11 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .inner-l-area						{ top:70px;}
 .inner-right-area					{ margin-left:210px; overflow:hidden; border:1px solid #e4e4e4; min-height:500px;  background:#fff; border-top:none;}
 .user-p								{ background:#fbfbfb; padding:15px; -moz-box-shadow:0 -2px 15px #e4e4e4;/*FF 3.5+*/-webkit-box-shadow: 0 -2px 15px #e4e4e4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/box-shadow:0 -2px 15px #e4e4e4; overflow:hidden;}
-.p-photo							{ border:5px solid #fff; border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px; float:left;-moz-box-shadow: 0px 0px 12px #e4e4e4;/*FF 3.5+*/-webkit-box-shadow: 0px 0px 12px #e4e4e4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/box-shadow: 0px 0px 12px #e4e4e4; float:left; width:75px; height:75px;}
-.p-photo img 						{ border-radius:50px; -moz-border-radius:50px; -webkit-border-radius:50px; float:left; }
+.p-photo							{ border:5px solid #fff; float:left;-moz-box-shadow: 0px 0px 12px #e4e4e4;/*FF 3.5+*/-webkit-box-shadow: 0px 0px 12px #e4e4e4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/box-shadow: 0px 0px 12px #e4e4e4; float:left; max-width:100px; }
+.p-photo img 						{ float:left; }
 
-.p-photo-big							{ border:5px solid #fff; border-radius:100px; -moz-border-radius:100px; -webkit-border-radius:100px; float:left;-moz-box-shadow: 0px 0px 12px #e4e4e4;/*FF 3.5+*/-webkit-box-shadow: 0px 0px 12px #e4e4e4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/box-shadow: 0px 0px 12px #e4e4e4; float:left; width:175px; height:175px; margin:10px;}
-.p-photo-big img 						{ border-radius:100px; -moz-border-radius:100px; -webkit-border-radius:100px; float:left; }
+.p-photo-big							{ border:5px solid #fff; float:left;-moz-box-shadow: 0px 0px 12px #e4e4e4;/*FF 3.5+*/-webkit-box-shadow: 0px 0px 12px #e4e4e4;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/box-shadow: 0px 0px 12px #e4e4e4; float:left; max-width:200px; margin:10px;}
+.p-photo-big img 						{ float:left; }
 
 
 .user-info							{ float:left; padding-left:10px;}
@@ -176,9 +177,9 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .settings-area						{ border:1px dashed #e5e5e5; border-top:none; overflow:hidden;}
 .settings-area span					{ font-size:16px; color:#3a3c40; display:block; padding-bottom:5px; font-weight:lighter;}
 .settings-area select				{  background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; font-size:12px; color:#8f8f8f; padding:5px; outline:none; border:2px solid #eaeaea; }
-.time-zone							{ float:left; width:20%; background:url(icon-account.png) no-repeat 35px -206px; padding:40px; padding-left:100px;  }
-.notifications-setting				{ float:left; width:20%; border-right:1px dashed #e5e5e5; border-left:1px dashed #e5e5e5; background:url(icon-account.png) no-repeat 35px -313px; padding:40px; padding-left:100px; }
-.currency-setting				{ float:left; width:20%;  background:url(icon-account.png) no-repeat 35px -416px; padding:40px; padding-left:100px; }
+.time-zone							{ float:left; width:20%; background:url(icon-account.png) no-repeat 35px -206px; padding:35px; padding-left:100px;  }
+.notifications-setting				{ float:left; width:20%; border-right:1px dashed #e5e5e5; border-left:1px dashed #e5e5e5; background:url(icon-account.png) no-repeat 35px -313px; padding:35px; padding-left:100px; }
+.currency-setting				{ float:left; width:20%;  background:url(icon-account.png) no-repeat 35px -416px; padding:35px; padding-left:100px; }
 
 
 #stage {
@@ -256,6 +257,7 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .leg-box tr td{line-height:48px; font-size:13px; font-weight:normal; padding-left:18px; border-right:1px dashed #e5e5e5; border-bottom:1px dashed #e5e5e5; }
 .leg-box tr.even{ background:#f4f4f4; overflow:hidden;}
 .leg-box tr.light-gray{ background:#fbfbfb; overflow:hidden;}
+.stock-list tr.even{ background:#fbfbfb; overflow:hidden;}
 .leg-box tfoot{ background:#f1fae5; border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; overflow:hidden; color:#4b7d0f; }
 .leg-box tfoot tr td{ line-height:54px; font-size:16px; }
 .page-tab{ border-bottom:1px solid #ddd; float:left; width:100%;}
@@ -421,14 +423,17 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .profile-info-area li:nth-child(even)    { background: #fff}
 .profile-info-area li:nth-child(odd)     { background: #f9f9f9}
 .profile-info-area li label				{ float:left; display:block; width:30%; font-weight:lighter;}
-.profile-info-area li span				{ float:left; display:block; width:50%; }
+.profile-info-area li span				{ float:left; display:block; width:50%;border: none;  }
+.profile-info-area li span input				{ margin-top: 10px ;  }
+.editable-clear-x {display: none !important;}
 .profile-info-area li a				{ font-size:12px; text-decoration:underline; float:right;}
 .profile-info-area li a:hover		{ color:#000; text-decoration:none;}
 .leg-box th							{ width:auto;}
 
-.buy-btn, .sell-btn							{ line-height:18px; display:block; float:left; padding:0 15px; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; border-bottom:2px solid #7fbb00;}
-.buy-btn:hover, .sell-btn:hover						{ color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+.buy-btn, .sell-btn, .del-btn							{ margin-left: 5px;line-height:18px; display:block; float:left; padding:0 15px; color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; border-bottom:2px solid #7fbb00;}
+.buy-btn:hover, .sell-btn:hover, .del-btn:hover		    { color:#fff; font-size:11px; font-weight:bold; text-transform:uppercase; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
 .sell-btn							{border-bottom:2px solid #e34c2e;}
+.del-btn							{border-bottom:2px solid #000;}
 
 .down-arrow-red, .down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 0; width:14px; height:14px; float:left; margin-top:18px; margin-right:5px;}
 .down-arrow-green					{ background:url(down-arrow.png) no-repeat 0 bottom; }
@@ -472,13 +477,13 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .dt-txt span{ display:block;color:#222;}
 .action-btn-info{ background:#707070; font-size:11px; font-weight:bold; line-height:20px; padding:0 10px; display:block; text-transform:uppercase; color:#fff; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; float:left; margin-top:1px;}
 .action-btn-reg{background:#0299ce; font-size:11px; font-weight:bold; line-height:20px; padding:0 10px; display:block; text-transform:uppercase; color:#fff; border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px; float:left; margin-top:1px; margin-left:10px;}
-.shorting th span{ display:block; float:none; position:relative; text-align:left;}
-.shorting .arrow-up{ background:url(arrow.png) no-repeat 1px 0; width:10px;height:3px; position:absolute; right:5px; top:20px;}
-.shorting .arrow-down{ background:url(arrow.png) no-repeat bottom; width:10px;height:3px; position:absolute; right:5px; top:25px;}
+.sorting th span{ display:block; float:none; position:relative; text-align:left;}
+.sorting .arrow-up{ background:url(arrow.png) no-repeat 1px 0; width:10px;height:3px; position:absolute; right:5px; top:20px;}
+.sorting .arrow-down{ background:url(arrow.png) no-repeat bottom; width:10px;height:3px; position:absolute; right:5px; top:25px;}
 
-.shorting th {cursor: pointer;}
-.shorting th.sorting_asc a.arrow-up {display: none;}
-.shorting th.sorting_desc a.arrow-down {display: none;}
+.sorting th {cursor: pointer;}
+.sorting th.sorting_asc a.arrow-up {display: none;}
+.sorting th.sorting_desc a.arrow-down {display: none;}
 
 .portfolio-info-left{ float:left; width:48%; padding:30px 3%; padding-bottom:0;}
 .p-box{ float:left; padding:25px 0; border-bottom:1px solid #f0f0f0; border-right:1px solid #f0f0f0; width:45%;}

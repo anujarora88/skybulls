@@ -1,9 +1,13 @@
 @import 'bootstrap';
 @import "bootstrap-responsive";
+@import "bootstrap-editable.css";
 @import "slider.css";
 
+
+.flash-message-area {margin-left: 210px;}
+
 .ui-helper-hidden-accessible{
-  display: none;
+  display: none !important;
 }
 
 .ui-autocomplete {

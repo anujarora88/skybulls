@@ -1,0 +1,19 @@
+
+- content_for :sub_header do
+  = render "/leagues/common/sub_header"
+
+- content_for :left_sidebar do
+  = render "/leagues/common/left_sidebar"
+
+- content_for :head do
+  = javascript_include_tag "jquery.dataTables.min"
+
+
+
+.inner-right-area
+  = render :partial => 'pending_trades', :locals => {pending_trades: @pending_trades}
+
+#tradeModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-body
+
+

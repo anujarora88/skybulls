@@ -1,0 +1,14 @@
+.user-p
+  .p-photo
+    = image_tag current_user.image_url
+  .user-info
+    %span.u-name
+      = current_user.display_name
+    %a{href: 'javascript:void(0);'}
+      = "Available Balance - "
+      %span
+        = available_cash
+  .user-info-icon
+    %a.u-price{href: 'javascript:void(0);'}
+    %a.u-contact{href: 'javascript:void(0);'}
+    %a.u-about{href: 'javascript:void(0);'}

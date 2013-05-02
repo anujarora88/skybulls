@@ -1,7 +1,7 @@
 %section.left-area.inner-l-area
   %ul.left-menu
     %li
-      %a{href: 'javascript:void(0);'}
+      %a{href: users_account_summary_path, class: current_page?(users_account_summary_path) ? 'active' : ''}
         %span.account-summary
           Account Summary
     %li
@@ -9,11 +9,11 @@
         %span.cashier
           Cashier
     %li
-      %a{href: 'javascript:void(0);'}
+      %a{href: users_account_statement_path, class: current_page?(users_account_statement_path) ? 'active' : ''}
         %span.account-statement
           Account Statement
     %li
-      %a{href: 'javascript:void(0);'}
+      %a{href: users_profile_path, class: current_page?(users_profile_path) ? 'active' : ''}
         %span.profile
           Profile
 

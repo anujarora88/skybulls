@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428213451) do
+ActiveRecord::Schema.define(:version => 20130502153243) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130428213451) do
     t.float    "commission"
     t.integer  "min_users"
     t.integer  "max_users"
+    t.boolean  "completed",                :default => false
     t.integer  "virtual_money_cents",      :default => 0,     :null => false
     t.string   "virtual_money_currency",   :default => "USD", :null => false
   end
@@ -137,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20130428213451) do
     t.string   "type"
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
+    t.boolean  "system_created"
   end
 
   add_index "trades", ["stock_id"], :name => "trades_stock_id_fk"
@@ -154,12 +156,13 @@ ActiveRecord::Schema.define(:version => 20130428213451) do
   create_table "user_league_associations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "league_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "balance_cents",    :default => 0,     :null => false
-    t.string   "balance_currency", :default => "USD", :null => false
-    t.boolean  "completed",        :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "balance_cents",       :default => 0,     :null => false
+    t.string   "balance_currency",    :default => "USD", :null => false
     t.integer  "rank"
+    t.integer  "investment_cents",    :default => 0,     :null => false
+    t.string   "investment_currency", :default => "USD", :null => false
   end
 
   create_table "user_payment_methods", :force => true do |t|
@@ -201,8 +204,8 @@ ActiveRecord::Schema.define(:version => 20130428213451) do
   add_index "user_transactions", ["user_league_association_id"], :name => "user_transactions_user_league_association_id_fk"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",   :null => false
+    t.string   "encrypted_password",     :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -211,12 +214,15 @@ ActiveRecord::Schema.define(:version => 20130428213451) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "user_name"
+    t.string   "phone_number"
+    t.string   "time_zone"
+    t.boolean  "notifications_enabled",  :default => true
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

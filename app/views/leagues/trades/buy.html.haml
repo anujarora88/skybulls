@@ -47,7 +47,7 @@
       you are willing to pay
 
 
-= form_for @trade, :url => league_buy_stock_path(@league, @stock) do |f|
+= form_for :trade, :url => league_buy_stock_path(@league, @stock) do |f|
   = hidden_field_tag :trade_type, "latest"
   .confirmTrade.hide
     .price-row-c.priceRow

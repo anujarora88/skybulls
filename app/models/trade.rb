@@ -15,5 +15,25 @@ class Trade < ActiveRecord::Base
 
   has_one :bid
 
+  before_save :validate_league
+  after_create :update_balance
+  after_create :update_league_position
+
+  private
+
+    def update_balance
+      raise 'abstract method'
+    end
+
+    def update_league_position
+      user_league_association.league.update_positions! if Rails.env.development?
+    end
+
+    def validate_league
+      unless system_created?
+        errors.add(:base, "League has already ended!") unless user_league_association.league.in_progress?
+      end
+    end
+
 
 end

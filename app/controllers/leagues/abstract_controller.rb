@@ -1,7 +1,7 @@
 module Leagues
   class AbstractController < Users::AbstractController
 
-    prepend_before_filter :initialize_league
+    prepend_before_filter :initialize_league, :if => :user_signed_in?
 
     private
 

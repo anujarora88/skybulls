@@ -12,40 +12,33 @@
 //= require js-routes
 //= require bootstrap
 //= require bootstrap-slider
+//= require bootstrap-editable
 //= require jquery_ujs
 // require jquery
 
 
 var skybulls = {
 
+     handleAjaxError : function(data){
 
+         $(".flash-message-area").append('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>Error! </strong>'+data["message"]+'</div>');
+
+     }
 
 
 };
+
+$.fn.editable.defaults.mode = 'inline';
 
 jQuery(document).ready(function(){
     $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
                                     minDate: Date.now()
                                     } );
 
+
     $('section.left-area').affix();
 
-    $('.user_info span').editable(function(value, settings) {
-        var data_map= {};
-        data_map['id']=this.id;
-        data_map['value']=value;
-        $.ajax({
-            type : 'POST',
-            url :$('#ajax_update_url').val() ,
-            data: data_map,
-            dataType: 'json'
-        });
 
-        }, {
-        indicator : "Please Wait",
-        tooltip   : 'Click to edit...',
-        style : "inherit"
-    });
 
     $(".checkbox-select-links a.select-all").click(function(){
         $("input[type=checkbox]", $(this).closest("li")).each(function(){

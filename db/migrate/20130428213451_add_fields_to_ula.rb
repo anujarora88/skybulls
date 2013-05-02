@@ -6,8 +6,5 @@ class AddFieldsToUla < ActiveRecord::Migration
       t.integer :rank
     end
 
-    change_table :leagues do |t|
-      t.money :virtual_money
-    end
   end
 end

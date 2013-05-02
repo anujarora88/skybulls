@@ -11,7 +11,14 @@ SkybullsRails::Application.routes.draw do
     post 'league_registration_info' =>'league_registration#show_league_info', :as=> :league_info
     post 'league_registration_register' =>'league_registration#register', :as=> :league_register
     post 'update_user_info' =>'profile#update_user_info', :as=> :update_user
+    get 'profile' =>'profile#index', :as=> :profile
+    get 'search_stock' =>'profile#search', :as=> :search_stock
+    post 'add_pinned_stock' =>'profile#add_pinned_stock', :as=> :add_pinned_stock
+    delete 'delete_pinned_stock/:id' =>'profile#delete_pinned_stock', :as=> :delete_pinned_stock
     post 'stock_list' =>'league_registration#search_stocks', :as=> :search_stocks
+    get 'account_summary' =>'account#summary', :as=> :account_summary
+    get 'account_statement' =>'account#statement', :as=> :account_statement
+
   end
 
   resources :leagues, :only => [:index, :show] do
@@ -21,6 +28,9 @@ SkybullsRails::Application.routes.draw do
     end
     match "/buy/:id" => "leagues/trades#buy", :as => :buy_stock
     match "/sell/:id" => "leagues/trades#sell", :as => :sell_stock
+    resources :open_trades,:controller => 'leagues/open_trades', :only => [:index]
+    resources :pending_trades, :controller => 'leagues/pending_trades', :only => [:index, :destroy]
+    resources :portfolio, :controller => 'leagues/portfolio', :only => [:index]
     resources :dashboard, :controller => 'leagues/dashboard', :only => [:index] do
       collection do
         get 'search'

@@ -6,32 +6,35 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_name, :profile
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_name, :phone_number, :time_zone, :notifications_enabled
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :delete_all
   has_many :user_league_associations
   has_many :leagues , :through => :user_league_associations
+=begin
   has_attached_file :photo, :styles => { :small => "150x150>" },
                     :url  => "/assets/users/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+=end
 
 
-  has_many :user_stock_associations, :class_name => 'UserStockAssociation'
+  has_many :user_stock_associations
   has_many :stocks, :through => :user_stock_associations
 
   has_one :account, :class_name => 'Users::Account'
-  has_one :profile, :class_name => 'Users::Profile'
 
   devise :omniauthable, :omniauth_providers => [:facebook, :google]
 
   before_create :initialize_account
 
   def display_name
-    email
+    user_name || email
   end
+
+
 
   def apply_omniauth(auth, email_address = nil)
     # In previous omniauth, 'user_info' was used in place of 'raw_info'
@@ -51,7 +54,11 @@ class User < ActiveRecord::Base
   end
 
   def image_url
-    "https://graph.facebook.com/#{facebook_id}/picture?type=square" if facebook_id
+    "https://graph.facebook.com/#{facebook_id}/picture?type=normal" if facebook_id
+  end
+
+  def large_image_url
+    "https://graph.facebook.com/#{facebook_id}/picture?type=large" if facebook_id
   end
 
   def password_required?
@@ -73,20 +80,25 @@ class User < ActiveRecord::Base
     @facebook_id ||= Authentication.where(:user_id => self.id, :provider => 'facebook').first.try(:uid)
   end
 
+  def pinned_stock?(stock)
+    user_stock_associations.collect(&:stock).include? stock
+  end
+
   def pinned_stocks
      user_stock_associations.order("updated_at desc").all.collect(&:stock)
   end
 
-  def add_pinned_stock!(stock, recently_searched = false)
+  def add_pinned_stock(stock, recently_searched = false)
     raise "Stock is nil" if stock.nil?
-    user_stock = user_stock_associations.find{|us| us.stock == stock}
-    if user_stock
-      user_stock.updated_at = Time.now
-      user_stock.recently_searched = recently_searched unless recently_searched
-      user_stock.save!
-    else
-      UserStockAssociation.create!(:user => self, :stock => stock, :recently_searched => recently_searched)
-    end
+    user_stock = user_stock_associations.find_or_create_by_stock_id(stock.id)
+    user_stock.recently_searched= recently_searched unless recently_searched
+    user_stock.save!
+  end
+
+  def delete_pinned_stock(stock)
+    raise "Stock is nil" if stock.nil?
+    user_stock = user_stock_associations.find_by_stock_id(stock.id)
+    user_stock.destroy if user_stock
   end
 
   private
@@ -94,5 +106,6 @@ class User < ActiveRecord::Base
     def initialize_account
         acc = build_account()
         acc.balance = Money.new(0)
+
     end
 end

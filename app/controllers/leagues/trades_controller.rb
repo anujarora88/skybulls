@@ -9,7 +9,13 @@ class Leagues::TradesController < Leagues::AbstractController
       if params[:trade_type] == "latest"
         @trade = Trades::Buy.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
         @trade.price = @stock.latest_price
-        @trade.save!
+        if @user_league_association.balance < Money.new(@trade.price_cents * @trade.amount, @trade.price_currency)
+          @error_message = "Not enough balance!"
+          render 'buy'
+          return
+        else
+          @trade.save!
+        end
       elsif params[:trade_type] == "custom"
         @trade = Bids::Buy.new({stock: @stock, user_league_association: @user_league_association}.merge(params[:trade]))
         @trade.save!

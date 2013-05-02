@@ -10,6 +10,7 @@ class UserStockAssociation < ActiveRecord::Base
 
   def default_values
     self.recently_searched ||= false
+    true
   end
 
 end

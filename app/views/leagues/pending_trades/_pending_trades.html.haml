@@ -1,0 +1,110 @@
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+        var dataTable = $('#pending-trades-data-table').dataTable({
+          "bPaginate": false,
+          "bInfo" : false
+        });
+
+        $("#pending-trades-data-table").on('click', 'a.sell-btn', function(event){
+           var stockId = $(this).data('stock-id');
+           $.ajax({
+               type : 'GET',
+               url : Routes.league_sell_stock_path( #{@league.id} , stockId) ,
+               dataType: 'html',
+               success: function(data){
+                   $("#tradeModal").html(data);
+                   $('#tradeModal').modal({});
+               }
+           });
+        });
+
+        $("#pending-trades-data-table").on('click', 'a.buy-btn', function(event){
+           var stockId = $(this).data('stock-id');
+           $.ajax({
+               type : 'GET',
+               url : Routes.league_buy_stock_path( #{@league.id} , stockId) ,
+               dataType: 'html',
+               success: function(data){
+                   $("#tradeModal").html(data);
+                   $('#tradeModal').modal({});
+               }
+           });
+        });
+
+        $("#pending-trades-data-table").on('click', 'a.del-btn', function(event){
+           var stockId = $(this).data('trade-id');
+           var anchorEl = $(this);
+           $.ajax({
+               type : 'DELETE',
+               url : Routes.league_pending_trade_path( #{@league.id} , stockId) ,
+               dataType: 'json',
+               success: function(data){
+                  if(data["status"] == "success"){
+                     anchorEl.closest('tr').remove();
+                  }else{
+                    skybulls.handleAjaxError(data);
+                  }
+               }
+           });
+        });
+    });
+
+%table.leg-box.stock-list.sorting#pending-trades-data-table{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+  %thead
+    %tr
+      %th
+        %span
+          Stock
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Trade Type
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Time
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+
+      %th
+        %span
+          Price
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Quantity
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span
+          Current Price
+          %a.arrow-up{:href => "javascript:void(0);"}
+          %a.arrow-down{:href => "javascript:void(0);"}
+      %th
+        %span Actions
+  %tbody
+    - pending_trades.each_with_index do |t|
+      %tr
+        %td
+          = t.stock.company.name
+        %td
+          = t.is_a?(Bids::Buy) ? "Buy" : "Sell"
+        %td
+          = t.created_at.strftime("%-d %b  %k:%m ")
+        %td
+          = humanized_money_with_symbol(t.price)
+        %td
+          = t.amount
+        %td
+          %span{:class => current_price_span_class(t.price, t.stock.latest_price)}
+          = humanized_money_with_symbol(t.stock.latest_price)
+        %td
+          - if t.is_a?(Bids::Buy)
+            %a.buy-btn{:href => "javascript:void(0);", "data-stock-id" => "#{t.stock.id}" } Buy
+          - else
+            %a.sell-btn{:href => "javascript:void(0);", "data-stock-id" => "#{t.stock.id}" } Sell
+          %a.del-btn{:href => "javascript:void(0);", "data-trade-id" => "#{t.id}" } Delete

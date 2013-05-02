@@ -1,0 +1,358 @@
+
+- content_for :sub_header do
+  = render "/leagues/common/sub_header"
+
+- content_for :left_sidebar do
+  = render "/leagues/common/left_sidebar"
+
+- content_for :head do
+  = javascript_include_tag "jquery.dataTables.min"
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+        var dataTable = $('#data-table').dataTable({
+          "bPaginate": false,
+          "bInfo" : false
+        });
+
+        $(".inner-right-area").on('click', 'a.sell-btn', function(event){
+           var stockId = $(this).data('stock-id');
+           $.ajax({
+               type : 'GET',
+               url : Routes.league_sell_stock_path( #{@league.id} , stockId) ,
+               dataType: 'html',
+               success: function(data){
+                   $("#tradeModal").html(data);
+                   $('#tradeModal').modal({});
+               }
+           });
+        });
+
+        $(".inner-right-area").on('click', 'a.buy-btn', function(event){
+           var stockId = $(this).data('stock-id');
+           $.ajax({
+               type : 'GET',
+               url : Routes.league_buy_stock_path( #{@league.id} , stockId) ,
+               dataType: 'html',
+               success: function(data){
+                   $("#tradeModal").html(data);
+                   $('#tradeModal').modal({});
+               }
+           });
+        });
+
+        $(".inner-right-area").on('click', 'a.del-btn', function(event){
+           var stockId = $(this).data('trade-id');
+           var anchorEl = $(this);
+           $.ajax({
+               type : 'DELETE',
+               url : Routes.league_pending_trade_path( #{@league.id} , stockId) ,
+               dataType: 'json',
+               success: function(data){
+                  if(data["status"] == "success"){
+                     anchorEl.closest('tr').remove();
+                  }else{
+                    skybulls.handleAjaxError(data);
+                  }
+               }
+           });
+        });
+    });
+
+
+
+.inner-right-area
+  .portfolio-info-left
+    .p-box
+      %h4 Portfolio return
+      %span{:class => portfolio_return_class}
+        = number_to_percentage(@user_league_association.portfolio_return, :precision => 2)
+    .p-box.p-box-t
+      %h4 Portfolio $
+      %span{class: portfolio_return_class}
+        = humanized_money_with_symbol(@user_league_association.portfolio_return)
+    .p-row
+      .p-box
+        %h4 Investment
+        %span
+          = humanized_money_with_symbol(@user_league_association.investment)
+      .p-box.p-box-t
+        %h4 Cash Available
+        %span
+          = humanized_money_with_symbol(@user_league_association.balance)
+  .portfolio-info-right
+    .r-txt Rank
+    %h2
+      = @user_league_association.rank
+    %span
+      = "(Placed #{@user_league_association.rank} of #{number_to_human(@league.entrants)})"
+    %ul
+      %li
+        %span
+          = "Start: #{@league.start_time.strftime("%-d %b  %k:%m ")}"
+        %span
+          = "Prize pool: #{humanized_money_with_symbol(@league.prize_pool)}"
+      %li
+        %span
+          = "Finish: #{@league.end_time.strftime("%-d %b  %k:%m ")}"
+        %span
+          = "Places Paid: #{@league.places_paid}"
+      %li
+        %span
+          = "Entrants: #{number_to_human(@league.entrants)}"
+        %span
+          = "Avg. return: #{number_to_percentage(@league.average_return, precision: 2)}"
+  .p-graph-area
+    .graph-c
+      %h4 Overall
+      .g-sec
+        %img{:height => "167", :src => "images/c-g.jpg", :width => "166"}/
+    .graph-c
+      %h4 Equity Split
+      .g-sec
+        %img{:height => "167", :src => "images/c1-g.jpg", :width => "166"}/
+    .graph-b
+      %h4 Performance
+      %img{:src => "images/gg.jpg"}/
+  .p-head Open Trades
+  %table.leg-box.stock-list{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %thead
+      %tr
+        %th
+          %span Stock
+        %th
+          %span Trade Type
+        %th
+          %span Time
+        %th
+          %span Price
+        %th
+          %span Quantity
+        %th
+          %span Current Price
+        %th
+          %span %Return
+        %th
+          %span $Return
+        %th
+          %span Action
+    %tbody
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %span.down-arrow-red>
+          \-20.45%
+        %td
+          %span.down-arrow-red>
+          \-$54,500
+        %td
+          %a.buy-btn{:href => "javascript:void(0);"} Buy
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %span.down-arrow-green>
+          \-20.45%
+        %td
+          %span.down-arrow-green>
+          \-$54,500
+        %td
+          %a.sell-btn{:href => "javascript:void(0);"} Sell
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %span.down-arrow-red>
+          \-20.45%
+        %td
+          %span.down-arrow-red>
+          \-$54,500
+        %td
+          %a.buy-btn{:href => "javascript:void(0);"} Buy
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %span.down-arrow-green>
+          \-20.45%
+        %td
+          %span.down-arrow-green>
+          \-$54,500
+        %td
+          %a.sell-btn{:href => "javascript:void(0);"} Sell
+  .p-head Pending Orders
+  %table.leg-box.stock-list{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %thead
+      %tr
+        %th
+          %span Stock
+        %th
+          %span Trade Type
+        %th
+          %span Time
+        %th
+          %span Price
+        %th
+          %span Quantity
+        %th
+          %span Current Price
+        %th
+          %span Action
+    %tbody
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %a.action-btn-info{:href => "javascript:void(0);"} Update Bid
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %a.action-btn-info{:href => "javascript:void(0);"} Update Bid
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %a.action-btn-info{:href => "javascript:void(0);"} Update Bid
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %a.action-btn-info{:href => "javascript:void(0);"} Update Bid
+  .p-head Order History
+  %table.leg-box.stock-list{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %thead
+      %tr
+        %th
+          %span Stock
+        %th
+          %span Trade Type
+        %th
+          %span Time
+        %th
+          %span Price
+        %th
+          %span Quantity
+        %th
+          %span Close Price
+        %th
+          %span %Return
+        %th
+          %span $Return
+        %th
+          %span
+    %tbody
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %span.down-arrow-red>
+          \-20.45%
+        %td
+          %span.down-arrow-red>
+          \-$54,500
+        %td
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %span.down-arrow-green>
+          \-20.45%
+        %td
+          %span.down-arrow-green>
+          \-$54,500
+        %td
+      %tr
+        %td Apple(AAP)
+        %td Buy
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-red>
+          $20.34
+        %td
+          %span.down-arrow-red>
+          \-20.45%
+        %td
+          %span.down-arrow-red>
+          \-$54,500
+        %td
+      %tr.light-gray
+        %td Facebook(FB)
+        %td Sell
+        %td 13:20
+        %td $26.54
+        %td 23,604
+        %td
+          %span.down-arrow-green>
+          $20.34
+        %td
+          %span.down-arrow-green>
+          \-20.45%
+        %td
+          %span.down-arrow-green>
+          \-$54,500
+        %td

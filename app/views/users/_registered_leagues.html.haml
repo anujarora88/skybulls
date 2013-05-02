@@ -1,0 +1,8 @@
+%h4.in-page-title.registered-leagues Registered Leagues
+%ul.one-col-data
+  -@registered_leagues.each do |league|
+
+    %li
+      %a{:href => league_dashboard_index_path(league)}
+        = html_display_name(league)
+      %a.btn-action{:href => league_dashboard_index_path(league)} Go To League

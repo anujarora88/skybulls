@@ -1,0 +1,68 @@
+- content_for :left_sidebar do
+  = render "/users/left_sidebar"
+
+- content_for :head do
+  = javascript_include_tag "jquery.dataTables.min"
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+        var dataTable = $('#data-table').dataTable({
+          "bPaginate": false,
+          "bInfo" : false
+        });
+
+
+    });
+
+
+
+
+%section.inner-right-area
+  = render "/users/pic_area"
+  .inner-cont-right
+    %table.leg-box#data-table.sorting{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %thead
+        %tr
+          %th
+            %span
+              League Name
+              %a.arrow-up{:href => "javascript:void(0);"}
+              %a.arrow-down{:href => "javascript:void(0);"}
+          %th
+            %span
+              Investment
+              %a.arrow-up{:href => "javascript:void(0);"}
+              %a.arrow-down{:href => "javascript:void(0);"}
+          %th
+            %span
+              Start
+              %a.arrow-up{:href => "javascript:void(0);"}
+              %a.arrow-down{:href => "javascript:void(0);"}
+
+          %th
+            %span
+              Finish
+              %a.arrow-up{:href => "javascript:void(0);"}
+              %a.arrow-down{:href => "javascript:void(0);"}
+          %th
+            %span
+              Profit/Loss
+              %a.arrow-up{:href => "javascript:void(0);"}
+              %a.arrow-down{:href => "javascript:void(0);"}
+      %tbody
+        - @completed_leagues.each do |ula|
+          %tr
+            %td
+              = html_display_name(ula.league)
+            %td
+              = humanized_money_with_symbol(ula.real_money_investment)
+            %td
+              = ula.league.start_time.strftime("#{ula.league.start_time.day.ordinalize} %b %Y %k:%m")
+            %td
+              = ula.league.end_time.strftime("#{ula.league.start_time.day.ordinalize} %b %Y %k:%m")
+            %td
+              = humanized_money_with_symbol(ula.real_money_return - ula.real_money_investment - Money.new(1000))
+
+
+/ End Right Area

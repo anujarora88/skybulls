@@ -1,0 +1,63 @@
+- content_for :left_sidebar do
+  = render "/users/left_sidebar"
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+    	$('.slider-button').click(function(){
+    	    if($(this).hasClass('on')){
+    	       $(this).removeClass('on').html('<span></span>OFF ');
+    	       $("#user_notifications_enabled").val("false");
+    	       $("#user_notifications_enabled").trigger("change");
+    	    }else{
+    	       $(this).addClass('on').html(' ON <span></span>');
+    	       $("#user_notifications_enabled").val("true");
+    	       $("#user_notifications_enabled").trigger("change");
+    	    }
+
+
+        });
+
+        $("#accountSummaryForm").on("change", ".editable", function(event){
+            var dataMap= $("#accountSummaryForm").serialize();
+             $.ajax({
+                type : 'POST',
+                url : Routes.users_update_user_path() ,
+                data: dataMap,
+                success:function(result) {
+
+                }
+             });
+
+
+        })
+
+    });
+
+%section.inner-right-area
+  = render "/users/pic_area"
+  .inner-cont-right
+    = render "/users/cashier_box"
+    = render "/users/registered_leagues"
+    %h4.in-page-title.registered-leagues Settings
+    = form_for :user, :url => users_update_user_path, :html => {:id => "accountSummaryForm", :class=> "form-inline"}  do |f|
+      .settings-area
+        .time-zone
+          %span Time Zone
+          = time_zone_select(:user, "time_zone", nil, {:include_blank => true}, {:class => "editable"})
+        .notifications-setting
+          %span Notifications
+          %section#stage
+            .slider-frame
+              %span{:class => "slider-button #{current_user.notifications_enabled ? 'on' : ''}"}
+                - if current_user.notifications_enabled
+                  ON
+                  %span
+                - else
+                  %span
+                  OFF
+
+          = hidden_field_tag "user[notifications_enabled]", "#{current_user.notifications_enabled}", :class => 'editable'
+
+
+/ End Right Area

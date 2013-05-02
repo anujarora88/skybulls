@@ -16,4 +16,9 @@ class Bid < ActiveRecord::Base
 
   validates_presence_of :stock_id, :type, :user_league_association_id
 
+
+  def completed?
+    !trade_id.nil?
+  end
+
 end

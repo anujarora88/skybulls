@@ -10,6 +10,17 @@ class League < ActiveRecord::Base
 
   before_save :default_values
 
+
+  def update_positions!
+    user_league_associations.each do |ula|
+      ula.investment = ula.calculate_investment
+    end
+    user_league_associations.sort_by {|u| (u.investment + u.balance) * -1}.each_with_index do |ula, ii|
+      ula.rank = ii+1
+      ula.save!
+    end
+  end
+
   def default_values
     self.virtual_money ||= Money.new(100000000) unless self.virtual_money_cents
 
@@ -17,6 +28,26 @@ class League < ActiveRecord::Base
 
   def started?
     start_time >= Time.now
+  end
+
+  def in_progress?
+    start_time >= Time.now && end_time < Time.now
+  end
+
+  def prize_pool
+    Money.new(buy_in * 100 * user_league_associations.count)
+  end
+
+  def entrants
+    user_league_associations.count
+  end
+
+  def places_paid
+    10
+  end
+
+  def average_return
+    5.43
   end
 
 end

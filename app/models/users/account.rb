@@ -13,6 +13,10 @@ class Users::Account < ActiveRecord::Base
 
   validates_presence_of :user_id
 
+  def money_in_play
+    Money.new(0)
+  end
+
 
   def create_payment_method_and_make_payment!(params_hash, money, transaction = "Deposit")
      # hard coding to paypal for now

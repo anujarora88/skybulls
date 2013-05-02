@@ -1,0 +1,155 @@
+
+
+- content_for :javascript do
+  :javascript
+
+    $(document).ready(function(){
+        var usernameEditable =  $('#username').editable();
+        var telephoneEditable = $('#telephone').editable();
+        $('#pinnedStocksArea').on('click', 'a.username-edit', function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          $('#username').editable('show');
+
+
+        });
+        $('#pinnedStocksArea').on('click', 'a.telephone-edit', function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          $('#telephone').editable('show');
+        });
+
+        $('#pinnedStocksArea').on('click', 'a.delete-stock', function(event){
+             var el = $(this);
+             $.ajax({
+                type : 'DELETE',
+                url : Routes.users_delete_pinned_stock_path(el.data('id')) ,
+                success:function(result) {
+                      el.closest('li').remove();
+
+                }
+             });
+        });
+        $('#search-bar').autocomplete({
+                  source: function(req, res){
+                     var dataMap= {};
+                     dataMap['term']=req.term;
+                     $.ajax({
+                         type : 'GET',
+                         url : Routes.users_search_stock_path() ,
+                         data: dataMap,
+                         dataType: 'json',
+                         success:function(result) {
+                             res(result);
+                         }
+                     });
+
+                  },
+                  select: function( event, ui ) {
+                       $("#selected_stock_id").val(ui.item["id"])
+                       var dataMap= $("#pinnedStocksForm").serialize();
+                       $.ajax({
+                          type : 'POST',
+                          url : Routes.users_add_pinned_stock_path() ,
+                          data: dataMap,
+                          success:function(result) {
+                              if(result){
+                                $('#search-bar').val('');
+                                $("#pinnedStocksArea").prepend(result);
+                              }
+                          }
+                       });
+
+
+                    $('#search-bar').val('');
+
+                  },
+                  minLength: 2
+               });
+    });
+/ Left Area
+%input{:type=>"hidden", :value=>users_update_user_url, :id=>'ajax_update_url'}
+%input{:type=>"hidden", :value=>users_search_stocks_url, :id=>'ajax_stock_list_url'}
+- content_for :left_sidebar do
+  = render "/users/left_sidebar"
+
+/ Right Area
+%section.inner-right-area
+  .user-p
+    .p-photo
+      = image_tag current_user.image_url
+    .user-info
+      %span.u-name= current_user.user_name
+      %a{:href => "javascript:void(0);"}
+        Available Balance  -
+        %span
+          = available_cash
+    .user-info-icon
+      %a.u-price{:href => "javascript:void(0);"}
+      %a.u-contact{:href => "javascript:void(0);"}
+      %a.u-about{:href => "javascript:void(0);"}
+  .inner-cont-right
+    .u-p-deatils
+      .p-photo-big
+        = image_tag current_user.large_image_url
+      .u-oinfo
+        %h4= current_user.user_name
+        %ul.two-col-data
+          %li
+            %label Available
+            %span
+              = available_cash
+          %li
+            %label In Play
+            %span
+              = cash_in_play
+          %li.t-txt
+            %label Total
+            %span
+              = total_cash
+      .clr
+      = render "/users/registered_leagues"
+
+      %h4.in-page-title.user-details User Details
+
+      %ul.profile-info-area
+        %div.user_info
+          %li
+            %label Username
+            %span#username{"data-original-title" => "Enter username", "data-pk" => "1", "data-type" => "text", "data-url" => "#{users_update_user_path}"}
+              = current_user.user_name
+            %a.username-edit{:href => "javascript:void(0);"}
+              Edit
+
+          %li
+            %label Password
+            %span#password
+              ********
+
+
+          %li.t-txt
+            %label Telephone
+            %span#telephone{"data-original-title" => "Enter telephone","data-pk" => "1", "data-type" => "text", "data-url" => "#{users_update_user_path}"}
+              = current_user.phone_number
+            %a.telephone-edit{:href => "javascript:void(0);"}
+              Edit
+
+          %li.t-txt
+            %label Email
+            %span#email= current_user.email
+
+
+      %h4.in-page-title.registered-leagues Pinned Stocks
+
+      %ul.profile-info-area#pinnedStocksArea
+        - current_user.stocks.each do |stock|
+          = render :partial => "pinned_stock", :locals => {:stock => stock}
+
+        %li
+          %label
+            %strong
+              Add another
+          = form_for :user, :url => users_add_pinned_stock_path, :html => {:id => "pinnedStocksForm", :class=> "form-inline"}  do |f|
+            %span
+              %input#search-bar{:placeholder => "Search company name or ticker", :autocomplete => "off", :type => "text"}/
+            = hidden_field_tag :selected_stock_id, ""

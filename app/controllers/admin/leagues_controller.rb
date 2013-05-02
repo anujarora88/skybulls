@@ -6,7 +6,7 @@ class Admin::LeaguesController < Admin::AbstractController
   def index
     @leagues = League.all
     respond_to do |format|
-      format.html {render :"index",notice => params[:notice]?params[:notice]:nil}# index.html.erb
+      format.html {render :"index",:notice => params[:notice]?params[:notice]:nil}# index.html.erb
       format.json { render json: @leagues }
     end
   end
