@@ -27,12 +27,8 @@
                   success:function(data) {
                       $('.popup-area').html('');
                       $('.popup-area').append(data);
-                      $('.popup-area').dialog({   modal: true,
-                          autoOpen:true,
-                          minWidth:element.attr('data-minWidth')!=null?element.attr('data-minWidth'):400,
-                          minHeight:element.attr('data-minHeight')!=null?element.attr('data-minHeight'):400,
+                      $('.popup-area').modal('show');
 
-                      });
                   }
               });
           });
@@ -43,7 +39,7 @@
     function registerLeague(leagueId,ajaxRegisterUrl){
             var data_map = {};
             data_map['id']=leagueId;
-            var register_url = $('#registerUrl').val()
+            var register_url = ajaxRegisterUrl;
             $.ajax({
                 type : 'POST',
                 url : register_url,
@@ -195,6 +191,6 @@
               %td= league.user_league_associations.size
               %td
                 %a.action-btn-info{:href => "javascript:void(0);",:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxInfoUrl =>users_league_info_url, :minWidth=>400, :minHeight=>400}} League Info
-                %a.action-btn-reg{:href => "javascript:void(0);",:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxRegisterUrl =>users_league_register_url} ,:onclick => "registerLeague(#{league.id},#{users_league_register_url})"} Register
+                %a.action-btn-reg{:href => "javascript:void(0);",:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxRegisterUrl =>users_league_register_url} ,:onclick => "registerLeague(#{league.id},'#{users_league_register_url}')"} Register
 
-
+    %div.popup-area

@@ -21,4 +21,4 @@
         %td= 'Commission'
         %td= @league.commission
 
-  %a{:href => "javascript:void(0)", :onclick => "registerLeague(#{@league.id})"} Register
+  %a{:href => "javascript:void(0)", :onclick => "registerLeague(#{@league.id},'#{users_league_register_url}')"} Register
