@@ -33,7 +33,7 @@
         %a{href: "#{leagues_path}", :class => "#{current_page_path.starts_with?("/leagues") ? 'current' : ''}"}
           Leagues
       %li
-        %a{href: "javascript:void(0);", :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
+        %a{href: portfolio_path('base'), :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
           My Portfolio
       %li
         %a{href: users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}

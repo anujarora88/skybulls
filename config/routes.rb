@@ -2,6 +2,8 @@ SkybullsRails::Application.routes.draw do
 
   resources :user_leagues
 
+  resources :portfolio, :only => [:show]
+
   namespace :users do
     get 'cashier' => 'cashier#index', :as => :cashier
     post 'deposit' => 'cashier#deposit', :as => :deposit

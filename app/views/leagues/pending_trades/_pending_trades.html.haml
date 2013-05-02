@@ -1,7 +1,7 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function() {
-        var dataTable = $('#pending-trades-data-table').dataTable({
+        var pendingDataTable = $('#pending-trades-data-table').dataTable({
           "bPaginate": false,
           "bInfo" : false
         });
@@ -87,8 +87,8 @@
       %th
         %span Actions
   %tbody
-    - pending_trades.each_with_index do |t|
-      %tr
+    - pending_trades.each_with_index do |t, ii|
+      %tr{"data-index" => ii}
         %td
           = t.stock.company.name
         %td

@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     user_name || email
   end
 
+  def league_association(league)
+    user_league_associations.where(league_id: league.id).first
+  end
+
 
 
   def apply_omniauth(auth, email_address = nil)

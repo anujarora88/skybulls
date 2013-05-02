@@ -9,11 +9,8 @@ module Leagues::OpenTradesHelper
   end
 
   def current_price_span_class(avg_price, current_price, type = Trades::Buy.name)
-     case type
-       when Trades::Buy.name
-         avg_price > current_price ? 'down-arrow-red' : 'up-arrow'
-     end
-     avg_price > current_price ? 'down-arrow-red' : 'up-arrow'
+
+     avg_price > current_price ? 'down-arrow-red' : 'up-arrow-green'
   end
 
 end

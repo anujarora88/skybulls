@@ -81,7 +81,7 @@ class UserLeagueAssociation < ActiveRecord::Base
   end
 
   def portfolio_return
-    ((investment+balance)/league.virtual_money - 1) * 100
+    ((total)/league.virtual_money - 1) * 100
   end
 
   def portfolio_dollar

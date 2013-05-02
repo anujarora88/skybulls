@@ -1,0 +1,7 @@
+%section.left-area.inner-l-area
+  %ul.left-menu
+    - @leagues.each do |l|
+      %li
+        %a{:href => portfolio_path(l), :class => "#{l == @league ? 'active' : ''}"}
+          %span.arrow-g
+            = l.name_with_date

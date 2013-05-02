@@ -4,9 +4,9 @@
     %span{:class => portfolio_return_class}
       = number_to_percentage(@user_league_association.portfolio_return, :precision => 2)
   .p-box.p-box-t
-    %h4 Portfolio $
+    %h4 Portfolio
     %span{class: portfolio_return_class}
-      = humanized_money_with_symbol(@user_league_association.portfolio_return)
+      = humanized_money_with_symbol(@user_league_association.total)
   .p-row
     .p-box
       %h4 Investment
@@ -42,20 +42,12 @@
   .graph-c
     %h4 Overall
     .g-sec
-      %img{:height => "167", :src => "images/c-g.jpg", :width => "166"}/
+      = image_tag "c-g.jpg", :width => 166, :height => 167
   .graph-c
     %h4 Equity Split
     .g-sec
-      %img{:height => "167", :src => "images/c1-g.jpg", :width => "166"}/
+      = image_tag "c1-g.jpg", :width => 166, :height => 167
   .graph-b
     %h4 Performance
-    %img{:src => "images/gg.jpg"}/
+    = image_tag "gg.jpg"
 
-.p-head Open Trades
-= render :partial => '/leagues/open_trades/open_trades', :locals => {open_trades: @open_trades}
-
-.p-head Pending Trades
-= render :partial => '/leagues/pending_trades/pending_trades', :locals => {pending_trades: @pending_trades}
-
-.p-head Order History
-= render :partial => '/leagues/order_history', :locals => {trades: @open_trades}
