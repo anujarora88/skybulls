@@ -44,7 +44,7 @@
       .settings-area
         .time-zone
           %span Time Zone
-          = time_zone_select(:user, "time_zone", nil, {:include_blank => true}, {:class => "editable"})
+          = time_zone_select(:user, "time_zone", nil, {:default => current_user.time_zone,:include_blank => true}, {:class => "editable"})
         .notifications-setting
           %span Notifications
           %section#stage
