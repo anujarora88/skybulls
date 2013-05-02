@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502153243) do
+ActiveRecord::Schema.define(:version => 20130502220255) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(:version => 20130502153243) do
     t.boolean  "completed",                :default => false
     t.integer  "virtual_money_cents",      :default => 0,     :null => false
     t.string   "virtual_money_currency",   :default => "USD", :null => false
+    t.integer  "start_job_id"
+    t.integer  "end_job_id"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.boolean  "read",        :default => false, :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "entity_id",                      :null => false
+    t.string   "entity_type",                    :null => false
+    t.string   "message"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stocks", :force => true do |t|
@@ -189,13 +201,13 @@ ActiveRecord::Schema.define(:version => 20130502153243) do
   add_index "user_stock_associations", ["user_id", "stock_id"], :name => "index_users_user_stock_associations_on_user_id_and_stock_id", :unique => true
 
   create_table "user_transactions", :force => true do |t|
-    t.integer  "payment_method_id",                         :null => false
+    t.integer  "payment_method_id"
     t.integer  "amount_cents",               :default => 0, :null => false
     t.string   "type",                                      :null => false
     t.string   "identifier",                                :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-    t.integer  "account_id"
+    t.integer  "account_id",                                :null => false
     t.integer  "user_league_association_id"
   end
 

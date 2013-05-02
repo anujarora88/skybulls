@@ -13,10 +13,10 @@ module Jobs
       params = {
           :error_class => self.class.name,
           :error_message => "Job failure on #{self.class.name}: #{exception.message}",
-          :parameters => struct_members
+          :parameters => {}
       }
 
-      Airbrake.notify(params)
+      Airbrake.notify(exception)
     end
 
   end

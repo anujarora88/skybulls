@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 =end
 
-
+  has_many :notifications,
+           :dependent => :delete_all
   has_many :user_stock_associations
   has_many :stocks, :through => :user_stock_associations
 

@@ -1,6 +1,8 @@
 class UserLeagueAssociation < ActiveRecord::Base
   attr_accessible :league_id, :user_id
 
+  include Notify
+
   belongs_to :user
   belongs_to :league
 
@@ -101,7 +103,8 @@ class UserLeagueAssociation < ActiveRecord::Base
   private
 
     def debit_user_account!
-      Users::Withdrawl.create!(:amount => league.virtual_money, :user_league_association => self, :account => user.account)
+      amount_cents = (league.buy_in + league.commission*league.buy_in/100)*100
+      Users::Withdrawl.create!(:amount => Money.new(amount_cents), :user_league_association => self, :account => user.account, :identifier => "system")
     end
 
 end

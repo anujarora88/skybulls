@@ -25,12 +25,11 @@ def enqueue_job(job_name)
 end
 
 
-=begin
+
 every 3.minutes do
-  %w[UpdateLeagueLeaderboard
+  %w[LeaguesJob
     ].each { |job_name| rake enqueue_job(job_name) }
 end
-=end
 
 
 

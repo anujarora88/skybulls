@@ -1,5 +1,7 @@
 class Users::Transaction < ActiveRecord::Base
 
+  include Notify
+
   self.table_name = :user_transactions
 
   belongs_to :payment_method, :class_name => 'Users::PaymentMethod'

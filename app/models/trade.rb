@@ -31,7 +31,7 @@ class Trade < ActiveRecord::Base
 
     def validate_league
       unless system_created?
-        errors.add(:base, "League has already ended!") unless user_league_association.league.in_progress?
+        errors.add(:base, "Can't execute trade right now!") unless user_league_association.league.in_progress?
       end
     end
 

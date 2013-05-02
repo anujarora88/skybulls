@@ -61,12 +61,15 @@ module SkybullsRails
 
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('lib')]
     config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
 
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.active_record.observers = :league_observer
 
   end
 end

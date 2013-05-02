@@ -13,7 +13,7 @@
 //= require bootstrap
 //= require bootstrap-slider
 //= require bootstrap-editable
-//= require jquery_ujs
+//= require bootstrap-datepicker
 // require jquery
 
 
@@ -31,9 +31,7 @@ var skybulls = {
 $.fn.editable.defaults.mode = 'inline';
 
 jQuery(document).ready(function(){
-    $('#dateFields').datepicker( {dateFormat: "yy-mm-dd",
-                                    minDate: Date.now()
-                                    } );
+    $('.dateFields').datepicker( {format: "yy-mm-dd"} );
 
 
     $('section.left-area').affix();

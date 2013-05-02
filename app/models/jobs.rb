@@ -28,13 +28,10 @@ module Jobs
   end
 
   def Jobs.enqueue(obj, options = {})
-    if Rails.env.development?
-      obj.perform
-    else
       opts = {
           :payload_object => obj
-      }.merge!(options)
-      Delayed::Jobs.enqueue(opts)
-    end
+      }.merge(options)
+      Delayed::Job.enqueue(opts)
+
   end
 end
