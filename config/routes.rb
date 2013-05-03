@@ -1,5 +1,7 @@
 SkybullsRails::Application.routes.draw do
 
+  root :to => 'home#index'
+
   resources :user_leagues
 
   resources :portfolio, :only => [:show]

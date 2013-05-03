@@ -26,7 +26,8 @@ class Trade < ActiveRecord::Base
     end
 
     def update_league_position
-      user_league_association.league.update_positions! if Rails.env.development?
+      #todo remove this later
+      user_league_association.league.update_positions! #if Rails.env.development?
     end
 
     def validate_league

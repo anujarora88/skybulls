@@ -1,43 +1,46 @@
 %header
   .logo
-    = image_tag 'logo.png'
-  %div{class: "topbar-right tlast"}
-    %a{href: users_cashier_path}
-      %span.w-txt
-        Balance
-      %span.name-txt
-        = available_cash
-      %span.deposit-txt
-        Deposit
-  %div{class: "topbar-right"}
-    %a{href: "#"}
-      %span.w-txt
-        Welcome,
-        -if current_user
-          %span.name-txt{title: current_user.display_name}
-          = current_user_name(10)
-        end
+    %a{href: "/"}
+      = image_tag 'logo.png'
 
-      %span.noti-txt
-        (2)
+  - if user_signed_in?
+    %div{class: "topbar-right tlast"}
+      %a{href: users_cashier_path}
+        %span.w-txt
+          Balance
+        %span.name-txt
+          = available_cash
+        %span.deposit-txt
+          Deposit
+    %div{class: "topbar-right"}
+      %a{href: "#"}
+        %span.w-txt
+          Welcome,
+          -if current_user
+            %span.name-txt{title: current_user.display_name}
+            = current_user_name(10)
+          end
 
-  %nav
-    %ul
-      %li
-        %a{href: dashboard_path, :class => "#{current_page?(dashboard_path) ? 'current' : ''}"}
-          Home
-      %li
-        %a{href: "javascript:void(0);"}
-          Tutorials
-      %li
-        %a{href: "#{leagues_path}", :class => "#{current_page_path.starts_with?("/leagues") ? 'current' : ''}"}
-          Leagues
-      %li
-        %a{href: portfolio_path('base'), :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
-          My Portfolio
-      %li
-        %a{href: users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}
-          My Account
+        %span.noti-txt
+          (2)
+
+    %nav
+      %ul
+        %li
+          %a{href: dashboard_path, :class => "#{current_page?(dashboard_path) ? 'current' : ''}"}
+            Home
+        %li
+          %a{href: "javascript:void(0);"}
+            Tutorials
+        %li
+          %a{href: "#{leagues_path}", :class => "#{current_page_path.starts_with?("/leagues") ? 'current' : ''}"}
+            Leagues
+        %li
+          %a{href: portfolio_path('base'), :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
+            My Portfolio
+        %li
+          %a{href: users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}
+            My Account
 
 
 
