@@ -25,11 +25,11 @@
       = humanized_money_with_symbol(@stock.latest_price)
     .popup-price-g
       %span.price-c
-        %span.down-arrow-green>
-        0.68
+        %span{class: "#{@stock.change < 0 ? 'down-arrow-green' : 'up-arrow-red' }"}
+        = @stock.change
       %span.price-c
-        %span.down-arrow-green>
-        2.27%
+        %span{class: "#{@stock.change < 0 ? 'down-arrow-green' : 'up-arrow-red' }"}
+        = number_to_percentage(@stock.percentage_change)
 .selectTradeType
   .popup-action-area
     %a.market-price{:href => "javascript:void(0);"} Market

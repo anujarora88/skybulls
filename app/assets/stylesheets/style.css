@@ -88,7 +88,7 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 }
 .mid-box-logo{ background:#f7f7f7;border-radius:5px 5px 0 0 ; -moz-border-radius:5px 5px 0 0 ; -webkit-border-radius:5px 5px 0 0 ; ; text-align:center; border-bottom:1px solid #dbdbdb; padding:10px 0;}
 .mid-box-logo img{ max-width: 10px; max-height: 10px;}
-.mid-box-logo span{ }
+.mid-box-logo span{ text-shadow: 1px 1px 1px #ccc; color: #707070; }
 .peg{ border-bottom:1px solid #dbdbdb; padding:1px 0; line-height:28px; overflow:hidden; font-size:14px;}
 .peg-left{ float:left; width:39px; margin-right:1px; padding-left:27px; font-size:12px; }
 .mrn{ margin-right:0px;}
@@ -519,7 +519,7 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .mbn-popup{ margin-bottom:0;}
 .popup-d-txt{ border-top:2px solid #fff; border-bottom:1px solid #fff; padding:0 5px; overflow:hidden;}
 .popup-title{ color:#272727; font-size:18px; text-transform:uppercase; position:absolute; left:10px; top:14px;}
-.b-txt{ font-size:12px; float:left; padding:5px 10px; border-right:1px solid #ddd; min-width:135px;}
+.b-txt{ font-size:12px; float:left; padding:5px 10px; border-right:1px solid #ddd; min-width:115px;}
 .b-txt strong{ display:block;}
 .popup-d-logo{ float:left; padding:5px 10px; }
 .popup-price-txt{ color:#3a3c40; font-size:26px; font-weight:bold; line-height:45px; padding:0 10px; float:left; border-left:1px solid #ddd; border-right:1px solid #ddd;}

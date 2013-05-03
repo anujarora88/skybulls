@@ -35,8 +35,8 @@ class Stock < ActiveRecord::Base
         :name => company.name,
         :logoUrl => company.logo_url,
         :price => latest_price_cents/100,
-        :percentageChange => 1,
-        :change => 10
+        :percentageChange => percentage_change,
+        :change => change
     }.to_json
   end
 

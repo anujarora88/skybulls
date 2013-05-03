@@ -2,7 +2,7 @@ class Trade < ActiveRecord::Base
 
   self.table_name = :trades
 
-  attr_accessible :amount, :stock, :price, :type, :user_league_association
+  attr_accessible :amount, :stock, :price, :type, :user_league_association, :system_created
 
   belongs_to :stock
   belongs_to :user_league_association
@@ -32,7 +32,10 @@ class Trade < ActiveRecord::Base
 
     def validate_league
       unless system_created?
-        errors.add(:base, "Can't execute trade right now!") unless user_league_association.league.in_progress?
+        unless user_league_association.league.in_progress?
+          errors[:base] << "Can't execute trade right now!"
+          return false
+        end
       end
     end
 

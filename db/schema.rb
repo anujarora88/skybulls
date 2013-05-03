@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502220255) do
+ActiveRecord::Schema.define(:version => 20130503170124) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20130502220255) do
     t.integer  "exchange_id"
     t.integer  "latest_price_cents",    :default => 0,     :null => false
     t.string   "latest_price_currency", :default => "USD", :null => false
+    t.float    "change"
+    t.float    "percentage_change"
   end
 
   create_table "trades", :force => true do |t|

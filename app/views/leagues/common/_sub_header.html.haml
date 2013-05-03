@@ -2,7 +2,7 @@
   .daily-league-txt
     %span Nasdaq -
     $1+0.1 Daily League
-  - if !@league.in_progress?
+  - if @league.in_progress?
     .elapsed-time
       %span Elapsed time
       %strong.time-txt{data: {:timestamp => @league.start_time.to_i}}

@@ -76,7 +76,7 @@ class League < ActiveRecord::Base
   end
 
   def in_progress?
-    !completed? && start_time <= Time.now && end_time > Time.now
+    trade_allowed?
   end
 
   def prize_pool
@@ -117,6 +117,10 @@ class League < ActiveRecord::Base
       [20, 20, 20, 20 , 20]
     end
 
+  end
+
+  def trade_allowed?(time = Time.now)
+    !completed? && start_time <= time && end_time > time
   end
 
 end
