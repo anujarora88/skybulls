@@ -2,6 +2,8 @@ class Users::LeagueRegistrationController < Users::AbstractController
 
   layout "popup"
 
+  helper :leagues
+
   def show_league_info
     @league= League.find(params[:id])
 
@@ -10,7 +12,9 @@ class Users::LeagueRegistrationController < Users::AbstractController
   def register
     @league = League.find(params[:id])
     if UserLeagueAssociation.find_by_user_id_and_league_id(current_user.id,@league.id).nil?
-      UserLeagueAssociation.create(:user_id => current_user.id, :league_id=>@league.id)
+        if current_user.account.balance < @league.total_buy_in_cost
+          @error_message = "Not enough balance"
+        end
     end
 
 

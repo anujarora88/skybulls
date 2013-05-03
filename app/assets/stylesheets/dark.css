@@ -81,7 +81,8 @@ header nav ul li a.current, header nav ul li a:hover {
 
 
 .left-menu li a:hover, .left-menu li a.active{ background:url(dashboard-hov-bg.jpg) no-repeat right 0 #0299ce; }
-.peg-left					{background:url(green-arrow.png) no-repeat 9px 7px #f1f6ea; }
+.up					{background:url(green-arrow.png) no-repeat 9px 7px #f1f6ea; }
+.down					{background:url(down-arrow-small.png) no-repeat 9px 7px #f1f6ea; }
 .right-area h4				{background: #eff9ff; /* for non-css3 browsers */
     background: -moz-linear-gradient(top, #eff9ff,  #e0f4ff); /* for firefox 3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, from(#eff9ff), to(#e0f4ff)); /* Safari 4+, Chrome */

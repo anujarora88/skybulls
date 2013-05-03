@@ -41,9 +41,9 @@
             %li
               %a{:href => "#free_demo", :title => "Try free demo"} Try free demo
             %li
-              %a{:href => "javascript:void(0);", :title => "Register"} Register
+              %a{:href => user_omniauth_authorize_path(:facebook), :title => "Register"} Register
             %li
-              %a{:href => "javascript:void(0);", :title => "Sign in"} Sign in
+              %a{:href => user_omniauth_authorize_path(:google), :title => "Sign in"} Sign in
       / End header
       %section.banner-area
         .banner-cont

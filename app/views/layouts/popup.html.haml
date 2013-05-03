@@ -1,8 +1,9 @@
 .close-icon
   %a{:href => "javascript:void(0)", "data-dismiss" => "modal"}
     = image_tag "close.jpg"
-.popup-title
-  = @title
+.popup-heading
+  .popup-title
+    = @title
 
 - if @error_message
   .alert.alert-danger

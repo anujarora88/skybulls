@@ -4,22 +4,28 @@
   %ul.r-data-list
     %li
       %label Start:
-      %span 25 May 09:30
+      %span
+        = @league.start_time.strftime("#{@league.start_time.day.ordinalize} %b %Y %k:%m")
     %li
       %label Finish:
-      %span 25 May 15:30
+      %span
+        = @league.end_time.strftime("#{@league.start_time.day.ordinalize} %b %Y %k:%m")
     %li
       %label Entrants:
-      %span 1,230
+      %span
+        = @league.user_league_associations.count
     %li
       %label Prize pool:
-      %span $1,230
+      %span
+        = humanized_money_with_symbol(@league.prize_pool)
     %li
       %label Places paid:
-      %span 123
+      %span
+        = @league.places_paid
     %li
       %label Avg. return:
-      %span 5.43%
+      %span
+        = @league.average_return
   %h4
     %span Leaderboard
   #scrollbar1
@@ -29,32 +35,15 @@
     .viewport
       .overview
         %ul.r-data-list
-          %li
-            %label 1st
-            %span 23.45%
-          %li
-            %label 2nd
-            %span 23.45%
-          %li
-            %label 3rd
-            %span 23.45%
-          %li
-            %label 4th
-            %span 23.45%
-          %li
-            %label 5th
-            %span 23.45%
-          %li
-            %label 6th
-            %span 23.45%
-          %li
-            %label 7th
-            %span 23.45%
-          %li
-            %label 8th
-            %span 23.45%
+          - @league.leaders.each_with_index do |ula, ii|
+            %li
+              %label
+                = (ii+1).ordinalize
+              %span
+                = ula.user.display_name
           %li
             %a{:href => "javascript:void(0);"} View More leaders
+
   %h4
     %span Payout Structure
   #scrollbar2
@@ -64,29 +53,9 @@
     .viewport
       .overview
         %ul.r-data-list
-          %li
-            %label 1st
-            %span 23.45%
-          %li
-            %label 2nd
-            %span 23.45%
-          %li
-            %label 3rd
-            %span 23.45%
-          %li
-            %label 4th
-            %span 23.45%
-          %li
-            %label 5th
-            %span 23.45%
-          %li
-            %label 6th
-            %span 23.45%
-          %li
-            %label 7th
-            %span 23.45%
-          %li
-            %label 8th
-            %span 23.45%
-          %li
-            %a{:href => "javascript:void(0);"} View More leaders
+          - @league.payout_structure.each_with_index do |number, ii|
+            %li
+              %label
+                = (ii+1).ordinalize
+              %span
+                = number_to_percentage(number)

@@ -1,21 +1,47 @@
+- @title = "League Information"
 
-%h3 League Information
-.popup-txt
-  %table
-    %tr
-      %td= 'Title'
-      %td= @league.title
-    %tr
-      %td= 'Start Date'
-      %td= @league.start_time
-    %tr
-      %td= 'End Date'
-      %td= @league.end_time
-    %tr
-      %td= 'Buy In'
-      %td= @league.buy_in
-    %tr
-      %td= 'Commission'
-      %td= @league.commission
+.league-info
+  %h4
+    %span League Info
+  %ul.r-data-list
+    %li
+      %label Start:
+      %span
+        = @league.start_time.strftime("#{@league.start_time.day.ordinalize} %b %Y %k:%m")
+    %li
+      %label Finish:
+      %span
+        = @league.end_time.strftime("#{@league.start_time.day.ordinalize} %b %Y %k:%m")
+    %li
+      %label Entrants:
+      %span
+        = @league.user_league_associations.count
+    %li
+      %label Prize pool:
+      %span
+        = humanized_money_with_symbol(@league.prize_pool)
+    %li
+      %label Places paid:
+      %span
+        = @league.places_paid
+    %li
+      %label Avg. return:
+      %span
+        = @league.average_return
 
-%a{:href => "javascript:void(0)", :onclick => "registerLeague(#{@league.id},'#{users_league_register_url}')"} Register
+.league-info.first{style: "float:right;"}
+  %h4
+    %span Payout Structure
+  %ul.r-data-list
+    - @league.payout_structure.each_with_index do |number, ii|
+      %li
+        %label
+          = (ii+1).ordinalize
+        %span
+          = number_to_percentage(number)
+
+
+.clr
+.c-form-f
+  %a.cf-btn.submitButton{:href => "javascript:void(0);",:onclick => "registerLeague(#{@league.id},'#{users_league_register_url}')"}
+    %span Register

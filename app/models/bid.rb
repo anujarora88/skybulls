@@ -16,9 +16,15 @@ class Bid < ActiveRecord::Base
 
   validates_presence_of :stock_id, :type, :user_league_association_id
 
+  before_save :validate_league
+
 
   def completed?
     !trade_id.nil?
+  end
+
+  def validate_league
+    errors.add(:base, "Can't execute trade right now!") unless user_league_association.league.in_progress?
   end
 
 end

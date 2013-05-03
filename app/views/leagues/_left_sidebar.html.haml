@@ -1,5 +1,8 @@
 %section.left-area.inner-l-area
   %ul.left-menu
     %li
-      %a.active{:href => "javascript:void(0);"}
+      %a{:href => leagues_url, :class => "#{!params[:type] ? 'active' : ''}"}
         %span.real-money Real Money
+    %li
+      %a{:href => leagues_url(type: "virtual"), :class => "#{params[:type] == 'virtual' ? 'active' : ''}"}
+        %span.real-money Virtual Money

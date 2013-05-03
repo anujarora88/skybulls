@@ -2,9 +2,25 @@
   .daily-league-txt
     %span Nasdaq -
     $1+0.1 Daily League
-  .elapsed-time
-    %span Elapsed time
-    %strong.time-txt 02:34:45
-  .remaining-time
-    %span Remaining  time
-    %strong.time-txt 04:25:45
+  - if !@league.in_progress?
+    .elapsed-time
+      %span Elapsed time
+      %strong.time-txt{data: {:timestamp => @league.start_time.to_i}}
+
+    .remaining-time
+      %span Remaining  time
+      %strong.time-txt{data: {:timestamp => @league.end_time.to_i}}
+  - else
+    League has already ended
+
+- content_for :head do
+  = javascript_include_tag "jquery.countdown.js"
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+    $(".elapsed-time .time-txt").countdown({since: new Date($(".elapsed-time .time-txt").data("timestamp") * 1000), compact: true,
+                                      description: '',format: 'HMS'});
+
+      $(".remaining-time .time-txt").countdown({until: new Date($(".remaining-time .time-txt").data("timestamp") * 1000), compact: true,
+                                              description: '',format: 'HMS'});
+    });

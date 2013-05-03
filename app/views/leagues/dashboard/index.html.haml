@@ -1,5 +1,8 @@
 - content_for :head do
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
+  = javascript_include_tag "http://www.amcharts.com/lib/amstock.js"
+  = javascript_include_tag "http://localhost:8082/socket.io/socket.io.js"
+  = javascript_include_tag "http://localhost:8082/getFeed?graph=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}&latest=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}"
 
 - content_for :sub_header do
   = render "/leagues/common/sub_header"
@@ -10,18 +13,20 @@
 - content_for :right_sidebar do
   = render "/leagues/common/right_sidebar"
 
+
+
 - content_for :javascript do
   :plain
     <script id="stock-template" type="text/template">
       <div class="mid-box-logo">
-        <img src="{{logoUrl}}" />
+        <span>{{name}}</span>
       </div>
       <div class="peg">
-        <div class="peg-left">{{change}}</div>
-        <div class="peg-left mrn">{{percentageChange}}%</div>
+        <div class="peg-left {{changeClass}}">{{change}}</div>
+        <div class="peg-left mrn {{changeClass}}">{{percentageChange}}%</div>
       </div>
-      <div class="price">{{price}}<a href="javascript:void(0);"  class="graph-button"> <img src="/assets/graph.png" class="graph" /></a>
-      <a href="javascript:void(0);" class="pin-button"><img src="/assets/pin.png" class="pin" /></a></div>
+      <div class="price">${{price}}<a href="javascript:void(0);"  class="graph-button"> <img src="/assets/graph.png" class="graph {{graphClass}}" /></a>
+      <a href="javascript:void(0);" class="pin-button"><img src="/assets/pin.png" class="pin {{pinClass}}" /></a></div>
       <div class="box-bottom">
         <div class="buy"><a class="buy-button">Buy</a></div>
         <div class="sell"><a href="#" class="sell-button">sell</a></div>
@@ -30,6 +35,11 @@
 
   :javascript
     $(document).ready(function(){
+
+        if(typeof skybullsData !== 'undefined'){
+          skybullsData.initGraph('chartDiv');
+        }
+
        stockInfoArea = new skybulls.StockInfoArea({"leagueId": #{@league.id},"pinnedStocks": #{@pinned_stocks.collect(&:to_json)}});
        stockInfoArea.initializeDisplayArea();
 
@@ -56,6 +66,10 @@
                   dataType: 'json',
                   success:function(result) {
                       stockInfoArea.addNewStock(result);
+                      if(typeof skybullsData !== 'undefined'){
+                          skybullsData.socket.emit('add latest', {latest: result.symbol });
+                      }
+
                       $('#search-bar').val('');
                   }
                });
@@ -78,8 +92,8 @@
       %div.mid-box{id: "stock-info-area-element-#{stock.id}"}
 
 
-  .h-graph
-    = image_tag "graph-dummy.png"
+  .h-graph#chartDiv
+
 
 #tradeModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-body

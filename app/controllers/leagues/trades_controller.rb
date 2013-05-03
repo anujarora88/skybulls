@@ -51,8 +51,7 @@ class Leagues::TradesController < Leagues::AbstractController
 
     end
     if @stock_amount == 0
-      @error_message = "Please buy some shares first!"
-      render "buy"
+      render "no_shares"
     end
 
   end

@@ -4,7 +4,7 @@ module Jobs
     def perform
       user = User.find(user_id)
       stock = Stock.find(stock_id)
-      user.add_pinned_stock!(stock, recently_searched)
+      user.add_pinned_stock(stock, recently_searched)
     end
   end
 end

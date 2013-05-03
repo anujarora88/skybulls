@@ -11,6 +11,8 @@ class Users::Account < ActiveRecord::Base
       :greater_than_or_equal_to => 0
   }, :with_currency => :usd
 
+  validates_numericality_of :balance_cents, :greater_than_or_equal_to => 0
+
   validates_presence_of :user_id
 
   def money_in_play

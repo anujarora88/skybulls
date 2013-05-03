@@ -18,6 +18,7 @@ SkybullsRails::Application.routes.draw do
     get 'profile' =>'profile#index', :as=> :profile
     get 'search_stock' =>'profile#search', :as=> :search_stock
     post 'add_pinned_stock' =>'profile#add_pinned_stock', :as=> :add_pinned_stock
+    get 'add_pinned_stock' =>'profile#add_pinned_stock', :as=> :add_pinned_stock_ajax
     delete 'delete_pinned_stock/:id' =>'profile#delete_pinned_stock', :as=> :delete_pinned_stock
     post 'stock_list' =>'league_registration#search_stocks', :as=> :search_stocks
     get 'account_summary' =>'account#summary', :as=> :account_summary

@@ -38,8 +38,15 @@ class League < ActiveRecord::Base
     payout_str.each_with_index do |val, ii|
        payout = prize_pool * val/100
        user_league_association = user_league_associations.where(rank: ii+1).first
-       Users::Deposit.create!(:identifier => "system", :amount => payout, :user_league_association => user_league_association, :account => user_league_association.user.account)
+       if payout > 0
+          Users::Deposit.create!(:identifier => "system", :amount => payout, :user_league_association => user_league_association, :account => user_league_association.user.account)
+       end
+
     end
+  end
+
+  def total_buy_in_cost
+    Money.new((buy_in + commission*buy_in/100)*100)
   end
 
   def execute_open_trades!
@@ -69,7 +76,7 @@ class League < ActiveRecord::Base
   end
 
   def in_progress?
-    start_time >= Time.now && end_time < Time.now
+    !completed? && start_time <= Time.now && end_time > Time.now
   end
 
   def prize_pool
@@ -86,6 +93,10 @@ class League < ActiveRecord::Base
 
   def average_return
     5.43
+  end
+
+  def leaders
+    user_league_associations.order(:rank).limit(10).all
   end
 
   def payout_structure

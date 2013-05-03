@@ -18,6 +18,10 @@ class Stock < ActiveRecord::Base
     "#{exchange.symbol}:#{symbol}"
   end
 
+  def pinned?(user)
+    user.pinned_stocks.include? self
+  end
+
   def to_s
     "#{company.name} (#{symbol})"
   end
@@ -30,7 +34,7 @@ class Stock < ActiveRecord::Base
         :symbol => symbol_with_exchange,
         :name => company.name,
         :logoUrl => company.logo_url,
-        :price => latest_price.format,
+        :price => latest_price_cents/100,
         :percentageChange => 1,
         :change => 10
     }.to_json

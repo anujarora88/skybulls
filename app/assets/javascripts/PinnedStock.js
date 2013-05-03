@@ -14,20 +14,27 @@
         this.mustacheTemplateElId = specs.mustacheTemplateElId ? specs.mustacheTemplateElId  : "stock-template" ;
         this.displayEl = null;
 
+        this.pinActive = false;
+        this.graphActive = false;
+
 
     };
 
     var updateDisplayTemplate = function(){
+        this.stockInfo["changeClass"] = this.stockInfo["change"] > 0 ? 'up' : 'down' ;
+        this.stockInfo["pinClass"] = this.pinActive ? 'pin-active' : '' ;
+        this.stockInfo["graphClass"] = this.graphActive ? 'graph-active' : '' ;
         var html = Mustache.to_html($('#'+this.mustacheTemplateElId).html(), this.stockInfo);
         this.displayEl.html(html);
     };
 
     var updateStockInfo = function(params){
         for(var key in this.stockInfo){
-            if(this.stockInfo.hasOwnProperty(key) && params.hasOwnProperty(params)){
+            if(this.stockInfo.hasOwnProperty(key) && params.hasOwnProperty(key)){
                 this.stockInfo[key] = params[key];
             }
         }
+
     };
 
     PinnedStock.prototype.updateInfo = function(params){
@@ -76,10 +83,25 @@
 
     PinnedStock.prototype._graphButtonHandler = function(event){
         var self = event.data.self;
+        if(typeof skybullsData !== 'undefined'){
+            skybullsData.socket.emit('add graph', {graph: self.symbol });
+        }
+        $(".graph", $(this)).addClass('graph-active');
+        self.graphActive = true;
     };
 
     PinnedStock.prototype._pinButtonHandler = function(event){
         var self = event.data.self;
+        $.ajax({
+            type : 'GET',
+            url : Routes.users_add_pinned_stock_path() ,
+            data: {selected_stock_id: self.stockInfo["id"]},
+            success:function(result) {
+
+            }
+        });
+        $(".pin", $(this)).addClass('pin-active');
+        self.pinActive = true;
     };
 
 })(jQuery);

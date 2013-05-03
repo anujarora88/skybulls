@@ -1,3 +1,11 @@
-%h3 You have successfully registered
-.popup-txt
-  %h5= @league.title
+- @title = "League Registration"
+- if @error_message
+  %h3.pd20.text-alert Could Not Register!
+  .popup-sub-head
+    %span
+      = html_display_name(@league)
+- else
+  %h3.pd20 Registration Successful
+  .popup-sub-head
+    %span
+      = html_display_name(@league)

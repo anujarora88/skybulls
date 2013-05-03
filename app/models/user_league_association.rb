@@ -103,8 +103,7 @@ class UserLeagueAssociation < ActiveRecord::Base
   private
 
     def debit_user_account!
-      amount_cents = (league.buy_in + league.commission*league.buy_in/100)*100
-      Users::Withdrawl.create!(:amount => Money.new(amount_cents), :user_league_association => self, :account => user.account, :identifier => "system")
+      Users::Withdrawl.create!(:amount => league.total_buy_in_cost, :user_league_association => self, :account => user.account, :identifier => "system") if amount_cents > 0
     end
 
 end

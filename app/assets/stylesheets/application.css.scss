@@ -64,3 +64,75 @@
 .field label{
   display: inline;
 }
+#chartDiv {
+  height: 470px;
+  font-size: 12px;
+  border:1px solid #ebebeb;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+
+}
+
+
+#stock-info-area { margin-bottom: 20px;}
+
+
+input[type=button].amChartsButtonSelected
+{
+  background-color:#E0F4FF;
+  border-style:solid;
+  border-color:#0299CE;
+  border-width:1px;
+  color:#0299CE;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+.amChartsButton
+{
+  background-color:#EEEEEE;
+  border-style:solid;
+  border-color:#CCCCCC;
+  border-width:1px;
+  color:#000000;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+.amChartsCompareList
+{
+  border-style:solid;
+  border-color:#CCCCCC;
+  border-width:1px;
+}
+
+.countdown_row {
+  color: #FFFFFF !important;
+  display: block;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  clear: both;
+  width: 100%;
+
+
+}
+
+/* jQuery Countdown styles 1.6.2. */
+
+.countdown_section {
+  display: block;
+  float: left;
+  font-size: 75%;
+  text-align: center;
+}
+.countdown_amount {
+  font-size: 200%;
+}
+.countdown_descr {
+  display: block;
+  width: 100%;
+}
+

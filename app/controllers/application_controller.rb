@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
     if resource.instance_of?AdminUser
            admin_url
     else
-      request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
+     # request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_path
+      dashboard_path
     end
   end
 
