@@ -3,6 +3,7 @@ module Jobs
     include ErrorTracking
 
     def perform
+      return unless input
       data = JSON.parse(input)
       data.each do |symbol, array|
          exchange_symbol, stock_symbol = symbol.split(":")

@@ -1,7 +1,8 @@
 .info-bar
   .daily-league-txt
-    %span Nasdaq -
-    $1+0.1 Daily League
+    %span
+      = "#{@league.title} -"
+    = "$#{@league.buy_in}+#{@league.commission*@league.buy_in/100} #{@league.category} League"
   - if @league.in_progress?
     .elapsed-time
       %span Elapsed time
