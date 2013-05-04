@@ -1,7 +1,7 @@
 SkybullsRails::Application.routes.draw do
 
   post "/updateData" => "update_data#update"
-
+  get "/error_page" => "home#index"
   root :to => 'home#index'
 
   resources :user_leagues
