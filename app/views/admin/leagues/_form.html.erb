@@ -18,12 +18,9 @@
 
   <div class="field">
     <%= f.label :category %><br />
-    <%=  select("category", '',['Daily','Weekly'], {:include_blank => false})%>
+    <%=  select("category", '',['Daily','Weekly', 'Monthly'], {:include_blank => false})%>
   </div>
-  <div class="field">
-    <%= f.label :market %><br />
-    <%= f.text_field :market %>
-  </div>
+
   <div class="field">
     <%= f.label :algo_name %><br />
     <%= f.text_field :algo_name %>

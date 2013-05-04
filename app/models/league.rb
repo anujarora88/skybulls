@@ -15,6 +15,11 @@ class League < ActiveRecord::Base
 
   validates_presence_of :start_time, :end_time, :category, :title, :buy_in, :commission
 
+  validate do |o|
+    o.errors.add(:ends_at, 'must come after start') if o.starts_at > o.ends_at
+
+  end
+
 
 
 
@@ -119,7 +124,7 @@ class League < ActiveRecord::Base
   end
 
   def trade_allowed?(time = Time.now)
-    !completed? && start_time <= time && end_time > time
+    !completed? && time >= start_time && time < end_time
   end
 
 end
