@@ -36,6 +36,10 @@ class UserLeagueAssociation < ActiveRecord::Base
     @trades_map ||= trades.select([:stock_id, :type, "SUM(amount) as amount", "SUM(amount*price_cents) as price_cents"]).group(:stock_id, :type).all
   end
 
+  def pending_trades
+    @pending_trades ||= bids.where("trade_id IS NULL").all
+  end
+
   def open_trades
     return @open_trades if @open_trades
     open_trades = []

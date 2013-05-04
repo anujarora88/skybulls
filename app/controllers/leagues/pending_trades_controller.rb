@@ -20,6 +20,6 @@ class Leagues::PendingTradesController < Leagues::AbstractController
   private
 
   def initialize_pending_trades
-    @pending_trades = @user_league_association.bids
+    @pending_trades = @user_league_association.pending_trades
   end
 end

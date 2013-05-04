@@ -5,7 +5,7 @@ class PortfolioController < Users::AbstractController
   def show
     if @user_league_association
       @open_trades = @user_league_association.open_trades
-      @pending_trades = @user_league_association.bids
+      @pending_trades = @user_league_association.pending_trades
       @all_trades = @user_league_association.trades
     end
   end
