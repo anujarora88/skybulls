@@ -8,7 +8,7 @@ class LeaguesController < Users::AbstractController
     else
       leagues = leagues.where("buy_in > 0")
     end
-    @leagues = leagues.order("end_time").all - current_user.leagues
+    @leagues = leagues.order("end_time").all
   end
 
   def show

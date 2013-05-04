@@ -14,7 +14,10 @@ class Users::LeagueRegistrationController < Users::AbstractController
     if UserLeagueAssociation.find_by_user_id_and_league_id(current_user.id,@league.id).nil?
         if current_user.account.balance < @league.total_buy_in_cost
           @error_message = "Not enough balance"
+        else
+          UserLeagueAssociation.create!(:user => current_user, :league => @league)
         end
+
     end
 
 

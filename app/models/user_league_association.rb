@@ -1,5 +1,5 @@
 class UserLeagueAssociation < ActiveRecord::Base
-  attr_accessible :league_id, :user_id
+  attr_accessible :league_id, :user_id, :user, :league
 
   include Notify
 
@@ -103,7 +103,7 @@ class UserLeagueAssociation < ActiveRecord::Base
   private
 
     def debit_user_account!
-      Users::Withdrawl.create!(:amount => league.total_buy_in_cost, :user_league_association => self, :account => user.account, :identifier => "system") if amount_cents > 0
+      Users::Withdrawl.create!(:amount => league.total_buy_in_cost, :user_league_association => self, :account => user.account, :identifier => "system") if league.total_buy_in_cost > Money.new(0)
     end
 
 end

@@ -17,7 +17,9 @@ module Jobs
                                 (type = '#{Bids::Sell.name}' AND price_cents <= :price_cents) )", {date: date, price_cents: latest_info["price"] * 100}).all
               bids.each do |b|
                 if b.user_league_association.league.trade_allowed?(date)
-                  b.execute_trade!(Money.new(latest_info["price"] * 100, stock.latest_price_currency))
+                  if b.user_league_association.balance > Money.new(latest_info["price"] * 100, stock.latest_price_currency) * b.amount
+                    b.execute_trade!(Money.new(latest_info["price"] * 100, stock.latest_price_currency))
+                  end
                 end
               end
             end

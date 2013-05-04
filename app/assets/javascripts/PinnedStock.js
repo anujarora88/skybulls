@@ -26,6 +26,7 @@
         this.stockInfo["graphClass"] = this.graphActive ? 'graph-active' : '' ;
         var html = Mustache.to_html($('#'+this.mustacheTemplateElId).html(), this.stockInfo);
         this.displayEl.html(html);
+        $(".price", this.displayEl).effect("highlight", {color: this.stockInfo["change"] > 0 ? '#7EDF7E': '#FF7171'}, 3000);
     };
 
     var updateStockInfo = function(params){

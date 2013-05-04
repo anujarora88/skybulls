@@ -92,7 +92,7 @@ class League < ActiveRecord::Base
   end
 
   def average_return
-    5.43
+     5.41
   end
 
   def leaders

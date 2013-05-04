@@ -9,7 +9,6 @@ header nav ul li a.current, header nav ul li a:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#3c3e41), to(#484a4f)); /* Safari 4+, Chrome */
     background: -webkit-linear-gradient(left top, left bottom, #3c3e41, #484a4f); /* Chrome 10+, Safari 5.1+, iOS 5+ */
     background: -o-linear-gradient(top, #3c3e41,#484a4f); /* Opera 11.10+ */
-    background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#3c3e41, EndColorStr=#484a4f, GradientType=0)";
     background: linear-gradient(to bottom, #3c3e41,#484a4f); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3e41', endColorstr='#484a4f', GradientType='0'); /* for IE */
     color:#fff;
@@ -88,7 +87,6 @@ header nav ul li a.current, header nav ul li a:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#eff9ff), to(#e0f4ff)); /* Safari 4+, Chrome */
     background: -webkit-linear-gradient(left top, left bottom, #eff9ff, #e0f4ff); /* Chrome 10+, Safari 5.1+, iOS 5+ */
     background: -o-linear-gradient(top, #eff9ff,#e0f4ff); /* Opera 11.10+ */
-    background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#eff9ff, EndColorStr=#e0f4ff, GradientType=0)";
     background: linear-gradient(to bottom, #eff9ff,#e0f4ff); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eff9ff', endColorstr='#e0f4ff', GradientType='0'); /* for IE */}
 
@@ -115,7 +113,6 @@ header nav ul li a.current, header nav ul li a:hover {
     background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#fbfbfb)); /* Safari 4+, Chrome */
     background: -webkit-linear-gradient(left top, left bottom, #f8f8f8, #fbfbfb); /* Chrome 10+, Safari 5.1+, iOS 5+ */
     background: -o-linear-gradient(top, #f8f8f8,#fbfbfb); /* Opera 11.10+ */
-    background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#f8f8f8, EndColorStr=#fbfbfb, GradientType=0)";
     background: linear-gradient(to bottom, #f8f8f8,#fbfbfb); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#fbfbfb', GradientType='0'); /* for IE */
 }
