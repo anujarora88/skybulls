@@ -1,8 +1,8 @@
 - content_for :head do
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
   = javascript_include_tag "http://www.amcharts.com/lib/amstock.js"
-  = javascript_include_tag "http://skybulls-local.com:8082/socket.io/socket.io.js"
-  = javascript_include_tag "http://skybulls-local.com:8082/getFeed?graph=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}&latest=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}"
+  = javascript_include_tag "#{Rails.configuration.nodeapp_url}/socket.io/socket.io.js"
+  = javascript_include_tag "#{Rails.configuration.nodeapp_url}/getFeed?graph=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}&latest=#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}"
 
 - content_for :sub_header do
   = render "/leagues/common/sub_header"

@@ -38,9 +38,11 @@ gem 'whenever', :require => false
 group :assets do
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.1.1'
+
 end
+
+gem 'sass-rails', '~> 3.2'
+gem 'bootstrap-sass', '~> 2.3.1.1'
 
 
 gem 'jquery-rails'

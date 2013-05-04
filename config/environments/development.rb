@@ -35,6 +35,7 @@ SkybullsRails::Application.configure do
   config.paypal_merchant_account_email = "anuj@skybulls.com"
   config.paypal_preapproval_key_url = "https://www.sandbox.paypal.com/webscr&cmd=_ap-preapproval&preapprovalkey="
 
+  config.nodeapp_url = "http://skybulls-local.com:8082"
 
   # Expands the lines which load the assets
   config.assets.debug = true
