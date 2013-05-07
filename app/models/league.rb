@@ -16,7 +16,7 @@ class League < ActiveRecord::Base
   validates_presence_of :start_time, :end_time, :category, :title, :buy_in, :commission
 
   validate do |o|
-    o.errors.add(:ends_at, 'must come after start') if o.starts_at > o.ends_at
+    o.errors.add(:end_time, 'must come after start') if o.start_time >= o.end_time
 
   end
 
