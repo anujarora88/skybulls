@@ -23,19 +23,6 @@
 
       .cont-area
         = yield :left_sidebar
-        .flash-message-area
-          - if flash[:error]  || flash[:alert]
-            .alert.alert-danger
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              = flash[:error]  || flash[:alert]
-          - if flash[:notice]
-            .alert.alert-info
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              = flash[:notice]
-          - if flash[:success]
-            .alert.alert-success
-              %button.close{"data-dismiss" => "alert", :type => "button"} ×
-              = flash[:success]
         = yield
         = yield :right_sidebar
 

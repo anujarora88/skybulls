@@ -44,4 +44,9 @@ module ApplicationHelper
     secs > Time.now ? "#{time_string} ago" : "After #{time_string}"
   end
 
+  def nodeapp_get_feed_js_url
+    timestamp = Time.now.to_i.to_s
+    "#{Rails.configuration.nodeapp_url}/getFeed?apiKey=#{Rails.configuration.nodeapp_apiKey}&timestamp=#{timestamp}&confirmKey="
+  end
+
 end
