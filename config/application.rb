@@ -75,5 +75,8 @@ module SkybullsRails
     config.nodeapp_api_key = "sajdnbjkasdasmdnjasdasd"
     config.nodeapp_api_secret = "madnsmndmasdnamdasasdasdd"
 
+    config.facebook_api_key = "169442719870493"
+    config.facebook_api_secret = "368af9baf42d603bf7f51504a1c1d793"
+
   end
 end
