@@ -36,8 +36,8 @@ SkybullsRails::Application.configure do
   config.paypal_preapproval_key_url = "https://www.sandbox.paypal.com/webscr&cmd=_ap-preapproval&preapprovalkey="
 
   config.nodeapp_url = "http://skybulls-local.com:8082"
-  config.nodeapp_apiKey = "sajdnbjkasdasmdnjasdasd"
-  config.nodeapp_apiSecret = "madnsmndmasdnamdasasdasdd"
+  config.nodeapp_api_key = "sajdnbjkasdasmdnjasdasd"
+  config.nodeapp_api_secret = "madnsmndmasdnamdasasdasdd"
 
   # Expands the lines which load the assets
   config.assets.debug = true

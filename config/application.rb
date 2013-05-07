@@ -72,8 +72,8 @@ module SkybullsRails
     config.active_record.observers = :league_observer
 
     config.nodeapp_url = "http://skybulls-local.com:8082"
-    config.nodeapp_apiKey = "sajdnbjkasdasmdnjasdasd"
-    config.nodeapp_apiSecret = "madnsmndmasdnamdasasdasdd"
+    config.nodeapp_api_key = "sajdnbjkasdasmdnjasdasd"
+    config.nodeapp_api_secret = "madnsmndmasdnamdasasdasdd"
 
   end
 end

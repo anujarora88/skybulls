@@ -19,6 +19,7 @@ SkybullsRails::Application.configure do
   # Expands the lines which load the assets
   config.action_mailer.default_url_options = { :host => 'www.skybulls.com' }
   config.nodeapp_url = "http://node.skybulls.com"
+
 end
 
 ActionMailer::Base.smtp_settings = {

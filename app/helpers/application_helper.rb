@@ -46,7 +46,9 @@ module ApplicationHelper
 
   def nodeapp_get_feed_js_url
     timestamp = Time.now.to_i.to_s
-    "#{Rails.configuration.nodeapp_url}/getFeed?apiKey=#{Rails.configuration.nodeapp_apiKey}&timestamp=#{timestamp}&confirmKey="
+    api_key = Rails.configuration.nodeapp_api_key
+    confirm_key = OpenSSL::HMAC.hexdigest('sha1', Rails.configuration.nodeapp_api_secret, timestamp+api_key)
+    "#{Rails.configuration.nodeapp_url}/getFeed?apiKey=#{Rails.configuration.nodeapp_api_key}&timestamp=#{timestamp}&confirmKey=#{confirm_key}"
   end
 
 end
