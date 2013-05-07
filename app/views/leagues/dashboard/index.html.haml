@@ -2,7 +2,7 @@
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
   = javascript_include_tag "http://www.amcharts.com/lib/amstock.js"
   = javascript_include_tag "#{Rails.configuration.nodeapp_url}/socket.io/socket.io.js"
-  = javascript_include_tag nodeapp_get_feed_js_url
+  = javascript_include_tag nodeapp_get_feed_js_url(@pinned_stocks, @pinned_stocks, 'chartDiv')
 
 - content_for :sub_header do
   = render "/leagues/common/sub_header"
@@ -36,11 +36,7 @@
   :javascript
     $(document).ready(function(){
 
-        if(typeof skybullsData !== 'undefined'){
-          skybullsData.initTransfer("#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}", "#{@pinned_stocks.collect(&:symbol_with_exchange).join(',')}", function(){
-               skybullsData.initGraph('chartDiv');
-          });
-        }
+
 
        stockInfoArea = new skybulls.StockInfoArea({"leagueId": #{@league.id},"pinnedStocks": #{@pinned_stocks.collect(&:to_json)}});
        stockInfoArea.initializeDisplayArea();

@@ -44,11 +44,14 @@ module ApplicationHelper
     secs > Time.now ? "#{time_string} ago" : "After #{time_string}"
   end
 
-  def nodeapp_get_feed_js_url
+  def nodeapp_get_feed_js_url(graph_stocks, latest_stocks, chartDiv)
     timestamp = Time.now.to_i.to_s
     api_key = Rails.configuration.nodeapp_api_key
     confirm_key = OpenSSL::HMAC.hexdigest('sha1', Rails.configuration.nodeapp_api_secret, timestamp+api_key)
-    "#{Rails.configuration.nodeapp_url}/getFeed?apiKey=#{Rails.configuration.nodeapp_api_key}&timestamp=#{timestamp}&confirmKey=#{confirm_key}"
+    "#{Rails.configuration.nodeapp_url}/getFeed?apiKey=#{Rails.configuration.nodeapp_api_key}&timestamp=#{timestamp}" +
+                      "&confirmKey=#{confirm_key}&chartDiv=#{chartDiv}&" +
+                      "graph=#{(graph_stocks || []).collect(&:symbol_with_exchange).join(',')}&" +
+                      "latest=#{(latest_stocks || []).collect(&:symbol_with_exchange).join(',')}"
   end
 
 end
