@@ -11,6 +11,8 @@
     .remaining-time
       %span Remaining  time
       %strong.time-txt{data: {:timestamp => @league.end_time.to_i}}
+
+    .clr
   - else
     League has already ended
 
@@ -20,8 +22,8 @@
   :javascript
     $(document).ready(function(){
     $(".elapsed-time .time-txt").countdown({since: new Date($(".elapsed-time .time-txt").data("timestamp") * 1000), compact: true,
-                                      description: '',format: 'HMS'});
+                                      description: '',format: 'DHMS'});
 
       $(".remaining-time .time-txt").countdown({until: new Date($(".remaining-time .time-txt").data("timestamp") * 1000), compact: true,
-                                              description: '',format: 'HMS'});
+                                              description: '',format: 'DHMS'});
     });

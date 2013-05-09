@@ -173,7 +173,7 @@
             %th
         %tbody
           - @leagues.each_with_index do |league, ii|
-            %tr
+            %tr[league]
               %td= league.start_time.strftime("%-d %b %Y (%k:%m) ")
               %td= league.category
               %td= league.exchanges.collect(&:symbol).join(", ")
@@ -181,8 +181,11 @@
               %td= league.started? ? "Running" : "Announced"
               %td= league.user_league_associations.size
               %td
-                %a.action-btn-info{:href => "javascript:void(0);",:id=>'league_info_'+league.id.to_s, :data => {:id => league.id, :ajaxInfoUrl =>users_league_info_url, :minWidth=>400, :minHeight=>400}} League Info
-                %a.action-btn-reg{:href => "javascript:void(0);",:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxRegisterUrl =>users_league_register_url} ,:onclick => "registerLeague(#{league.id},'#{users_league_register_url}')"} Register
+                - if current_user.subscribed_to_league?(league)
+                  %a.btn-action-info{:href => league_dashboard_index_path(league)} Go To League
+                - else
+                  %a.action-btn-info{:href => "javascript:void(0);",:id=>'league_info_'+league.id.to_s, :data => {:id => league.id, :ajaxInfoUrl =>users_league_info_url, :minWidth=>400, :minHeight=>400}} League Info
+                  %a.action-btn-reg{:href => "javascript:void(0);",:id=>'league_'+league.id.to_s, :data => {:id => league.id, :ajaxRegisterUrl =>users_league_register_url} ,:onclick => "registerLeague(#{league.id},'#{users_league_register_url}')"} Register
 
 
 #leagueModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

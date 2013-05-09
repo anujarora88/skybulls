@@ -59,8 +59,8 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .demo-area							{ background:#3a3b3f; border-bottom:8px solid #8a8a8a; height:500px;}
 
 
-#slides								{ display:none; }
-.slidesjs-navigation 				{ float:left; z-index:99999;position:absolute;margin-top:-190px;margin-left:-58px;text-indent:-999px;}
+#slides								{ }
+.slidesjs-navigation 				{ float:left; z-index:10;position:absolute;margin-top:-190px;margin-left:-58px;text-indent:-999px;}
 .slidesjs-previous 					{ margin-right: 5px;float: left;background:url(home/arrow.png) no-repeat; width:38px;height:47px;}
 .slidesjs-next 						{ margin-right: 5px;float: right;margin-left:527px;background:url(home/arrow.png) no-repeat bottom;width:38px;height:47px;}
 .slidesjs-pagination 				{ margin: 6px 0 0;float: right;list-style: none;margin-top:60px;margin-right:215px;}
@@ -70,6 +70,113 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .slidesjs-pagination li a:hover.active {background:#02bcff; }
 .slidesjs-pagination li a:hover		{  background:#02bcff;}
 
+
+.popup-area{ background:url(home/popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999999;}
+
+.popup-cont{ border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:absolute; top:60px; width:40%; left:30%;}
+.close-icon{ padding:10px; text-align:right;}
+.popup-heading{ border-bottom:1px solid #ddd; }
+.popup-cont h4{ font-weight:lighter; font-size:18px; text-transform:uppercase; color:#272727; float:left; padding:15px;}
+.popup-cont h3{ color:#90c34c; font-size:18px; text-align:center; padding-bottom:20px;}
+.pd20{ padding:20px;}
+.popup-txt	{ background:#f8f8f8; border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-bottom:50px; }
+.popup-c-txt{ border-top:2px solid #fff; border-bottom:1px solid #fff; padding:10px; overflow:hidden;border-left:1px solid #ddd;}
+.popup-c-txt span{ display:block; padding-left:10px; float:left; color:#808080; }
+.popup-c-txt strong{#3a3c40; display:block; float:left; padding-left:10px; padding-top:2px;}
+.popup-logo	{ float:left; padding:10px; border-top:2px solid #fff; border-bottom:1px solid #fff; }
+.popup-sub-head{ border-top:1px solid #ddd; border-bottom:1px solid #ddd;overflow:hidden; margin-bottom:30px; }
+.popup-sub-head span{ background:#f8f8f8; border-top:2px solid #fff; border-bottom:1px solid #fff; font-size:24px; font-weight:bold; line-height:55px; display:block; text-align:center;}
+
+.button-action {
+
+    -moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    box-shadow:inset 0px 1px 0px 0px #54a3f7;
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+    background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+    background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+    background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+    background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+
+    background-color:#007dc1;
+
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+
+    border:1px solid #124d77;
+
+    display:inline-block;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+
+    text-shadow:0px 1px 0px #154682;
+    margin-bottom:10px;
+    float:left; margin-right:15px;
+}
+.button-action:hover {
+
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+    background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+    background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+    background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+    background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+    background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+
+    background-color:#0061a7;
+    color:#fff;
+}
+.button-action:active {
+    position:relative;
+    top:1px;
+}
+
+
+.f-signup{ text-align:center;}
+.f-signup span{ display:block; font-size:22px; font-weight:bold; padding:10px; color:#666;}
+.f-signup p{ display:block; font-size:12px; font-weight:bold; padding:5px; color:#999;}
+.s-input{ display:block; overflow:hidden; padding:5px 40px;}
+.s-input input {
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    color: #5A5A5A;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    padding:10px;
+    width: 436px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 0 #000000;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 0 #000000;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 0 #000000;
+}
+.s-input input:focus{
+    box-shadow: 0 1px 1px #0299ce inset, 0 0 0 #000000;
+    -moz-box-shadow: 0 1px 1px #0299ce inset, 0 0 0 #000000;
+    -webkit-box-shadow: 0 1px 1px #0299ce inset, 0 0 0 #000000;
+}
+
+.s-input input.name-txt{
+    background:url(home/login-icon.gif) no-repeat 416px 0;
+}
+.s-input input.email-txt{
+    background:url(home/login-icon.gif) no-repeat 416px -46px;
+}
+.s-input input.password-txt{
+    background:url(home/login-icon.gif) no-repeat 416px -90px;
+}
+.s-input input.c-password-txt{
+    background:url(home/login-icon.gif) no-repeat 380px -132px;
+}
+.fp-txt{ float:left; color:#666; font-size:13px; margin-top:8px;}
 /* */
 .footer-area						{ padding:15px 40px; clear:both; font-size:12px; font-family:'Oxygen'; overflow:hidden;}
 .footer-left						{ float:left; color:#666666;text-shadow: 0px 2px 0px #ffffff;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */}

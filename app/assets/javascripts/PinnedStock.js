@@ -20,12 +20,42 @@
 
     };
 
-    var updateDisplayTemplate = function(){
+    var initDisplayTemplate = function(){
         this.stockInfo["changeClass"] = this.stockInfo["change"] > 0 ? 'up' : 'down' ;
         this.stockInfo["pinClass"] = this.pinActive ? 'pin-active' : '' ;
         this.stockInfo["graphClass"] = this.graphActive ? 'graph-active' : '' ;
         var html = Mustache.to_html($('#'+this.mustacheTemplateElId).html(), this.stockInfo);
         this.displayEl.html(html);
+    };
+
+    var updateDisplayTemplate = function(){
+        this.stockInfo["changeClass"] = this.stockInfo["change"] > 0 ? 'up' : 'down' ;
+        this.stockInfo["pinClass"] = this.pinActive ? 'pin-active' : '' ;
+        this.stockInfo["graphClass"] = this.graphActive ? 'graph-active' : '' ;
+        $(".price span", this.displayEl).html(this.stockInfo["price"]);
+        var self = this;
+        $(".stock-change-div .stock-change", this.displayEl).each(function(){
+            if(self.stockInfo["change"] > 0){
+                $(this).removeClass('down');
+                $(this).addClass('up');
+            }else{
+                $(this).removeClass('up');
+                $(this).addClass('down');
+            }
+            $(this).html(self.stockInfo["change"])
+
+        });
+        $(".stock-change-div .stock-change-percent", this.displayEl).each(function(){
+            if(self.stockInfo["change"] > 0){
+                $(this).removeClass('down');
+                $(this).addClass('up');
+            }else{
+                $(this).removeClass('up');
+                $(this).addClass('down');
+            }
+            $(this).html(self.stockInfo["percentageChange"])
+
+        });
         $(".price", this.displayEl).effect("highlight", {color: this.stockInfo["change"] > 0 ? '#7EDF7E': '#FF7171'}, 3000);
     };
 
@@ -50,7 +80,7 @@
         this.displayEl.on("click", "a.sell-button", {self: this}, this._sellButtonHandler);
         this.displayEl.on("click", "a.pin-button", {self: this}, this._pinButtonHandler);
         this.displayEl.on("click", "a.graph-button", {self: this}, this._graphButtonHandler);
-        updateDisplayTemplate.call(this);
+        initDisplayTemplate.call(this);
     };
 
     PinnedStock.prototype._buyButtonHandler = function(event){
@@ -85,7 +115,7 @@
     PinnedStock.prototype._graphButtonHandler = function(event){
         var self = event.data.self;
         if(typeof skybullsData !== 'undefined'){
-            skybullsData.socket.emit('add graph', {graph: self.symbol });
+            //skybullsData.socket.emit('add graph', {graph: self.symbol });
         }
         $(".graph", $(this)).addClass('graph-active');
         self.graphActive = true;

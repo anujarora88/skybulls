@@ -8,6 +8,7 @@ module Users
 
       def initialize_pinned_stocks
         @pinned_stocks = current_user.pinned_stocks
+        @pinned_stocks = Stock.limit(3).all if @pinned_stocks.empty?
       end
 
 

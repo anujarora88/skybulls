@@ -2,7 +2,7 @@
   = javascript_include_tag "jquery.tinyscrollbar.min.js"
   = javascript_include_tag "http://www.amcharts.com/lib/amstock.js"
   = javascript_include_tag "#{Rails.configuration.nodeapp_url}/socket.io/socket.io.js"
-  = javascript_include_tag nodeapp_get_feed_js_url(@pinned_stocks, @pinned_stocks, 'chartDiv')
+  = javascript_include_tag nodeapp_get_feed_js_url([], @pinned_stocks)
 
 - content_for :sub_header do
   = render "/leagues/common/sub_header"
@@ -21,11 +21,11 @@
       <div class="mid-box-logo">
         <span>{{label}}</span>
       </div>
-      <div class="peg">
-        <div class="peg-left {{changeClass}}">{{change}}</div>
-        <div class="peg-left mrn {{changeClass}}">{{percentageChange}}%</div>
+      <div class="peg stock-change-div">
+        <div class="peg-left stock-change {{changeClass}}">{{change}}</div>
+        <div class="peg-left mrn stock-change-percent {{changeClass}}">{{percentageChange}}%</div>
       </div>
-      <div class="price">${{price}}<a href="javascript:void(0);"  class="graph-button"> <img src="/assets/graph.png" class="graph {{graphClass}}" /></a>
+      <div class="price">$<span>{{price}}</span><a href="javascript:void(0);"  class="graph-button"> <img src="/assets/graph.png" class="graph {{graphClass}}" /></a>
       <a href="javascript:void(0);" class="pin-button"><img src="/assets/pin.png" class="pin {{pinClass}}" /></a></div>
       <div class="box-bottom">
         <div class="buy"><a class="buy-button">Buy</a></div>
@@ -83,14 +83,15 @@
 
 
 .h-midarea
-  %input.search-txt#search-bar{:placeholder => "Search company name or ticker", :autocomplete => "off", :type => "text"}/
+  %input.search-txt#search-bar{:placeholder => "Search Microsoft, Oracle, Apple, Yahoo or Facebook", :autocomplete => "off", :type => "text"}/
   .clr
   #stock-info-area
     - @pinned_stocks.each do |stock|
       %div.mid-box{id: "stock-info-area-element-#{stock.id}"}
 
 
-  .h-graph#chartDiv
+  .h-graph
+    = image_tag "graph-dummy.png"
 
 
 #tradeModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

@@ -2,6 +2,8 @@
   .logo
     %a{href: "/"}
       = image_tag 'logo.png'
+      %span.label.label-info
+        Alpha
 
   - if user_signed_in?
     %div{class: "topbar-right tlast"}
@@ -38,9 +40,16 @@
         %li
           %a{href: portfolio_path('base'), :class => "#{current_page_path.starts_with?("/portfolio") ? 'current' : ''}"}
             My Portfolio
-        %li
-          %a{href: users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}
+        %li.dropdown
+          %a#accountDropdown{ :href => users_account_summary_path, :class => "#{current_page_path.starts_with?("/users") ? 'current' : ''}"}
             My Account
 
+          %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
+            %li{role: "presentation"}
+              %a{href: users_account_summary_path, "tab-index" => "-1", :role => "menuitem"}
+                Account Summary
+            %li{role: "presentation"}
+              %a{href: destroy_user_session_path, "tab-index" => "-1", :role => "menuitem"}
+                Logout
 
 

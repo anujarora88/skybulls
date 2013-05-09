@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   def apply_omniauth(auth, email_address = nil)
     # In previous omniauth, 'user_info' was used in place of 'raw_info'
     self.email = email_address || auth['extra']['raw_info']['email']
+    self.user_name = auth["info"]["name"]
     # Again, saving token is optional. If you haven't created the column in authentications table, this will fail
     authentications.build(:provider => auth['provider'], :uid => auth['uid'], :token => auth['credentials']['token'])
   end
@@ -58,12 +59,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def subscribed_to_league?(league)
+    leagues.include? league
+  end
+
   def image_url
-    "https://graph.facebook.com/#{facebook_id}/picture?type=normal" if facebook_id
+    facebook_id ? "https://graph.facebook.com/#{facebook_id}/picture?type=normal" : 'default_profile_image.png'
   end
 
   def large_image_url
-    "https://graph.facebook.com/#{facebook_id}/picture?type=large" if facebook_id
+    facebook_id ? "https://graph.facebook.com/#{facebook_id}/picture?type=large" : 'default_profile_image.png'
   end
 
   def password_required?

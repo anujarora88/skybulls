@@ -47,11 +47,11 @@ header nav ul li a.current, header nav ul li a:hover { padding-bottom:5px;}
 .daily-league-txt				{ font-size:16px; color:#fff; line-height:54px; padding-left:20px;}
 .daily-league-txt span			{ font-size:18px; color:#fff; text-transform:uppercase; font-weight:bold;}
 
-.elapsed-time					{ position:absolute; right:176px; top:-1px; background:url(time-icon.png) 15px -112px #e96f6f no-repeat; height:51px; border-top:1px solid #ff8d8d; padding-left:55px; padding-right:15px; padding-top:4px; width:100px;}
+.elapsed-time					{ position:absolute; right:220px; top:-1px; background:url(time-icon.png) 15px -112px #e96f6f no-repeat; height:51px; border-top:1px solid #ff8d8d; padding-left:55px; padding-right:15px; padding-top:4px; width:150px;}
 .elapsed-time span				{ display:block; color:#8b2b2b; font-size:11px; text-transform:uppercase;}
 .elapsed-time .time-txt			{ display:block; font-size:24px; color:#fff; line-height:24px;}
 
-.remaining-time					{ position:absolute; right:0; top:-1px; background:url(time-icon.png) 15px 10px #a0ba81 no-repeat; height:51px; border-top:1px solid #bed89f; padding-left:55px; padding-right:15px; padding-top:4px;}
+.remaining-time					{ position:absolute; right:0; top:-1px; background:url(time-icon.png) 15px 10px #a0ba81 no-repeat; height:51px; border-top:1px solid #bed89f; padding-left:55px; padding-right:15px; padding-top:4px;width:150px;}
 .remaining-time span			{ display:block; color:#3e5e17; font-size:11px; text-transform:uppercase;}
 .remaining-time .time-txt		{ display:block; font-size:24px; color:#fff;}
 
@@ -121,8 +121,8 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 #scrollbar1 .thumb {height: 68px !important; width: 7px; left:0px; overflow: hidden; position: absolute; top: 0; }
 .r-data-list						{ overflow:hidden; border-top:1px solid #c9dde9; border-bottom:1px solid #c9dde9; background:#fff; overflow:hidden;}
 .r-data-list li					    { margin:0; float:left; border-bottom:1px solid #f2f2f2; line-height:32px; font-size:13px; color:#707070; overflow:hidden; padding:0 10px; width:190px; }
-.r-data-list li label				{ float:left; width:40%; font-size:12px; font-weight:bold; display:block; text-align:left;}
-.r-data-list li span				{ float:left; width:60%; display:block; text-align:right;}
+.r-data-list li label				{ float:left; width:36%; font-size:12px; font-weight:bold; display:block; text-align:left;}
+.r-data-list li span				{ float:left; width:64%; display:block; text-align:right;}
 .r-data-list li a					{ display:block; text-align:center; color:#a3a3a3; font-size:10px;}
 /******************************* Right Area End css ***********************************/
 

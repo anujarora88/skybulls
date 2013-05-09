@@ -72,7 +72,7 @@ SkybullsRails::Application.routes.draw do
 
   devise_for :admin_users
 
-  devise_for :users, :skip => [:sessions], :controllers => {:omniauth_callbacks => "authentications"}
+  devise_for :users, :skip => [:sessions], :controllers => {:omniauth_callbacks => "authentications", :registrations => "registrations"}
   as :user do
     get 'login' => 'devise/sessions#new', :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session

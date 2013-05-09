@@ -34,16 +34,36 @@
         .logo
           %a{href: "/"}
             = image_tag "home/skybulls.png", :alt=> "Skybulls"
+            %span.label.label-info
+              Alpha
         %nav
           %ul
             %li
               %a{:href => "#how_it_works", :title => "How it works?"} How it works?
             %li
               %a{:href => "#free_demo", :title => "Try free demo"} Try free demo
-            %li
-              %a{:href => user_omniauth_authorize_path(:facebook), :title => "Register"} Register
-            %li
-              %a{:href => user_omniauth_authorize_path(:google), :title => "Sign in"} Sign in
+            - unless user_signed_in?
+              %li
+                %a{:href => "#register", :title => "Register", :role => "button", "data-toggle" => "modal" } Register
+              %li
+                %a{:href => "#login", :title => "Sign in", :role => "button", "data-toggle" => "modal" } Sign in
+            - else
+              %li
+                %a{:href => dashboard_path, :title => "Dashboard"} Dashboard
+              %li
+                %a{:href => destroy_user_session_path, :title => "Logout"} Logout
+      - if flash[:error]  || flash[:alert]
+        .alert.alert-danger
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          = flash[:error]  || flash[:alert]
+      - if flash[:notice]
+        .alert.alert-info
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          = flash[:notice]
+      - if flash[:success]
+        .alert.alert-success
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          = flash[:success]
       / End header
       %section.banner-area
         .banner-cont
@@ -59,8 +79,9 @@
           .banner-txt
             %h4 Stock Trading at its virtual best
             %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.
-            %a{:href => "javascript:void(0);", :title => "Register Now"}
-              = image_tag "home/register-now.png", :alt => "slide"
+            - unless user_signed_in?
+              %a{:href => "#register", :title => "Register Now", :role => "button", "data-toggle" => "modal" }
+                = image_tag "home/register-now.png", :alt => "slide"
       %section.mid-cont-area#how_it_works
         %h2
           How it works?
@@ -117,3 +138,49 @@
           %a.f-icon{:href => "javascript:void(0);", :title => "Facebook"} Facebook
           %a.t-icon{:href => "javascript:void(0);", :title => "Twitter"} Twitter
           %a.in-icon{:href => "javascript:void(0);", :title => "Linkedin"} Linkedin
+
+
+#login.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Log in to Skybulls
+  .modal-body
+    .f-signup
+      %a{:href => user_omniauth_authorize_path(:facebook)}
+        = image_tag "home/facebook-login.png", alt:"FB"
+      %span or
+      %a{:href => user_omniauth_authorize_path(:google)}
+        = image_tag "home/google-login-button.png", alt:"Google"
+      %span or
+    = form_for :user, :url => session_path(:user) do |f|
+      .s-input
+        = f.email_field :email, :autofocus => true, :class => "email-txt", :placeholder => "Email"
+      .s-input
+        = f.password_field :password, :class => "password-txt", :placeholder => "Password"
+      .s-input
+        %a.button-action{:href => "javascript:void(0);", "data-role" => "submit"} Login
+        %a.fp-txt{:href => "javascript:void(0);"} Forgot password?
+
+#register.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Register
+  .modal-body
+    .f-signup
+      %a{:href => user_omniauth_authorize_path(:facebook, signup:true)}
+        = image_tag "home/facebook-login.png", alt:"FB"
+      %span or
+      %a{:href => user_omniauth_authorize_path(:google, signup:true)}
+        = image_tag "home/google-login-button.png", alt:"Google"
+      %span or
+    = form_for :user, :url => registration_path(:user) do |f|
+      .s-input
+        = f.text_field :email, :autofocus => true, :class => "email-txt", :placeholder => "Email"
+      .s-input
+        = f.email_field :user_name, :class => "name-txt", :placeholder => "Username"
+      .s-input
+        = f.password_field :password, :class => "password-txt", :placeholder => "Password"
+      .s-input
+        = f.password_field :password_confirmation, :class => "password-txt", :placeholder => "Confirm Password"
+      .s-input
+        %a.button-action{:href => "javascript:void(0);", "data-role" => "submit"} Register

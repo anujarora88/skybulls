@@ -32,7 +32,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         sign_in_and_redirect(:user, authentication.user)
       else
         # Authentication not found, thus a new user.  TODO maybe show a message
-        if true || omniauth_params.with_indifferent_access[:signup]
+        if omniauth_params.with_indifferent_access[:signup]
           user = User.where(:email => email).first || User.new(:password => Devise.friendly_token[0,20])
           user.apply_omniauth(auth, email)
           user.skip_confirmation!
@@ -41,11 +41,11 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
             sign_in_and_redirect(:user, user)
           else
             flash[:error] = "Error while creating a user account. Please try again."
-            redirect_to new_user_session_path
+            redirect_to '/'
           end
         else
-          flash[:error] = "User not found!!."
-          redirect_to new_user_session_path
+          flash[:error] = "Could not find a user with email #{email}! Please register first!"
+          redirect_to '/'
         end
 
       end
