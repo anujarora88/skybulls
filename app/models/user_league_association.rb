@@ -24,8 +24,8 @@ class UserLeagueAssociation < ActiveRecord::Base
   before_create :default_values
 
   def default_values
-    self.balance ||= league.virtual_money
-    self.investment ||= Money.new(0)
+    self.balance = league.virtual_money
+    self.investment = Money.new(0)
   end
 
   def total
