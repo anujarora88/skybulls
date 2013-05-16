@@ -64,7 +64,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .slidesjs-navigation 				{ float:left; z-index:10;position:absolute;margin-top:-190px;margin-left:-58px;text-indent:-999px;}
 .slidesjs-previous 					{ margin-right: 5px;float: left;background:url(home/arrow.png) no-repeat; width:38px;height:47px;}
 .slidesjs-next 						{ margin-right: 5px;float: right;margin-left:527px;background:url(home/arrow.png) no-repeat bottom;width:38px;height:47px;}
-.slidesjs-pagination 				{ margin: 6px 0 0;float: right;list-style: none;margin-top:60px;margin-right:215px;}
+.slidesjs-pagination 				{ float: right;list-style: none;margin-top:60px;margin-right:215px;}
 .slidesjs-pagination li 			{ float: left; margin: 0 2px;}
 .slidesjs-pagination li a 			{ display: block;background:#eae9e9;border-radius:50px;-moz-border-radius:50px;-webkit-border-radius:50px;width:13px;height:13px;text-indent:-999px;}
 .slidesjs-pagination li a.active,
@@ -72,7 +72,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .slidesjs-pagination li a:hover		{  background:#02bcff;}
 
 
-.popup-area{ background:url(home/popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999999;}
+.popup-area{ background:url(popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999999;}
 
 .popup-cont{ border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:absolute; top:60px; width:40%; left:30%;}
 .close-icon{ padding:10px; text-align:right;}
@@ -83,7 +83,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .popup-txt	{ background:#f8f8f8; border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-bottom:50px; }
 .popup-c-txt{ border-top:2px solid #fff; border-bottom:1px solid #fff; padding:10px; overflow:hidden;border-left:1px solid #ddd;}
 .popup-c-txt span{ display:block; padding-left:10px; float:left; color:#808080; }
-.popup-c-txt strong{#3a3c40; display:block; float:left; padding-left:10px; padding-top:2px;}
+.popup-c-txt strong{color:#3a3c40; display:block; float:left; padding-left:10px; padding-top:2px;}
 .popup-logo	{ float:left; padding:10px; border-top:2px solid #fff; border-bottom:1px solid #fff; }
 .popup-sub-head{ border-top:1px solid #ddd; border-bottom:1px solid #ddd;overflow:hidden; margin-bottom:30px; }
 .popup-sub-head span{ background:#f8f8f8; border-top:2px solid #fff; border-bottom:1px solid #fff; font-size:24px; font-weight:bold; line-height:55px; display:block; text-align:center;}
