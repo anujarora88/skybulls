@@ -254,7 +254,6 @@ input[type="text"].search-txt					{ font-size:16px; font-weight:lighter; color:#
 .leg-box th{ width:20%; border-right:1px dashed #39b8e5; background: #00a9e5; background: -moz-linear-gradient(top, #00a9e5,  #029acf);background: -webkit-gradient(linear, left top, left bottom, from(#00a9e5), to(#029acf));
     background: -webkit-linear-gradient(left top, left bottom, #00a9e5, #029acf);
     background: -o-linear-gradient(top, #00a9e5,#029acf);
-    background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#00a9e5, EndColorStr=#029acf, GradientType=0)";
     background: linear-gradient(to bottom, #00a9e5,#029acf); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a9e5', endColorstr='#029acf', GradientType='0'); font-size:13px; line-height:48px;}
 .leg-box th span{ float:left; padding-left:18px;}
 .leg-box th:last-child{ border:none;}
