@@ -70,6 +70,7 @@ module SkybullsRails
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
     config.active_record.observers = :league_observer
+    config.active_record.observers = :league_registration_observer
 
     config.nodeapp_url = "http://skybulls-local.com:8082"
     config.nodeapp_api_key = "sajdnbjkasdasmdnjasdasd"

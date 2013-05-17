@@ -1,0 +1,18 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hi #{@user.user_name}
+    %p
+      This is to let you know that #{@league.title} league is about to start in 15 min. Please log
+      into #{@url} to start participating.
+      %br/
+    %p
+      League:  #{@league.title}
+    %p
+      Start:  #{@league.start_time.strftime("%-d %b %Y (%k:%m) ")}
+    %p
+      If you have any questions please write to us at support@skybulls.com
+    %p
+      Thanks

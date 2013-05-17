@@ -1,0 +1,22 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hi #{@ula.user.user_name}
+    %p
+      You finished the league in #{@ula.rank} place with a portfolio return of #{number_to_percentage(@ula.portfolio_return, :precision => 2)}. A USD
+      #{@deposit.amount} award has been credited your account.
+      %br/
+    %p
+      League Details
+    %p
+      League:  #{@ula.league.title}
+    %p
+      Start:  #{@ula.league.start_time.strftime("%-d %b %Y (%k:%m) ")}
+    %p
+      Entrants : #{@ula.league.user_league_associations.size}
+    %p
+      If you have any questions please write to us at support@skybulls.com
+    %p
+      Thanks

@@ -9,6 +9,8 @@ module Jobs
         ActiveRecord::Base.transaction do
           league.execute_open_trades!
           league.pay_winners!
+          ula = UserLeagueAssociation.where(:league_id=>league_id,:rank => 1)
+          Jobs.enqueue(Jobs::CashPositionJob.new(ula.id))
           league.completed = true
           league.save!
         end

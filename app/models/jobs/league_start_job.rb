@@ -7,6 +7,7 @@ module Jobs
       if league
         league.users.each do |u|
           league.notify(u, "The league has just started!")
+          UserMailer.league_start_email(u,league)
         end
       end
     end

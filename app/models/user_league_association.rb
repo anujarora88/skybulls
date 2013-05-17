@@ -1,5 +1,5 @@
 class UserLeagueAssociation < ActiveRecord::Base
-  attr_accessible :league_id, :user_id, :user, :league
+  attr_accessible :league_id, :user_id, :user, :league, :rank
 
   include Notify
 
