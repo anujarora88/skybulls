@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503170124) do
+ActiveRecord::Schema.define(:version => 20130504203137) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -99,19 +99,17 @@ ActiveRecord::Schema.define(:version => 20130503170124) do
   add_index "exchanges_leagues", ["exchange_id", "league_id"], :name => "index_exchanges_leagues_on_exchange_id_and_league_id", :unique => true
 
   create_table "leagues", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "category"
-    t.string   "market"
+    t.string   "title",                                       :null => false
+    t.string   "category",                                    :null => false
     t.string   "algo_name"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "start_time",                                  :null => false
+    t.datetime "end_time",                                    :null => false
     t.integer  "latest_registration_time"
     t.boolean  "invitation_only",          :default => false
-    t.float    "buy_in"
-    t.float    "commission"
+    t.float    "buy_in",                                      :null => false
+    t.float    "commission",                                  :null => false
     t.integer  "min_users"
     t.integer  "max_users"
     t.boolean  "completed",                :default => false
@@ -168,8 +166,8 @@ ActiveRecord::Schema.define(:version => 20130503170124) do
   add_index "user_accounts", ["user_id"], :name => "user_accounts_user_id_fk"
 
   create_table "user_league_associations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "league_id"
+    t.integer  "user_id",                                :null => false
+    t.integer  "league_id",                              :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "balance_cents",       :default => 0,     :null => false
@@ -178,6 +176,9 @@ ActiveRecord::Schema.define(:version => 20130503170124) do
     t.integer  "investment_cents",    :default => 0,     :null => false
     t.string   "investment_currency", :default => "USD", :null => false
   end
+
+  add_index "user_league_associations", ["league_id"], :name => "user_league_associations_league_id_fk"
+  add_index "user_league_associations", ["user_id"], :name => "user_league_associations_user_id_fk"
 
   create_table "user_payment_methods", :force => true do |t|
     t.datetime "created_at",                          :null => false
@@ -259,6 +260,9 @@ ActiveRecord::Schema.define(:version => 20130503170124) do
   add_foreign_key "trades", "user_league_associations", :name => "trades_user_league_association_id_fk"
 
   add_foreign_key "user_accounts", "users", :name => "user_accounts_user_id_fk"
+
+  add_foreign_key "user_league_associations", "leagues", :name => "user_league_associations_league_id_fk"
+  add_foreign_key "user_league_associations", "users", :name => "user_league_associations_user_id_fk"
 
   add_foreign_key "user_payment_methods", "user_accounts", :name => "user_payment_methods_account_id_fk", :column => "account_id"
 

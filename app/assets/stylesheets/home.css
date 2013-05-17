@@ -29,7 +29,7 @@ header nav ul li 				{ float:left;padding:0;margin-left:5px; margin-right:5px;}
 header nav ul li a 				{ font-size:16px;color:#fff;line-height:34px;text-decoration:none; padding:0 15px; float:left; font-weight:lighter; }
 header nav ul li a.current, header nav ul li a:hover { background:#0299ce; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; color:#fff;}
 
-.banner-area					{ background:url(home/banner-bg.jpg) no-repeat center center; width:100%;background-size:cover;height:544px; overflow:hidden; }
+.banner-area					{ background:url(home/banner-bg.jpg) no-repeat center center; width:100%;background-size:cover;height:544px; overflow:hidden; padding-top: 106px; }
 .banner-txt						{ width:280px; float:left; margin-left:40px; padding-top:100px; }
 .banner-txt h4					{ font-size:38px; color:#fff; line-height:42px; font-weight:lighter; padding-left:3px;}
 .banner-txt p					{ font-size:18px; color:#d9d9d9; line-height:22px; font-weight:lighter; margin-top:15px; margin-bottom:20px;padding-left:3px;}
@@ -41,6 +41,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .mid-cont-area span					{ color:#3a3b3f; display:block; font-size:16px; line-height:20px; margin:0;}
 .row-works							{ overflow:hidden; padding:20px 0;}
 .w-col								{ overflow:hidden; float:left; text-align:center; width:33%; padding:30px 0 30px;}
+.w-col .mid-col                     { padding-left: 20px;}
 .i-row-h							{ position:relative; height:280px; width:100%; text-align:center;}
 .w-col p							{ color:#707070; font-size:16px; text-align:center; line-height:22px; padding:20px 30px 0 30px; padding-bottom:0;}
 
@@ -55,7 +56,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 
 .demo-btn							{ background:#0299ce; color:#fff; font-size:36px; line-height:74px; display:block; text-align:center; border-bottom: #00739c 8px solid;}
 .demo-btn:hover						{ background:#78c947; color:#fff; border-bottom: #67b538 8px solid;}
-.comp-bg							{ background:url(home/bg-slide.png) no-repeat 0 0; padding:18px 82px; padding-bottom:0; width:510px; height:440px; margin-top:75px; margin-left:40px; float:left;  }
+.comp-bg							{ /*background:url(home/bg-slide.png) no-repeat 0 0; */padding:18px 82px; padding-bottom:0; width:510px; height:440px; margin-top:75px; margin-left:40px; float:left;  }
 .demo-area							{ background:#3a3b3f; border-bottom:8px solid #8a8a8a; height:500px;}
 
 
@@ -63,7 +64,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .slidesjs-navigation 				{ float:left; z-index:10;position:absolute;margin-top:-190px;margin-left:-58px;text-indent:-999px;}
 .slidesjs-previous 					{ margin-right: 5px;float: left;background:url(home/arrow.png) no-repeat; width:38px;height:47px;}
 .slidesjs-next 						{ margin-right: 5px;float: right;margin-left:527px;background:url(home/arrow.png) no-repeat bottom;width:38px;height:47px;}
-.slidesjs-pagination 				{ margin: 6px 0 0;float: right;list-style: none;margin-top:60px;margin-right:215px;}
+.slidesjs-pagination 				{ float: right;list-style: none;margin-top:60px;margin-right:215px;}
 .slidesjs-pagination li 			{ float: left; margin: 0 2px;}
 .slidesjs-pagination li a 			{ display: block;background:#eae9e9;border-radius:50px;-moz-border-radius:50px;-webkit-border-radius:50px;width:13px;height:13px;text-indent:-999px;}
 .slidesjs-pagination li a.active,
@@ -71,7 +72,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .slidesjs-pagination li a:hover		{  background:#02bcff;}
 
 
-.popup-area{ background:url(home/popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999999;}
+.popup-area{ background:url(popup-bg.png); width:100%; height:100%; position:absolute; top:0; left:0; z-index:999999;}
 
 .popup-cont{ border:3px solid #ddd;background:#fff; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:absolute; top:60px; width:40%; left:30%;}
 .close-icon{ padding:10px; text-align:right;}
@@ -82,7 +83,7 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .popup-txt	{ background:#f8f8f8; border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-bottom:50px; }
 .popup-c-txt{ border-top:2px solid #fff; border-bottom:1px solid #fff; padding:10px; overflow:hidden;border-left:1px solid #ddd;}
 .popup-c-txt span{ display:block; padding-left:10px; float:left; color:#808080; }
-.popup-c-txt strong{#3a3c40; display:block; float:left; padding-left:10px; padding-top:2px;}
+.popup-c-txt strong{color:#3a3c40; display:block; float:left; padding-left:10px; padding-top:2px;}
 .popup-logo	{ float:left; padding:10px; border-top:2px solid #fff; border-bottom:1px solid #fff; }
 .popup-sub-head{ border-top:1px solid #ddd; border-bottom:1px solid #ddd;overflow:hidden; margin-bottom:30px; }
 .popup-sub-head span{ background:#f8f8f8; border-top:2px solid #fff; border-bottom:1px solid #fff; font-size:24px; font-weight:bold; line-height:55px; display:block; text-align:center;}
@@ -198,3 +199,5 @@ header nav ul li a.current, header nav ul li a:hover { background:#0299ce; borde
 .footer-right a.f-icon:hover{ background-position:-32px bottom;}
 .footer-right a.t-icon:hover{ background-position:-64px bottom;}
 .footer-right a.in-icon:hover{ background-position:-96px bottom;}
+
+.img-polaroid             {background-color: #3A3B3F;}
