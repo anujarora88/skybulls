@@ -2,8 +2,20 @@ SkybullsRails::Application.configure do
 
   config.cache_classes = true
 
-
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+
+  config.serve_static_assets = true
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
 
   config.paypal_merchant_account_email = "anuj@skybulls.com"
   config.paypal_preapproval_key_url = "https://www.sandbox.paypal.com/webscr&cmd=_ap-preapproval&preapprovalkey="

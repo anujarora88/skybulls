@@ -10,27 +10,23 @@
     = javascript_include_tag "jquery.slides.min.js"
     :javascript
       $(function() {
-        $('#slides').slidesjs({
-          width: 510,
-          height: 325,
-          navigation: {
-            effect: "fade"
-          },
-          pagination: {
-            effect: "fade"
-          },
-          effect: {
-            fade: {
-              speed: 800
-            }
-          }
-        });
+         $(".how_it_works").click(function() {
+              $('html, body').animate({
+                  scrollTop: $("#how_it_works").offset().top - 106
+              }, 1500);
+         });
+         $(".features").click(function() {
+             $('html, body').animate({
+                 scrollTop: $("#features").offset().top
+             }, 1500);
+         });
+
       });
   	
     %body
     .wrapper
       / header
-      %header
+      %header.affix-top{"data-spy"=> "affix"}
         .logo
           %a{href: "/"}
             = image_tag "home/skybulls.png", :alt=> "Skybulls"
@@ -39,9 +35,9 @@
         %nav
           %ul
             %li
-              %a{:href => "#how_it_works", :title => "How it works?"} How it works?
+              %a.how_it_works{:href => "#", :title => "How it works?"} How it works?
             %li
-              %a{:href => "#free_demo", :title => "Try free demo"} Try free demo
+              %a.features{:href => "#", :title => "Features"} Features
             - unless user_signed_in?
               %li
                 %a{:href => "#register", :title => "Register", :role => "button", "data-toggle" => "modal" } Register
@@ -67,18 +63,12 @@
       / End header
       %section.banner-area
         .banner-cont
-          #slides.comp-bg
-            = image_tag "home/1.png", :alt => "slide"
-            = image_tag "home/2.png", :alt => "slide"
-            = image_tag "home/3.png", :alt => "slide"
-            = image_tag "home/4.png", :alt => "slide"
-            %a.slidesjs-previous.slidesjs-navigation{:href => "javascript:void(0);"}
-              %i.icon-chevron-left
-            %a.slidesjs-next.slidesjs-navigation{:href => "javascript:void(0);"}
-              %i.icon-chevron-right
+          .comp-bg
+            %iframe.img-polaroid{:allowfullscreen => "", :frameborder => "0", :height => "281", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/66121149", :webkitallowfullscreen => "", :width => "500"}
+
           .banner-txt
             %h4 Stock Trading at its virtual best
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.
+            %p SkyBulls is a simulated trading platform for people who want to educate and train themselves and test their strategies before directly investing in the stock market.
             - unless user_signed_in?
               %a{:href => "#register", :title => "Register Now", :role => "button", "data-toggle" => "modal" }
                 = image_tag "home/register-now.png", :alt => "slide"
@@ -90,16 +80,16 @@
           .w-col
             .i-row-h
               = image_tag "home/step.png", :alt => "How it works?"
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
+            %p Join a daily, weekly or monthly league to compete against other participants.
           .w-col
-            .i-row-h
+            .i-row-h.mid-col
               = image_tag "home/step1.png", :alt => "How it works?"
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
+            %p Participants make their trades and build hypothetical portfolios.
           .w-col
             .i-row-h
               = image_tag "home/step2.png", :alt => "How it works?"
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.
-      %section.f-area
+            %p Top performers are rewarded from the prize pool built through participation fee.
+      %section.f-area#features
         %h2
           Features
           %span What makes us better than the rest?
@@ -108,19 +98,19 @@
             .i-row-f
               = image_tag "home/real-time-data.png", :alt => "Real time data"
             %h3 Real Time Data
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            %p SkyBulls uses real-time data of all equities listed on NASDAQ and NYSE.
           .f-col
             .i-row-f
               = image_tag "home/real-cash-prizes.png", :alt => "Real time data"
             %h3 Real Cash Prizes
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            %p Win real cash rewards multiple times your investment if you perform better than others on the platform.
           .f-col
             .i-row-f
               = image_tag "home/test-strategies.png", :alt => "Real time data"
             %h3 Test Strategies
-            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      %a.demo-btn{:href => "javascript:void(0);"} Try our demo
-      .demo-area
+            %p Test you strategies in a safe environment before directly investing in the market.
+      -#%a.demo-btn{:href => "javascript:void(0);"} Try our demo
+      -#.demo-area
       %footer.footer-area
         %section.footer-left
           %a{:href => "javascript:void(0);"} Terms and Conditions
