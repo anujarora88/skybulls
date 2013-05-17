@@ -1,0 +1,25 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hi #{@user.user_name}
+    %p
+      You have registered for #{@league.title} league. We will notify you 15 min before the league begins. Here are the details:
+      %br/
+    %p
+      League:  #{@league.title}
+    %p
+      Start:  #{@league.start_time.strftime("%-d %b %Y (%k:%m) ")}
+    %p
+      If you have any questions please write to us at support@skybulls.com
+    %p
+      Thanks
+    %p
+      To login to the site, just follow this link: #{@url}.
+    %p
+      Thanks for joining and have a great day!
+
+
+
+

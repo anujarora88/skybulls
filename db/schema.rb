@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20130504203137) do
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "exchanges_leagues", ["exchange_id", "league_id"], :name => "index_exchanges_leagues_on_exchange_id_and_league_id"
+  add_index "exchanges_leagues", ["exchange_id", "league_id"], :name => "index_exchanges_leagues_on_exchange_id_and_league_id", :unique => true
 
   create_table "leagues", :force => true do |t|
     t.string   "title",                                       :null => false
