@@ -141,3 +141,4 @@ header nav ul li a.current, header nav ul li a:hover {
 .one-col-data li a.btn-action:hover{ background:#0299ce;}
 .action-btn-info:hover{background:#0299ce; color:#fff;}
 .action-btn-reg:hover{background:#707070; color:#fff;}
+#notification_area{background:#707070; color:#fff; text-align: right;display: none;}

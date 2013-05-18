@@ -7,6 +7,7 @@
     = stylesheet_link_tag "jquery.ui.dialog.css", :media => :all
     = stylesheet_link_tag "application", :media => :all
     = stylesheet_link_tag "style", :media => :all
+    = stylesheet_link_tag "style_1", :media => :all
     = stylesheet_link_tag "dark", :media => :all
     = javascript_include_tag "application"
     = javascript_include_tag "mustache"
@@ -20,7 +21,6 @@
     .wrapper
       = render '/layouts/header'
       = yield :sub_header
-
       .cont-area
         = yield :left_sidebar
         .flash-message-area
@@ -36,6 +36,7 @@
             .alert.alert-success
               %button.close{"data-dismiss" => "alert", :type => "button"} ×
               = flash[:success]
+          %div{id:"notification_area"}
         = yield
         = yield :right_sidebar
 

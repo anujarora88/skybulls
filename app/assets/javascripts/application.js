@@ -103,4 +103,34 @@ jQuery(document).ready(function(){
 
 });
 
+ function fetch_notifications(id){
+        var data_map={};
+        data_map['id'] = id;
+        $.ajax({
+         type : 'GET',
+         dataType: 'html',
+         url :Routes.notifications_path(),
+         data:data_map,
+        success: function(data){
+            $("#notification_area").html('');
+            $("#notification_area").append(data);
+            $("#notification_area").slideDown('slow');
+            $('#notification_area').delay(10000).slideUp();
+        }
+     })
+ }
 
+function dismiss_notification(id){
+    var data_map={};
+    data_map['id'] = id;
+    $.ajax({
+        type : 'GET',
+        dataType: 'html',
+        url :Routes.dismiss_notification_path(),
+        data:data_map,
+        success: function(data){
+            $("#notify_"+id).slideUp();
+            $(".noti-txt").html(data)
+        }
+    })
+}

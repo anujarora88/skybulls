@@ -1,0 +1,4 @@
+- @notifications.each do |n|
+    %div{id:"notify_#{n.id}"}
+        %p.notification-txt{id:"noti_#{n.id}"}= n.message
+        %a{:href=>"javascript:void(0)",:data=>":id=>#{n.id}",:onclick=>"dismiss_notification(#{n.id})"} Dismiss

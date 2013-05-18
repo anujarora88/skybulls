@@ -82,7 +82,8 @@ SkybullsRails::Application.routes.draw do
   end
 
   get 'dashboard' => 'dashboard#index', :as => :dashboard
-
+  get 'fetch_notification' =>'dashboard#fetch_notification', :as=> :notifications
+  get 'dismiss_notification' =>'dashboard#dismiss_notification', :as=> :dismiss_notification
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

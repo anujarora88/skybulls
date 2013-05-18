@@ -3,9 +3,9 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %h1
-      Welcome to example.com, #{@user.user_name}
+      Welcome to #{@url}, #{@user.user_name}
     %p
-      You have successfully signed up to example.com,
+      You have successfully signed up to #{@url},
       %br/
     %p
       To login to the site, just follow this link: #{@url}.
