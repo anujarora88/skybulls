@@ -35,9 +35,9 @@
         %nav
           %ul
             %li
-              %a.how_it_works{:href => "#", :title => "How it works?"} How it works?
+              %a.how_it_works{:href => "javascript:void(0);", :title => "How it works?"} How it works?
             %li
-              %a.features{:href => "#", :title => "Features"} Features
+              %a.features{:href => "javascript:void(0);", :title => "Features"} Features
             - unless user_signed_in?
               %li
                 %a{:href => "#register", :title => "Register", :role => "button", "data-toggle" => "modal" } Register
@@ -174,3 +174,4 @@
         = f.password_field :password_confirmation, :class => "password-txt", :placeholder => "Confirm Password"
       .s-input
         %a.button-action{:href => "javascript:void(0);", "data-role" => "submit"} Register
+= render "/feedback_widget"
