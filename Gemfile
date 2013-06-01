@@ -29,7 +29,8 @@ gem 'airbrake'
 
 gem 'whenever', :require => false
 
-
+gem 'newrelic_rpm'
+gem 'redis'
 
 
 

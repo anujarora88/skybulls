@@ -78,6 +78,8 @@ module SkybullsRails
 
     config.facebook_api_key = "169442719870493"
     config.facebook_api_secret = "368af9baf42d603bf7f51504a1c1d793"
+    config.redis_host = "localhost"
+    config.redis_port = "6379"
 
   end
 end
