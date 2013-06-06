@@ -13,6 +13,10 @@ class Leagues::TradesController < Leagues::AbstractController
           @error_message = "Not enough balance!"
           render 'buy'
           return
+        elsif !@user_league_association.league.in_progress?
+          @error_message = "No trades are allowed at this time!"
+          render 'buy'
+          return
         else
           @trade.save!
         end
@@ -33,6 +37,10 @@ class Leagues::TradesController < Leagues::AbstractController
         if @stock_amount < @trade.amount
            @error_message = "Can not sell more than #{@stock_amount} shares!"
           render 'sell'
+          return
+        elsif !@user_league_association.league.in_progress?
+          @error_message = "No trades are allowed at this time!"
+          render 'buy'
           return
         else
           @trade.save!
