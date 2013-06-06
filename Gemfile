@@ -47,6 +47,7 @@ gem 'bootstrap-sass'
 
 
 gem 'jquery-rails'
+gem "jquery-ui-rails"
 gem 'execjs'
 
 gem 'therubyracer'
