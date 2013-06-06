@@ -21,6 +21,22 @@
              }, 1500);
          });
 
+         $('#slides').slidesjs({
+                   width: 510,
+                   height: 325,
+                   navigation: {
+                     effect: "fade"
+                   },
+                   pagination: {
+                     effect: "fade"
+                   },
+                   effect: {
+                     fade: {
+                       speed: 800
+                     }
+                   }
+                 });
+
       });
   	
     %body
@@ -63,9 +79,15 @@
       / End header
       %section.banner-area
         .banner-cont
-          .comp-bg
-            %iframe.img-polaroid{:allowfullscreen => "", :frameborder => "0", :height => "281", :mozallowfullscreen => "", :src => "http://player.vimeo.com/video/66121149", :webkitallowfullscreen => "", :width => "500"}
-
+          #slides.comp-bg
+            = image_tag "home/1.png", :alt => "slide"
+            = image_tag "home/2.png", :alt => "slide"
+            = image_tag "home/3.png", :alt => "slide"
+            = image_tag "home/4.png", :alt => "slide"
+            %a.slidesjs-previous.slidesjs-navigation{:href => "javascript:void(0);"}
+              %i.icon-chevron-left
+            %a.slidesjs-next.slidesjs-navigation{:href => "javascript:void(0);"}
+              %i.icon-chevron-right
           .banner-txt
             %h4 Stock Trading at its virtual best
             %p SkyBulls is a simulated trading platform for people who want to educate and train themselves and test their strategies before directly investing in the stock market.
