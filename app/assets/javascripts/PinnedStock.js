@@ -30,6 +30,7 @@
 
     var updateDisplayTemplate = function(){
         this.stockInfo["changeClass"] = this.stockInfo["change"] > 0 ? 'up' : 'down' ;
+        this.stockInfo["percentageChange"] = this.stockInfo["percentageChange"] ? this.stockInfo["percentageChange"].toString() + "%" : "0.0%";
         this.stockInfo["pinClass"] = this.pinActive ? 'pin-active' : '' ;
         this.stockInfo["graphClass"] = this.graphActive ? 'graph-active' : '' ;
         $(".price span", this.displayEl).html(this.stockInfo["price"]);
