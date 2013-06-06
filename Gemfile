@@ -26,6 +26,7 @@ gem "js-routes"
 
 gem 'delayed_job_active_record'
 gem 'airbrake'
+gem 'daemons'
 
 gem 'whenever', :require => false
 
