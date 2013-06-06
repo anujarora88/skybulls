@@ -38,7 +38,7 @@ production:
   database: skybulls_rails_production
   pool: 5
   username: root
-  password:
+  password: root
   socket: /tmp/mysql.sock
 
 staging:
