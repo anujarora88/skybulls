@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
 
     def initialize_account
         acc = build_account()
-        acc.balance = Money.new(0)
+        acc.balance = Money.new(100000)
 
     end
 end

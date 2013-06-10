@@ -13,6 +13,8 @@ gem 'omniauth-facebook'
 gem 'oauth2'
 gem 'omniauth-openid'
 
+gem "audited-activerecord", "~> 3.0"
+
 gem 'braintree'
 gem 'paypal-sdk-adaptivepayments'
 

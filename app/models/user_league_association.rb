@@ -1,5 +1,7 @@
 class UserLeagueAssociation < ActiveRecord::Base
-  attr_accessible :league_id, :user_id, :user, :league, :rank
+  attr_accessible :league_id, :user_id, :user, :league, :rank, :balance_cents, :balance_currency, :investment_cents, :investment_currency
+
+  audited
 
   include Notify
 
@@ -26,6 +28,7 @@ class UserLeagueAssociation < ActiveRecord::Base
   def default_values
     self.balance = league.virtual_money
     self.investment = Money.new(0)
+    self.rank = 1
   end
 
   def total
