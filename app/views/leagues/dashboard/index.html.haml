@@ -1,6 +1,4 @@
 - content_for :head do
-  = javascript_include_tag "jquery.tinyscrollbar.min.js"
-  = javascript_include_tag "http://www.amcharts.com/lib/amstock.js"
   = javascript_include_tag "#{Rails.configuration.nodeapp_url}/socket.io/socket.io.js"
   = javascript_include_tag nodeapp_get_feed_js_url([], @pinned_stocks)
 
